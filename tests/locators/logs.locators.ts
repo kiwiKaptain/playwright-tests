@@ -1,9 +1,11 @@
 import { Page } from "@playwright/test";
 
-export const auditLogsLocators = {
+export const logsLocators = {
     loadingAlert: (page: Page) =>
         page.getByRole("alert", { name: "Loading..." }),
+    monitoringTab: (page: Page) => page.getByText("Monitoring"),
     auditLogsTab: (page: Page) => page.getByText("Audit Logs"),
+    driverErrorLogsTab: (page: Page) => page.getByText("Driver Error Logs"),
 
     // Search by Timestamp
     dateColumn: (page: Page) =>
@@ -39,6 +41,28 @@ export const auditLogsLocators = {
         }),
 
     // Search by Action Taken By
+    actionTakenByColumn: (page: Page) =>
+        page.getByRole("textbox", {
+            name: "Filter cell",
+            description: "Column Action Taken By",
+            exact: true,
+        }),
+
+    // Search by Connection Name
+    connectionNameColumn: (page: Page) =>
+        page.getByRole("textbox", {
+            name: "Filter cell",
+            description: "Column Connection Name",
+            exact: true,
+        }),
+
+    // Search by Connection Name
+    errorColumn: (page: Page) =>
+        page.getByRole("textbox", {
+            name: "Filter cell",
+            description: "Column Error",
+            exact: true,
+        }),
 
     // Search by Details
     detailsColumn: (page: Page) =>
