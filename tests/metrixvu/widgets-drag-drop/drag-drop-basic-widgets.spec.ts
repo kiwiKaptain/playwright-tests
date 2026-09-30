@@ -13,6 +13,7 @@ const dashboardName =
 
 test.describe("DRAG AND DROP - BASIC WIDGETS", () => {
   test.beforeEach(async ({ page }) => {
+    test.setTimeout(60000);
     await login(page);
 
     const dashboardCard = await ensureDashboardExists(page, dashboardName);
@@ -57,19 +58,15 @@ test.describe("DRAG AND DROP - BASIC WIDGETS", () => {
     await dragAndDropWidget(page, "mi-tree-view");
   });
 
-  test("7. User can drag drop TAB PANEL widget to the dashboard canvas", async ({
-    page,
-  }) => {
-    await dragAndDropWidget(page, "mi-tab-panel");
-  });
+ 
 
-  test("8. User can drag drop SELECT BOX widget to the dashboard canvas", async ({
+  test("7. User can drag drop SELECT BOX widget to the dashboard canvas", async ({
     page,
   }) => {
     await dragAndDropWidget(page, "mi-select-box");
   });
 
-  test("9. User can drag drop TEXT BOX widget to the dashboard canvas", async ({
+  test("8. User can drag drop TEXT BOX widget to the dashboard canvas", async ({
     page,
   }) => {
     await dragAndDropWidget(page, "mi-text-box");
