@@ -6,7 +6,7 @@ import {
   openEditorAndClearCanvas,
 } from "../commonDashboardSetupHelpers";
 import { dragAndDropWidget } from "../commonDragDropHelpers";
-import { goToHomeAndVerify } from "../../../test-data/tests/metrix-vu/commonDashboardSetupHelpers";
+import { goToHomeAndVerify } from "../commonDashboardSetupHelpers";
 
 const dashboardName =
   TEST_DATA.dashboards.dashboardNameForWidgetPropertiesTesting;
