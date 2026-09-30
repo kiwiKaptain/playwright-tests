@@ -648,15 +648,28 @@ export async function setColorTheme(
   await ColorThemeLocators.paletteOption(page, palette).click();
 }
 
+
+
 export async function setRunTimeFilter(
   page: Page,
 
 ) {
-  await RunTimeFilterLocators.runTimeFilter(page).click();
+ // await RunTimeFilterLocators.runTimeFilter(page).click();
+   const runTimeFilter = RunTimeFilterLocators.runTimeFilter(page);
 
+  if ((await runTimeFilter.count()) === 0) {
+    throw new Error(
+      'Test ID prop-input-common-runtime-filter-required not found.',
+    );
+  }
+
+  const isChecked =
+    (await runTimeFilter.getAttribute("aria-checked")) === "true";
+
+  if (!isChecked) {
+    await runTimeFilter.click();
+  }
 }
-
-
 
 
 export async function setSeriesType(
