@@ -572,11 +572,18 @@ export async function setMinorGridProperties(
   await colorInput.press("Enter");
 }
 
-
 export async function setActionsProperties(
   page: Page,
   dashboardName: string
 ) {
+   const settingTypeInput = ActionLocators.clickSettingTypeInput(page);
+
+  // Verify Action setting type input exists
+  if ((await settingTypeInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-mi-widget-settings-click-setting-type' or 'prop-label-mi-widget-settings-click-setting-type' for Action setting type input not found.",
+    );
+  }
   // Click Action setting type
   await ActionLocators
     .clickSettingType(page)
@@ -620,6 +627,14 @@ export async function setActionsToNone(
   page: Page
 
 ) {
+   const settingTypeInput = ActionLocators.clickSettingTypeInput(page);
+
+  // Verify Action setting type input exists
+  if ((await settingTypeInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-mi-widget-settings-click-setting-type' or 'prop-label-mi-widget-settings-click-setting-type' for Action setting type input not found.",
+    );
+  }
   // Click Action setting type
   await ActionLocators
     .clickSettingType(page)
@@ -635,7 +650,6 @@ export async function setActionsToNone(
 
   
 }
-
 export async function setColorTheme(
   page: Page,
   palette: string,
@@ -670,8 +684,6 @@ export async function setRunTimeFilter(
 }
 
 
-
-
 export async function setSeriesType(
   page: Page,
   seriesType: string,
@@ -686,7 +698,6 @@ export async function setWidgetWidth(
   widthInput: string,
 ) {
   
-
   const widgetWidthInput =
     GeneralSettingsLocators.widgetWidthInput(page);
 
