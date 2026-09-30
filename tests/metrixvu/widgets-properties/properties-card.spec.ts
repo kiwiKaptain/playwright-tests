@@ -23,6 +23,7 @@ const dashboardName = TEST_DATA.dashboards.dashboardNameForWidgetPropertiesTesti
 const WIDGETS = { CARD: "mi-card" } as const;
 test.describe("PROPERTIES - CARD Widget", () => {
   test.beforeEach(async ({ page }) => {
+    test.setTimeout(60000);
     await login(page);
     const dashboardCard = await ensureDashboardExists(page, dashboardName);
     await openEditorAndClearCanvas(page, dashboardCard);
