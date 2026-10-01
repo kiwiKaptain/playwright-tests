@@ -462,7 +462,80 @@ test.describe("PROPERTIES - LINEAR-GAUGE Widget", () => {
   // Offset is represented by the horizontal translation
   expect(transform).toMatch(/^translate\([\d.]+,0\)$/);
 });
+ test("8. User can change VALUE INDICATOR TYPE RECTANGLE properties for linear gauge widget", async ({
+  page,
+}) => {
+  await setGaugeValueIndicatorProperties(page, {
+    type: "rectangle",
+    offset: "30",
+  });
 
+  // Enable Gradient
+  await GaugeValueIndicatorLocators.gradientLabel(page).click();
+  await GaugeValueIndicatorLocators.gradientInput(page).click();
+
+  // Switch to Viewer
+  await page.locator("label").filter({ hasText: "Viewer" }).click();
+
+  // Save
+  await page.getByRole("button", { name: "Save", exact: true }).click();
+
+  const targetWidget = await getDroppedWidgetByUuid(
+    page,
+    WIDGETS.LINEARGAUGE,
+  );
+
+  const bgContainer = targetWidget.locator(".mi-linear-gauge-container");
+
+  await bgContainer.waitFor({
+    state: "visible",
+    timeout: 10000,
+  });
+
+  await expect(bgContainer).toBeVisible();
+
+  // ============ VERIFY VALUE INDICATOR ============
+
+  const valueIndicator = bgContainer.locator(".dxg-value-indicator");
+
+  await expect(valueIndicator).toBeVisible();
+
+  // Verify rectangle is rendered using a path
+  const rectangle = valueIndicator.locator("path");
+
+  await expect(rectangle).toBeVisible();
+  await expect(rectangle).toHaveCount(1);
+
+  // Verify rectangle has no circle element
+  await expect(valueIndicator.locator("circle")).toHaveCount(0);
+
+  // ============ VERIFY GRADIENT ============
+
+  const fill = await valueIndicator.getAttribute("fill");
+
+  if (!fill) {
+    throw new Error(
+      "Gradient check failed: the Rectangle value indicator does not have a fill color. " +
+        "Please check that the Gradient option is enabled."
+    );
+  }
+
+  if (!/^url\(#DevExpress_\d+\)$/.test(fill)) {
+    throw new Error(
+      `Gradient check failed: the Rectangle value indicator is using a solid color "${fill}" instead of a gradient. ` +
+        "Please check that the Gradient option is checked in the Value Indicator settings."
+    );
+  }
+
+  // ============ VERIFY RECTANGLE SIZE AND POSITION ============
+
+  await expect(rectangle).toHaveAttribute(
+    "d",
+    "M 5.5 80.5 L 5.5 65.5 L 15.5 65.5 L 15.5 80.5 Z",
+  );
+
+  await expect(bgContainer).toBeVisible();
+});
    test("9. User can change VALUE INDICATOR TYPE TEXT CLOUD properties for linear gauge widget", async ({
   page,
 }) => {
