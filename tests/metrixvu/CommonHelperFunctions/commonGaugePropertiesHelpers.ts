@@ -434,7 +434,15 @@ export async function setGaugeRangeWidth(page: Page, rangeWidth: number) {
 }
 
 export async function addGaugeRange(page: Page) {
-  await RangeContainerLocators.rangeAdd(page).click();
+  const rangeAdd = RangeContainerLocators.rangeAdd(page);
+
+  if ((await rangeAdd.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-button-range-add' not found.",
+    );
+  }
+
+  await rangeAdd.click();
 }
 
 export async function updateGaugeRange(
@@ -446,8 +454,19 @@ export async function updateGaugeRange(
     gradient?: boolean;
   },
 ) {
-  // Select range
-  await RangeContainerLocators.rangeItem(page, options.index).click();
+  // Select Range
+  const rangeItem = RangeContainerLocators.rangeItem(
+    page,
+    options.index,
+  );
+
+  if ((await rangeItem.count()) === 0) {
+    throw new Error(
+      `Test ID 'prop-container-range-item-${options.index}' not found.`,
+    );
+  }
+
+  await rangeItem.click();
 
   // Start Value
   if (options.startValue !== undefined) {
@@ -455,6 +474,12 @@ export async function updateGaugeRange(
       page,
       options.index,
     );
+
+    if ((await startValueInput.count()) === 0) {
+      throw new Error(
+        `Test ID 'prop-input-range-start-value-${options.index}' not found.`,
+      );
+    }
 
     await startValueInput.click();
     await startValueInput.press("ControlOrMeta+a");
@@ -469,6 +494,12 @@ export async function updateGaugeRange(
       options.index,
     );
 
+    if ((await endValueInput.count()) === 0) {
+      throw new Error(
+        `Test ID 'prop-input-range-end-value-${options.index}' not found.`,
+      );
+    }
+
     await endValueInput.click();
     await endValueInput.press("ControlOrMeta+a");
     await endValueInput.fill(options.endValue);
@@ -482,6 +513,12 @@ export async function updateGaugeRange(
       options.index,
     );
 
+    if ((await gradientInput.count()) === 0) {
+      throw new Error(
+        `Test ID 'prop-input-range-gradient-${options.index}' not found.`,
+      );
+    }
+
     const isChecked = await gradientInput.isChecked();
 
     if (isChecked !== options.gradient) {
@@ -489,12 +526,35 @@ export async function updateGaugeRange(
     }
   }
 }
-export async function deleteGaugeRange(page: Page, index: number) {
-  // Select range
-  await RangeContainerLocators.rangeItem(page, index).click();
+
+export async function deleteGaugeRange(
+  page: Page,
+  index: number,
+) {
+  // Select Range
+  const rangeItem = RangeContainerLocators.rangeItem(
+    page,
+    index,
+  );
+
+  if ((await rangeItem.count()) === 0) {
+    throw new Error(
+      `Test ID 'prop-container-range-item-${index}' not found.`,
+    );
+  }
+
+  await rangeItem.click();
 
   // Delete Range
-  await RangeContainerLocators.rangeDelete(page).click();
+  const rangeDelete = RangeContainerLocators.rangeDelete(page);
+
+  if ((await rangeDelete.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-button-range-delete' not found.",
+    );
+  }
+
+  await rangeDelete.click();
 
   // Confirm deletion
   await page.getByText("Confirm Range Deletion").click();
