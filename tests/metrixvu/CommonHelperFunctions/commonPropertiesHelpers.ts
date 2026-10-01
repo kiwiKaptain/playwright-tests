@@ -256,6 +256,7 @@ export async function setLegendProperties(
     await backgroundColorInput.press("Enter");
   }
 }
+
 export async function setTooltipProperties(
   page: Page,
   fontColor: string,
@@ -264,7 +265,20 @@ export async function setTooltipProperties(
   color: string,
 ) {
   // Tooltip Enabled
-  await playwrightLocators.Tooltip.enabled(page).click();
+  const tooltipEnabled = playwrightLocators.Tooltip.enabled(page);
+
+  if ((await tooltipEnabled.count()) === 0) {
+    throw new Error(
+      "Tooltip 'prop-input-tooltip-enabled' not found or Tooltip enabled control not found.",
+    );
+  }
+
+  const isChecked =
+    (await tooltipEnabled.getAttribute("aria-checked")) === "true";
+
+  if (!isChecked) {
+    await tooltipEnabled.click();
+  }
 
   // Font Color
   const fontColorInput = playwrightLocators.Tooltip.fontColor(page);
@@ -286,9 +300,10 @@ export async function setTooltipProperties(
   const fontWeightInput = playwrightLocators.Tooltip.fontWeight(page);
 
   await fontWeightInput.click();
-
-  await playwrightLocators.Tooltip.fontWeightOption(page, fontWeight).click();
-
+  await playwrightLocators.Tooltip.fontWeightOption(
+    page,
+    fontWeight,
+  ).click();
   await fontWeightInput.press("Enter");
 
   // Tooltip Background Color
