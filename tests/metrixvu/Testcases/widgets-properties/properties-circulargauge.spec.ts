@@ -480,78 +480,92 @@ test.describe("PROPERTIES - CIRCULAR-GAUGE Widget", () => {
   });
 
   test("7. User can change VALUE INDICATOR TYPE RANGE properties for circular gauge widget", async ({
-    page,
-  }) => {
-    // await setGaugeValueIndicatorProperties(
-    //     page,
-    //     "rangeBar", // Type
-    //     "24",       // Offset Gap
-    //     "18",       // Size
-    // );
-    //     await setGaugeValueIndicatorProperties(page, {
-    //     type: "rangeBar",
-    //     offset: "24",
-    //     size: "18",
-    // });
-    await setGaugeValueIndicatorProperties(page, {
-      type: "rectangleNeedle",
-      offset: "70", //gap
-    });
-    // Gradient
-    await GaugeValueIndicatorLocators.gradientLabel(page).click();
-    await GaugeValueIndicatorLocators.gradientInput(page).click();
-    // Switch to Viewer
-    await page.locator("label").filter({ hasText: "Viewer" }).click();
-
-    // Save
-    await page.getByRole("button", { name: "Save", exact: true }).click();
-
-    const targetWidget = await getDroppedWidgetByUuid(
-      page,
-      WIDGETS.CIRCULARGAUGE,
-    );
-
-    const bgContainer = targetWidget.locator(".mi-circular-gauge-container");
-
-    await bgContainer.waitFor({
-      state: "visible",
-      timeout: 10000,
-    });
-
-    await expect(bgContainer).toBeVisible();
-
-    // Value Indicator
-    const valueIndicator = bgContainer.locator("g.dxg-value-indicator");
-
-    await expect(valueIndicator).toBeVisible();
-
-    // RangeBar main indicator
-    const mainBar = valueIndicator.locator("path.dxg-main-bar");
-
-    await expect(mainBar).toBeVisible();
-
-    // Verify Size = 18
-    const mainBarPath = await mainBar.getAttribute("d");
-
-    expect(mainBarPath).not.toBeNull();
-
-    const radii = mainBarPath!.match(/A\s+([\d.]+)\s+[\d.]+/g);
-
-    expect(radii).not.toBeNull();
-    expect(radii).toHaveLength(2);
-
-    const outerRadius = parseFloat(radii![0].match(/A\s+([\d.]+)/)![1]);
-
-    const innerRadius = parseFloat(radii![1].match(/A\s+([\d.]+)/)![1]);
-
-    expect(outerRadius - innerRadius).toBe(18);
-
-    // Verify gradient is applied
-    await expect(valueIndicator).toHaveAttribute(
-      "fill",
-      /url\(#DevExpress_\d+\)/,
-    );
+  page,
+}) => {
+  await setGaugeValueIndicatorProperties(page, {
+    type: "rangeBar",
+    offset: "70", // gap
   });
+
+  // Enable Gradient
+  await GaugeValueIndicatorLocators.gradientLabel(page).click();
+  await GaugeValueIndicatorLocators.gradientInput(page).click();
+
+  // Switch to Viewer
+  await page.locator("label").filter({ hasText: "Viewer" }).click();
+
+  // Save
+  await page.getByRole("button", { name: "Save", exact: true }).click();
+
+  const targetWidget = await getDroppedWidgetByUuid(
+    page,
+    WIDGETS.CIRCULARGAUGE,
+  );
+
+  const bgContainer = targetWidget.locator(".mi-circular-gauge-container");
+
+  await bgContainer.waitFor({
+    state: "visible",
+    timeout: 10000,
+  });
+
+  await expect(bgContainer).toBeVisible();
+
+  // ============ VERIFY VALUE INDICATOR ============
+
+  const valueIndicator = bgContainer.locator("g.dxg-value-indicator");
+
+  const mainBar = valueIndicator.locator("path.dxg-main-bar");
+
+  // Verify main indicator is rendered
+  await expect(mainBar).toBeVisible();
+
+  // ============ VERIFY SIZE ============
+
+  const mainBarPath = await mainBar.getAttribute("d");
+
+  if (!mainBarPath) {
+    throw new Error(
+      "Range value indicator check failed: the main indicator does not have any path data."
+    );
+  }
+
+  const radii = mainBarPath.match(/A\s+([\d.]+)\s+[\d.]+/g);
+
+  if (!radii || radii.length !== 2) {
+    throw new Error(
+      "Range value indicator size check failed: could not find the expected outer and inner radius values in the indicator path."
+    );
+  }
+
+  const outerRadius = parseFloat(
+    radii[0].match(/A\s+([\d.]+)/)![1],
+  );
+
+  const innerRadius = parseFloat(
+    radii[1].match(/A\s+([\d.]+)/)![1],
+  );
+
+  expect(outerRadius - innerRadius).toBe(18);
+
+  // ============ VERIFY GRADIENT ============
+
+  const fill = await valueIndicator.getAttribute("fill");
+
+  if (!fill) {
+    throw new Error(
+      "Gradient check failed: the Circular Gauge Range value indicator does not have a fill color. " +
+        "Please check that the Gradient option is enabled."
+    );
+  }
+
+  if (!/^url\(#DevExpress_\d+\)$/.test(fill)) {
+    throw new Error(
+      `Gradient check failed: the Circular Gauge Range value indicator is using a solid color "${fill}" instead of a gradient. ` +
+        "Please check that the Gradient option is checked in the Value Indicator settings."
+    );
+  }
+});
   test("8. User can change VALUE INDICATOR TYPE NEEDLE properties for circular gauge widget", async ({
     page,
   }) => {
