@@ -15,7 +15,7 @@ export const TEST_DATA = {
     newDashboardName: "TestingNewDashboard",
     updatedDashboardName: "UpdatedDashboardForTesting",
  
-    dashboardNameForWidgetPropertiesTesting: "AB_TestDashboardForProperties",
+    dashboardNameForWidgetPropertiesTesting: "TestDashboardForProperties",
 
     dashboardNameForActionPropertyTesting: "ABTestDashboardForActions"
   },
