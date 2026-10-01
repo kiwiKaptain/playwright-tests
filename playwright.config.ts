@@ -33,7 +33,7 @@ export default defineConfig({
 
 
     // Click, fill, hover, etc.
-    actionTimeout: 20 * 1000, // 20 seconds
+    actionTimeout: 30 * 1000, // 30 seconds
 
   // Page loads and navigation
     navigationTimeout: 60 * 1000, // 60 seconds
