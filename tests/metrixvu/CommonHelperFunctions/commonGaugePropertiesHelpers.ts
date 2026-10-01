@@ -10,15 +10,29 @@ import {
   ScaleTickLocators,
 } from "../Locators/commonGaugeLocators";
 import { ScaleRangeLocators } from "../Locators/commonLocators";
-
 export async function setGaugeShape(
   page: Page,
   startAngle: number,
   endAngle: number,
 ) {
-  await GaugeShapeLocators.startAngleLabel(page).click();
-
+  // Start Angle
+  const startAngleLabel = GaugeShapeLocators.startAngleLabel(page);
   const startSlider = GaugeShapeLocators.startAngle(page);
+
+  if ((await startAngleLabel.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-label-geometry-start-angle' not found.",
+    );
+  }
+
+  if ((await startSlider.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-geometry-start-angle' not found.",
+    );
+  }
+
+  await startAngleLabel.click();
+
   await startSlider.click();
   await startSlider.press("Home");
 
@@ -26,9 +40,24 @@ export async function setGaugeShape(
     await startSlider.press("ArrowRight");
   }
 
-  await GaugeShapeLocators.endAngleLabel(page).click();
-
+  // End Angle
+  const endAngleLabel = GaugeShapeLocators.endAngleLabel(page);
   const endSlider = GaugeShapeLocators.endAngle(page);
+
+  if ((await endAngleLabel.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-label-geometry-end-angle' not found.",
+    );
+  }
+
+  if ((await endSlider.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-geometry-end-angle' not found.",
+    );
+  }
+
+  await endAngleLabel.click();
+
   await endSlider.click();
   await endSlider.press("Home");
 
@@ -36,7 +65,6 @@ export async function setGaugeShape(
     await endSlider.press("ArrowRight");
   }
 }
-
 export async function setGaugeValueIndicatorProperties(
   page: Page,
   options: {
@@ -48,17 +76,45 @@ export async function setGaugeValueIndicatorProperties(
 ) {
   // Type
   if (options.type !== undefined) {
-    await GaugeValueIndicatorLocators.typeLabel(page).click();
-    await GaugeValueIndicatorLocators.typeInput(page).click();
+    const typeLabel = GaugeValueIndicatorLocators.typeLabel(page);
+    const typeInput = GaugeValueIndicatorLocators.typeInput(page);
+
+    if ((await typeLabel.count()) === 0) {
+      throw new Error(
+        "Test ID 'prop-label-value-indicator-type' not found.",
+      );
+    }
+
+    if ((await typeInput.count()) === 0) {
+      throw new Error(
+        "Test ID 'prop-input-value-indicator-type' not found.",
+      );
+    }
+
+    await typeLabel.click();
+    await typeInput.click();
 
     await page.getByText(options.type, { exact: true }).click();
   }
 
   // Offset
   if (options.offset !== undefined) {
-    await GaugeValueIndicatorLocators.offsetLabel(page).click();
-
+    const offsetLabel = GaugeValueIndicatorLocators.offsetLabel(page);
     const offsetInput = GaugeValueIndicatorLocators.offsetInput(page);
+
+    if ((await offsetLabel.count()) === 0) {
+      throw new Error(
+        "Test ID 'prop-label-value-indicator-offset' not found.",
+      );
+    }
+
+    if ((await offsetInput.count()) === 0) {
+      throw new Error(
+        "Test ID 'prop-input-value-indicator-offset' not found.",
+      );
+    }
+
+    await offsetLabel.click();
 
     await offsetInput.click();
     await offsetInput.press("ControlOrMeta+a");
@@ -68,9 +124,22 @@ export async function setGaugeValueIndicatorProperties(
 
   // Size
   if (options.size !== undefined) {
-    await GaugeValueIndicatorLocators.sizeLabel(page).click();
-
+    const sizeLabel = GaugeValueIndicatorLocators.sizeLabel(page);
     const sizeInput = GaugeValueIndicatorLocators.sizeInput(page);
+
+    if ((await sizeLabel.count()) === 0) {
+      throw new Error(
+        "Test ID 'prop-label-value-indicator-size' not found.",
+      );
+    }
+
+    if ((await sizeInput.count()) === 0) {
+      throw new Error(
+        "Test ID 'prop-input-value-indicator-size' not found.",
+      );
+    }
+
+    await sizeLabel.click();
 
     await sizeInput.click();
     await sizeInput.press("ControlOrMeta+a");
@@ -78,35 +147,88 @@ export async function setGaugeValueIndicatorProperties(
     await sizeInput.press("Enter");
   }
 }
+
 export async function setGaugeScaleLabel(
   page: Page,
   fontColor: string,
   fontSize: string,
   fontWeight: string,
 ) {
+  // Font Color
+  const fontColorLabel = ScaleLabelLocators.labelFontColorLabel(page);
   const fontColorInput = ScaleLabelLocators.labelFontColor(page);
+
+  if ((await fontColorLabel.count()) === 0) {
+    throw new Error(
+      "Test ID prop-label-scale-label-font-color not found.",
+    );
+  }
+
+  if ((await fontColorInput.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-scale-label-font-color not found.",
+    );
+  }
+
+  await fontColorLabel.click();
+
   await fontColorInput.click();
   await fontColorInput.press("ControlOrMeta+a");
   await fontColorInput.fill(fontColor);
   await fontColorInput.press("Enter");
 
-  await ScaleLabelLocators.labelFontSizeLabel(page).click();
-
+  // Font Size
+  const fontSizeLabel = ScaleLabelLocators.labelFontSizeLabel(page);
   const fontSizeInput = ScaleLabelLocators.labelFontSize(page);
+
+  if ((await fontSizeLabel.count()) === 0) {
+    throw new Error(
+      "Test ID prop-label-scale-label-font-size not found.",
+    );
+  }
+
+  if ((await fontSizeInput.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-scale-label-font-size not found.",
+    );
+  }
+
+  await fontSizeLabel.click();
+
   await fontSizeInput.click();
   await fontSizeInput.press("ControlOrMeta+a");
   await fontSizeInput.fill(fontSize);
   await fontSizeInput.press("Enter");
 
-  await ScaleLabelLocators.labelFontWeightLabel(page).click();
-
+  // Font Weight
+  const fontWeightLabel = ScaleLabelLocators.labelFontWeightLabel(page);
   const fontWeightInput = ScaleLabelLocators.labelFontWeight(page);
+
+  if ((await fontWeightLabel.count()) === 0) {
+    throw new Error(
+      "Test ID prop-label-scale-label-font-weight not found.",
+    );
+  }
+
+  if ((await fontWeightInput.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-scale-label-font-weight not found.",
+    );
+  }
+
+  await fontWeightLabel.click();
+
   await fontWeightInput.click();
 
-  await ScaleLabelLocators.labelFontWeightOption(page, fontWeight).click();
+  await ScaleLabelLocators.labelFontWeightOption(
+    page,
+    fontWeight,
+  ).click();
 
   await fontWeightInput.press("Enter");
 }
+
+
 
 export async function setGaugeScaleRange(
   page: Page,
@@ -120,6 +242,12 @@ export async function setGaugeScaleRange(
   if (options.startValue !== undefined) {
     const startValueInput = ScaleRangeLocators.startValue(page);
 
+    if ((await startValueInput.count()) === 0) {
+      throw new Error(
+        "Test ID prop-input-scale-start-value not found.",
+      );
+    }
+
     await startValueInput.click();
     await startValueInput.press("ControlOrMeta+a");
     await startValueInput.fill(options.startValue);
@@ -130,6 +258,12 @@ export async function setGaugeScaleRange(
   if (options.endValue !== undefined) {
     const endValueInput = ScaleRangeLocators.endValue(page);
 
+    if ((await endValueInput.count()) === 0) {
+      throw new Error(
+        "Test ID prop-input-scale-end-value not found.",
+      );
+    }
+
     await endValueInput.click();
     await endValueInput.press("ControlOrMeta+a");
     await endValueInput.fill(options.endValue);
@@ -139,6 +273,12 @@ export async function setGaugeScaleRange(
   // Range Container Offset
   if (options.offset !== undefined) {
     const offsetInput = ScaleRangeLocators.offset(page);
+
+    if ((await offsetInput.count()) === 0) {
+      throw new Error(
+        "Test ID prop-input-range-container-offset not found.",
+      );
+    }
 
     await offsetInput.click();
     await offsetInput.press("ControlOrMeta+a");
