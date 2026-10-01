@@ -178,16 +178,16 @@ export async function setupWidgets(
     }
 
     // Chart widgets
-    if (titleWidgetTypes.includes(widgetType)) {
-      await setTitleProperties(
-        page,
-        `Widget ${i + 1}`,
-        "rgb(36, 32, 232)",
-        "24",
-        "500",
-        "top",
-        "left",
-      );
+  if (titleWidgetTypes.includes(widgetType)) {
+      // await setTitleProperties(
+      //   page,
+      //   `Widget ${i + 1}`,
+      //   "rgb(36, 32, 232)",
+      //   "24",
+      //   "500",
+      //   "top",
+      //   "left",
+      // );
     }
 
     // Button widget
