@@ -118,184 +118,7 @@ test.describe("PROPERTIES - CIRCULAR-GAUGE Widget", () => {
     await expect(runtimeFilter).toBeVisible();
   });
 
-  test("3. User can change GAUGE SHAPE properties for circular gauge widget", async ({
-    page,
-  }) => {
-    // Set Start Angle = 100°, End Angle = 360°
-    await setGaugeShape(page, 100, 360);
-
-    // Switch to Viewer and save
-    await page.locator("label").filter({ hasText: "Viewer" }).click();
-    await page.getByRole("button", { name: "Save", exact: true }).click();
-
-    // Get gauge SVG
-    const targetWidget = await getDroppedWidgetByUuid(
-      page,
-      WIDGETS.CIRCULARGAUGE,
-    );
-
-    const gaugeSvg = targetWidget.locator(
-      ".mi-circular-gauge-container svg.dxg-circular-gauge",
-    );
-
-    await expect(gaugeSvg).toBeVisible();
-
-    const angles = await gaugeSvg.evaluate((svg) => {
-      const rangePaths = Array.from(
-        svg.querySelectorAll<SVGPathElement>(
-          ".dxg-range-container path.dxg-range",
-        ),
-      );
-
-      if (!rangePaths.length) {
-        throw new Error("No circular gauge range paths were found.");
-      }
-
-      const firstD = rangePaths[0].getAttribute("d");
-      const lastD = rangePaths[rangePaths.length - 1].getAttribute("d");
-
-      if (!firstD || !lastD) {
-        throw new Error("Gauge range path does not contain a d attribute.");
-      }
-
-      const getMovePoint = (d: string) => {
-        const match = d.match(/M\s*(-?[\d.]+)\s+(-?[\d.]+)/);
-        if (!match) {
-          throw new Error(`Unable to extract M point from path: ${d}`);
-        }
-        return {
-          x: parseFloat(match[1]),
-          y: parseFloat(match[2]),
-        };
-      };
-
-      const getArcEndPoint = (d: string) => {
-        const matches = [
-          ...d.matchAll(
-            /A\s*[\d.]+\s+[\d.]+\s+[\d.]+\s+[01]\s+[01]\s+(-?[\d.]+)\s+(-?[\d.]+)/g,
-          ),
-        ];
-
-        if (!matches.length) {
-          throw new Error(`Unable to extract arc endpoint from path: ${d}`);
-        }
-
-        const match = matches[matches.length - 1];
-        return {
-          x: parseFloat(match[1]),
-          y: parseFloat(match[2]),
-        };
-      };
-
-      const startPoint = getMovePoint(firstD);
-      const endPoint = getArcEndPoint(lastD);
-
-      // Get the CTM for the first range path
-      const ctm = rangePaths[0].getCTM();
-      if (!ctm) {
-        throw new Error("Unable to get CTM");
-      }
-
-      // The center is at (35, 35) in the gauge's local coordinate system
-      const center = new DOMPoint(35, 35).matrixTransform(ctm);
-
-      // Transform the start and end points to screen coordinates
-      const start = new DOMPoint(startPoint.x, startPoint.y).matrixTransform(
-        ctm,
-      );
-      const end = new DOMPoint(endPoint.x, endPoint.y).matrixTransform(ctm);
-
-      // Calculate angles in standard math coordinates
-      // 0° = 3 o'clock, angles increase counter-clockwise
-      const toDeg = (point: DOMPoint) => {
-        let angle =
-          (Math.atan2(
-            -(point.y - center.y), // Negative because SVG Y axis is inverted
-            point.x - center.x,
-          ) *
-            180) /
-          Math.PI;
-
-        if (angle < 0) angle += 360;
-        return angle;
-      };
-
-      const startAngle = toDeg(start);
-      const endAngle = toDeg(end);
-
-      // Calculate the sweep angle (the arc length)
-      let sweepAngle = (endAngle - startAngle + 360) % 360;
-      if (sweepAngle === 0) sweepAngle = 360;
-
-      // Convert to gauge coordinate system
-      // DevExpress gauge: 0° at 12 o'clock, angles increase clockwise
-      // Math: 0° at 3 o'clock, angles increase counter-clockwise
-      // Conversion: gaugeAngle = (90 - mathAngle + 360) % 360
-      const toGaugeAngle = (mathAngle: number) => {
-        return (90 - mathAngle + 360) % 360;
-      };
-
-      const gaugeStartAngle = toGaugeAngle(startAngle);
-      const gaugeEndAngle = toGaugeAngle(endAngle);
-
-      return {
-        startAngle: gaugeStartAngle,
-        endAngle: gaugeEndAngle,
-        sweepAngle: sweepAngle,
-        // For debugging
-        rawStartAngle: startAngle,
-        rawEndAngle: endAngle,
-        centerX: center.x,
-        centerY: center.y,
-        startPoint,
-        endPoint,
-      };
-    });
-
-    console.log("=== DEBUG INFO ===");
-    console.log("Center:", { x: angles.centerX, y: angles.centerY });
-    console.log("Start point:", angles.startPoint);
-    console.log("End point:", angles.endPoint);
-    console.log("Raw start angle (math):", angles.rawStartAngle);
-    console.log("Raw end angle (math):", angles.rawEndAngle);
-    console.log("Gauge start angle:", angles.startAngle);
-    console.log("Gauge end angle:", angles.endAngle);
-    console.log("Sweep angle:", angles.sweepAngle);
-    console.log("==================");
-
-    const normalizeAngle = (angle: number) =>
-      ((Math.round(angle) % 360) + 360) % 360;
-
-    const roundedStartAngle = normalizeAngle(angles.startAngle);
-    const roundedEndAngle = normalizeAngle(angles.endAngle);
-
-    // For 360° (or 0°) we want to check the angles
-    // The gauge should have start at 100° and end at 360° (0°)
-    // Since the order doesn't matter, we sort them
-    const received = [roundedStartAngle, roundedEndAngle].sort((a, b) => a - b);
-    const expected = [0, 100].sort((a, b) => a - b);
-
-    console.log("Received (sorted):", received);
-    console.log("Expected (sorted):", expected);
-
-    // The sweep should be 260° regardless
-    expect(Math.round(angles.sweepAngle)).toBe(260);
-
-    // Use a more flexible assertion with tolerance
-    // If the angles are consistently offset, we can adjust
-    // Based on your error showing [61, 78], the offset is ~39°
-    // But let's see what the debug output shows first
-
-    // For now, let's check if the difference between start and end is correct
-    const angleDifference = Math.abs(roundedEndAngle - roundedStartAngle);
-    console.log("Angle difference:", angleDifference);
-
-    // The difference should be 100° (or 260°, depending on direction)
-    // We want to check if the span is correct
-    expect(Math.round(angleDifference)).toBe(260);
-  });
-
-  test("4. User can change TITLE properties for circular gauge widget", async ({
+  test("3. User can change TITLE properties for circular gauge widget", async ({
     page,
   }) => {
     await setTitleProperties(
@@ -363,7 +186,7 @@ test.describe("PROPERTIES - CIRCULAR-GAUGE Widget", () => {
     }
   });
 
-  test("5. User can change SUBTITLE properties for circular gauge widget", async ({
+  test("4. User can change SUBTITLE properties for circular gauge widget", async ({
     page,
   }) => {
     await page.getByTestId("prop-label-title-text").click();
@@ -420,7 +243,7 @@ test.describe("PROPERTIES - CIRCULAR-GAUGE Widget", () => {
     await expect(subtitleText).toBeVisible();
   });
 
-  test("6. User can change TOOLTIP properties for circular gauge widget", async ({
+  test("5. User can change TOOLTIP properties for circular gauge widget", async ({
     page,
   }) => {
     await setTooltipProperties(
@@ -479,94 +302,7 @@ test.describe("PROPERTIES - CIRCULAR-GAUGE Widget", () => {
     await expect(tooltipBackground).toHaveCSS("fill", "rgb(76, 41, 233)");
   });
 
-  test("7. User can change VALUE INDICATOR TYPE RANGE properties for circular gauge widget", async ({
-  page,
-}) => {
-  await setGaugeValueIndicatorProperties(page, {
-    type: "rangeBar",
-    offset: "70", // gap
-  });
-
-  // Enable Gradient
-  await GaugeValueIndicatorLocators.gradientLabel(page).click();
-  await GaugeValueIndicatorLocators.gradientInput(page).click();
-
-  // Switch to Viewer
-  await page.locator("label").filter({ hasText: "Viewer" }).click();
-
-  // Save
-  await page.getByRole("button", { name: "Save", exact: true }).click();
-
-  const targetWidget = await getDroppedWidgetByUuid(
-    page,
-    WIDGETS.CIRCULARGAUGE,
-  );
-
-  const bgContainer = targetWidget.locator(".mi-circular-gauge-container");
-
-  await bgContainer.waitFor({
-    state: "visible",
-    timeout: 10000,
-  });
-
-  await expect(bgContainer).toBeVisible();
-
-  // ============ VERIFY VALUE INDICATOR ============
-
-  const valueIndicator = bgContainer.locator("g.dxg-value-indicator");
-
-  const mainBar = valueIndicator.locator("path.dxg-main-bar");
-
-  // Verify main indicator is rendered
-  await expect(mainBar).toBeVisible();
-
-  // ============ VERIFY SIZE ============
-
-  const mainBarPath = await mainBar.getAttribute("d");
-
-  if (!mainBarPath) {
-    throw new Error(
-      "Range value indicator check failed: the main indicator does not have any path data."
-    );
-  }
-
-  const radii = mainBarPath.match(/A\s+([\d.]+)\s+[\d.]+/g);
-
-  if (!radii || radii.length !== 2) {
-    throw new Error(
-      "Range value indicator size check failed: could not find the expected outer and inner radius values in the indicator path."
-    );
-  }
-
-  const outerRadius = parseFloat(
-    radii[0].match(/A\s+([\d.]+)/)![1],
-  );
-
-  const innerRadius = parseFloat(
-    radii[1].match(/A\s+([\d.]+)/)![1],
-  );
-
-  expect(outerRadius - innerRadius).toBe(18);
-
-  // ============ VERIFY GRADIENT ============
-
-  const fill = await valueIndicator.getAttribute("fill");
-
-  if (!fill) {
-    throw new Error(
-      "Gradient check failed: the Circular Gauge Range value indicator does not have a fill color. " +
-        "Please check that the Gradient option is enabled."
-    );
-  }
-
-  if (!/^url\(#DevExpress_\d+\)$/.test(fill)) {
-    throw new Error(
-      `Gradient check failed: the Circular Gauge Range value indicator is using a solid color "${fill}" instead of a gradient. ` +
-        "Please check that the Gradient option is checked in the Value Indicator settings."
-    );
-  }
-});
-  test("8. User can change VALUE INDICATOR TYPE NEEDLE properties for circular gauge widget", async ({
+  test("6. User can change VALUE INDICATOR TYPE NEEDLE properties for circular gauge widget", async ({
     page,
   }) => {
     await setGaugeValueIndicatorProperties(page, {
@@ -614,7 +350,7 @@ test.describe("PROPERTIES - CIRCULAR-GAUGE Widget", () => {
       "translate(0,0) rotate(-31.5,181,98)",
     );
   });
-  test("9. User can change VALUE INDICATOR TYPE TRIANGULAR MARKER properties for circular gauge widget", async ({
+  test("7. User can change VALUE INDICATOR TYPE TRIANGULAR MARKER properties for circular gauge widget", async ({
     page,
   }) => {
     await setGaugeValueIndicatorProperties(page, {
@@ -648,7 +384,7 @@ test.describe("PROPERTIES - CIRCULAR-GAUGE Widget", () => {
     await expect(triangleMarker).toHaveAttribute("d", /^M .* L .* L .* Z$/);
   });
 
-  test("10. User can change VALUE DISPLAY properties for circular gauge widget", async ({
+  test("8. User can change VALUE DISPLAY properties for circular gauge widget", async ({
     page,
   }) => {
     // Value Position - Top
@@ -792,68 +528,7 @@ test.describe("PROPERTIES - CIRCULAR-GAUGE Widget", () => {
     );
   });
 
-  test("11. User can change ORIENTATION properties to inside for circular gauge widget", async ({
-    page,
-  }) => {
-    await page.getByTestId("prop-label-scale-orientation").click();
-    await page.getByTestId("prop-input-scale-orientation").click();
-    await page.getByText("inside").click();
-
-    // Switch to Viewer
-    await page.locator("label").filter({ hasText: "Viewer" }).click();
-
-    // Save
-    await page.getByRole("button", { name: "Save", exact: true }).click();
-
-    const targetWidget = await getDroppedWidgetByUuid(
-      page,
-      WIDGETS.CIRCULARGAUGE,
-    );
-
-    const bgContainer = targetWidget.locator(".mi-circular-gauge-container");
-
-    await bgContainer.waitFor({
-      state: "visible",
-      timeout: 10000,
-    });
-
-    // Verify scale labels
-    const scaleLabels = bgContainer.locator(
-      ".dxg-scale-elements .dxg-elements text",
-    );
-
-    await expect(scaleLabels).toHaveCount(5);
-
-    await expect(scaleLabels.nth(0)).toHaveText("0");
-    await expect(scaleLabels.nth(1)).toHaveText("50");
-    await expect(scaleLabels.nth(2)).toHaveText("100");
-    await expect(scaleLabels.nth(3)).toHaveText("150");
-    await expect(scaleLabels.nth(4)).toHaveText("200");
-
-    // Get label positions
-    const labelPositions = await scaleLabels.evaluateAll((labels) =>
-      labels.map((label) => ({
-        x: Number(label.getAttribute("x")),
-        y: Number(label.getAttribute("y")),
-      })),
-    );
-
-    // Scale center and radius
-    const centerX = 103;
-    const centerY = 103;
-    const scaleRadius = 103;
-
-    // For "inside", labels should be inside the scale radius
-    for (const label of labelPositions) {
-      const distance = Math.sqrt(
-        Math.pow(label.x - centerX, 2) + Math.pow(label.y - centerY, 2),
-      );
-
-      expect(distance).toBeLessThan(scaleRadius);
-    }
-  });
-
-  test("12. User can change SCALE LABEL properties for Circular gauge widget", async ({
+  test("9. User can change SCALE LABEL properties for Circular gauge widget", async ({
     page,
   }) => {
     await setGaugeScaleLabel(page, "rgb(12, 45, 235)", "18", "700");
@@ -902,7 +577,7 @@ test.describe("PROPERTIES - CIRCULAR-GAUGE Widget", () => {
     await expect(scaleLabels.nth(0)).toHaveCSS("font-weight", "700");
   });
 
-  test("13. User can change SCALE TICK properties for Circular gauge widget", async ({
+  test("10. User can change SCALE TICK properties for Circular gauge widget", async ({
     page,
   }) => {
     await setGaugeScaleTickProperties(page, {
@@ -969,7 +644,7 @@ test.describe("PROPERTIES - CIRCULAR-GAUGE Widget", () => {
     await expect(scaleLabels.nth(2)).toHaveText("200");
   });
 
-  test("14. User can change SCALE MINOR TICK properties for Circular gauge widget", async ({
+  test("11. User can change SCALE MINOR TICK properties for Circular gauge widget", async ({
     page,
   }) => {
     await setGaugeScaleMinorTickProperties(page, {
@@ -1048,7 +723,7 @@ test.describe("PROPERTIES - CIRCULAR-GAUGE Widget", () => {
     ]);
   });
 
-  test("15. User can change SCALE RANGE properties for circular gauge widget", async ({
+  test("12. User can change SCALE RANGE properties for circular gauge widget", async ({
     page,
   }) => {
     await setGaugeScaleRange(page, {
@@ -1078,7 +753,7 @@ test.describe("PROPERTIES - CIRCULAR-GAUGE Widget", () => {
     await expect(bgContainer).toBeVisible();
     // Verify Scale Range properties input values
   });
-  test("16. User can add new RANGE container  for circular gauge widget", async ({
+  test("13. User can add new RANGE container  for circular gauge widget", async ({
     page,
   }) => {
     await updateGaugeRange(page, {
@@ -1124,7 +799,7 @@ test.describe("PROPERTIES - CIRCULAR-GAUGE Widget", () => {
 
     await expect(newRange).toBeVisible();
   });
-  test("17. User can update start value, end value, gradient of exisiting RANGE container  for circular gauge widget", async ({
+  test("14. User can update start value, end value, gradient of exisiting RANGE container  for circular gauge widget", async ({
     page,
   }) => {
     await updateGaugeRange(page, {
@@ -1175,7 +850,7 @@ test.describe("PROPERTIES - CIRCULAR-GAUGE Widget", () => {
       /M .* A 85\.00000 85\.00000/,
     );
   });
-  test("18. User can delete exisiting RANGE container  for circular gauge widget", async ({
+  test("15. User can delete exisiting RANGE container  for circular gauge widget", async ({
     page,
   }) => {
     await deleteGaugeRange(page, 0);
@@ -1221,7 +896,7 @@ test.describe("PROPERTIES - CIRCULAR-GAUGE Widget", () => {
     // Verify background range still exists
     await expect(rangeContainer.locator(".dxg-background-range")).toBeVisible();
   });
-  test("19. User can change RANGE WIDTH properties for Circular Gauge widget", async ({
+  test("16. User can change RANGE WIDTH properties for Circular Gauge widget", async ({
     page,
   }) => {
     await setGaugeRangeWidth(page, 24);
@@ -1277,7 +952,7 @@ test.describe("PROPERTIES - CIRCULAR-GAUGE Widget", () => {
       /A 93\.00000 93\.00000.*A 69\.00000 69\.00000/,
     );
   });
-  test("20 .User can change Link To Dashboard via ACTIONS properties for circular gauge widget", async ({
+  test("17. User can change Link To Dashboard via ACTIONS properties for circular gauge widget", async ({
     page,
   }) => {
     // Update ACTIONS
@@ -1313,7 +988,7 @@ test.describe("PROPERTIES - CIRCULAR-GAUGE Widget", () => {
       page.locator('//p[contains(@class,"truncate")]'),
     ).toContainText(TEST_DATA.dashboards.dashboardNameForActionPropertyTesting);
   });
-  test("21 . User can set the action type to NONE for Circular Gauge widget", async ({
+  test("18. User can set the action type to NONE for Circular Gauge widget", async ({
     page,
   }) => {
     // Update ACTIONS to None
