@@ -383,68 +383,85 @@ test.describe("PROPERTIES - LINEAR-GAUGE Widget", () => {
     await expect(tooltipBackground).toHaveCSS("fill", "rgb(76, 41, 233)");
   });
 
-  test("7. User can change VALUE INDICATOR TYPE RANGE properties for linear gauge widget", async ({
-    page,
-  }) => {
-    await setGaugeValueIndicatorProperties(page, {
-      type: "circle",
-      offset: "70",
-      size: "18",
-    });
-
-    // Gradient
-    await GaugeValueIndicatorLocators.gradientLabel(page).click();
-    await GaugeValueIndicatorLocators.gradientInput(page).click();
-    // Switch to Viewer
-    await page.locator("label").filter({ hasText: "Viewer" }).click();
-
-    // Save
-    await page.getByRole("button", { name: "Save", exact: true }).click();
-
-    const targetWidget = await getDroppedWidgetByUuid(
-      page,
-      WIDGETS.LINEARGAUGE,
-    );
-
-    const bgContainer = targetWidget.locator(".mi-linear-gauge-container");
-
-    await bgContainer.waitFor({
-      state: "visible",
-      timeout: 10000,
-    });
-
-    await expect(bgContainer).toBeVisible();
-
-    // ============ VERIFY VALUE INDICATOR ============
-
-    const valueIndicator = bgContainer.locator("g.dxg-value-indicator");
-
-    await expect(valueIndicator).toBeVisible();
-
-    // Verify Circle Indicator
-    const circle = valueIndicator.locator("circle");
-
-    await expect(circle).toBeVisible();
-
-    // Verify that the indicator is a circle
-    await expect(valueIndicator.locator("path")).toHaveCount(0);
-
-    // ============ VERIFY GRADIENT ============
-
-    await expect(valueIndicator).toHaveAttribute(
-      "fill",
-      /url\(#DevExpress_\d+\)/,
-    );
-
-    // ============ VERIFY OFFSET ============
-
-    const transform = await valueIndicator.getAttribute("transform");
-
-    expect(transform).not.toBeNull();
-
-    // Offset is represented by the horizontal translation
-    expect(transform).toMatch(/^translate\([\d.]+,0\)$/);
+  test("7. User can change VALUE INDICATOR TYPE CIRCLE properties for linear gauge widget", async ({
+  page,
+}) => {
+  await setGaugeValueIndicatorProperties(page, {
+    type: "circle",
+    offset: "70",
+    size: "18",
   });
+
+  // Enable Gradient
+  await GaugeValueIndicatorLocators.gradientLabel(page).click();
+  await GaugeValueIndicatorLocators.gradientInput(page).click();
+
+  // Switch to Viewer
+  await page.locator("label").filter({ hasText: "Viewer" }).click();
+
+  // Save
+  await page.getByRole("button", { name: "Save", exact: true }).click();
+
+  const targetWidget = await getDroppedWidgetByUuid(
+    page,
+    WIDGETS.LINEARGAUGE,
+  );
+
+  const bgContainer = targetWidget.locator(".mi-linear-gauge-container");
+
+  await bgContainer.waitFor({
+    state: "visible",
+    timeout: 10000,
+  });
+
+  await expect(bgContainer).toBeVisible();
+
+  // ============ VERIFY VALUE INDICATOR ============
+
+  const valueIndicator = bgContainer.locator("g.dxg-value-indicator");
+
+  await expect(valueIndicator).toBeVisible();
+
+  // Verify Circle Indicator
+  const circle = valueIndicator.locator("circle");
+
+  await expect(circle).toBeVisible();
+
+  // Verify that the indicator is a circle and not the default path
+  await expect(valueIndicator.locator("path")).toHaveCount(0);
+
+  // ============ VERIFY GRADIENT ============
+
+  const fill = await valueIndicator.getAttribute("fill");
+
+  if (!fill) {
+    throw new Error(
+      "Gradient check failed: the Circle value indicator does not have a fill color. " +
+        "Please check that the Gradient option is enabled."
+    );
+  }
+
+  if (!/^url\(#DevExpress_\d+\)$/.test(fill)) {
+    throw new Error(
+      `Gradient check failed: the Circle value indicator is using a solid color "${fill}" instead of a gradient. ` +
+        "Please check that the Gradient option is checked and gradient is applied in the Value Indicator settings."
+    );
+  }
+
+  // ============ VERIFY OFFSET ============
+
+  const transform = await valueIndicator.getAttribute("transform");
+
+  if (!transform) {
+    throw new Error(
+      "Offset check failed: the Circle value indicator does not have a transform value. " +
+        "Please check that the Offset setting is applied correctly."
+    );
+  }
+
+  // Offset is represented by the horizontal translation
+  expect(transform).toMatch(/^translate\([\d.]+,0\)$/);
+});
 
   test("8. User can change VALUE INDICATOR TYPE RECTANGLE properties for linear gauge widget", async ({
     page,
