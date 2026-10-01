@@ -30,6 +30,13 @@ export default defineConfig({
         video: "on",
 
         trace: "on-first-retry",
+
+
+        // Fail actions sooner
+    actionTimeout: 10 * 1000, // 10 seconds
+
+    // Page navigation
+    navigationTimeout: 30 * 1000, // 30 seconds
     },
 
     projects: [
@@ -38,4 +45,13 @@ export default defineConfig({
             use: { browserName: "chromium" },
         },
     ],
+
+
+     // Maximum time for each test
+  timeout: 3 * 60 * 1000, // 3 minutes
+
+  // Maximum wait for assertions
+  expect: {
+    timeout: 10 * 1000, // 10 seconds
+  },
 });
