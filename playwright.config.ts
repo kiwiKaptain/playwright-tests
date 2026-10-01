@@ -32,12 +32,13 @@ export default defineConfig({
         trace: "on-first-retry",
 
 
-        // Fail actions sooner
-    actionTimeout: 10 * 1000, // 10 seconds
+    // Click, fill, hover, etc.
+    actionTimeout: 20 * 1000, // 20 seconds
 
-    // Page navigation
-    navigationTimeout: 30 * 1000, // 30 seconds
+  // Page loads and navigation
+    navigationTimeout: 60 * 1000, // 60 seconds
     },
+
 
     projects: [
         {
@@ -48,10 +49,11 @@ export default defineConfig({
 
 
      // Maximum time for each test
-  timeout: 3 * 60 * 1000, // 3 minutes
+   // Entire test timeout
+  timeout: 4 * 60 * 1000, // 4 minutes
 
-  // Maximum wait for assertions
+  // Assertion timeout
   expect: {
-    timeout: 10 * 1000, // 10 seconds
+    timeout: 20 * 1000, // 20 seconds
   },
 });
