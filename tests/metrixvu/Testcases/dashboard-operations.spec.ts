@@ -5,22 +5,7 @@ import { TEST_DATA } from "../testData";
 // ============================================================================
 // Test Setup - Launch Application and Login before each test case
 // ============================================================================
-// test.beforeEach("Open Metrix VU", async ({ page }) => {
-//   await page.goto(TEST_DATA.app.baseUrl);
 
-//   await page
-//     .getByRole("textbox", { name: "Enter your username" })
-//     .fill(TEST_DATA.app.username);
-//   await page
-//     .getByRole("textbox", { name: "••••••••" })
-//     .fill(TEST_DATA.app.password);
-//   await page.getByRole("button", { name: "Sign In" }).click();
-
-//   // Verify login was successful
-//   await expect(
-//     page.getByRole("button", { name: "Create Dashboard" }),
-//   ).toBeVisible();
-// });
 test.beforeEach("Open Metrix VU", async ({ page }) => {
   console.log("BASE_URL in DASHBOARD FILE:", process.env.BASE_URL);
   await page.goto(process.env.BASE_URL!);
@@ -163,7 +148,8 @@ test.describe("DASHBOARD OPERATIONS", () => {
        const dashboardCard = page.locator("div.group", { has: page.getByText(dashboardName, { exact: true }), }); 
        await expect(dashboardCard).toBeVisible(); 
         if (!(await dashboardCard.isVisible())) {
-      throw new Error(`Dashboard to delete was not found.`);
+         throw new Error(`Dashboard "TestingNewDashboard" was not found. ` +
+  `Please create a dashboard named "TestingNewDashboard" or run Test Case 1 first, then run this test.`);
     }
        await dashboardCard .locator("div.absolute.top-3.right-3 button") .click(); 
        await page .getByRole("button", { name: "Delete", exact: true }) .click(); 
