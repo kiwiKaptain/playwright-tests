@@ -94,9 +94,15 @@ test.describe("PROPERTIES - BAR-GAUGE Widget", () => {
       "background-color",
       "rgb(229, 214, 73)",
     );
-    // Verify runtime filter is visible
-    const runtimeFilter = targetWidget.locator('[title="Filter"]');
+  
+ // Verify runtime filter is visible
+    //below works for 54
+    //const runtimeFilter = targetWidget.locator('[title="Filter"]');
 
+    //below works for 205
+const runtimeFilter = targetWidget.locator(
+  '.widget-viewer-icon:has([title="Filter"])'
+);
     await expect(runtimeFilter).toBeVisible();
   });
   test("3. User can change GENERAL properties for bar gauge widget", async ({
