@@ -201,7 +201,7 @@ export async function goToHomeAndVerify(page: Page, name: string): Promise<void>
       .waitFor({ state: "visible", timeout: 10000 });
   } catch (error) {
     console.error(
-      `Failed to navigate back to Home or dashboard "${name}" is not visible.`,
+      `Failed to navigate back to Home or dashboard is not visible due to excess loading time.`,
     );
     console.error(error);
     throw error;
