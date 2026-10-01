@@ -5,7 +5,7 @@ import {
   GeneralSettingsLocators,
   playwrightLocators,
   RunTimeFilterLocators,
-  ScaleRangeLocators,
+  
 } from "../Locators/commonLocators";
 
 export async function setLayoutAndSpacing(
@@ -41,8 +41,14 @@ export async function setLayoutAndSpacing(
 }
 
 export async function setAppearance(page: Page, color: string) {
-  const backgroundColor = playwrightLocators.Appearance.backgroundColor(page);
+    const backgroundColor =
+    playwrightLocators.Appearance.backgroundColor(page);
 
+  if ((await backgroundColor.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-common-background-color' not found.",
+    );
+  }
   await backgroundColor.click();
   await backgroundColor.press("ControlOrMeta+a");
   await backgroundColor.fill(color);
@@ -58,42 +64,118 @@ export async function setTitleProperties(
   verticalAlignment: "top" | "middle" | "bottom",
   horizontalAlignment: "left" | "center" | "right",
 ) {
+  // ============================================================
+  // Title Text
+  // ============================================================
   const titleText = playwrightLocators.Title.text(page);
+
+  if ((await titleText.count()) === 0) {
+    throw new Error("Test ID 'prop-input-title-text' not found.");
+  }
 
   await titleText.click();
   await titleText.press("ControlOrMeta+a");
   await titleText.fill(text);
   await titleText.press("Enter");
 
+  // ============================================================
+  // Title Font Color
+  // ============================================================
   const fontColorInput = playwrightLocators.Title.fontColor(page);
+
+  if ((await fontColorInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-title-font-color' not found.",
+    );
+  }
 
   await fontColorInput.click();
   await fontColorInput.press("ControlOrMeta+a");
   await fontColorInput.fill(fontColor);
   await fontColorInput.press("Enter");
 
+  // ============================================================
+  // Title Font Size
+  // ============================================================
   const fontSizeInput = playwrightLocators.Title.fontSize(page);
+
+  if ((await fontSizeInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-title-font-size' not found.",
+    );
+  }
 
   await fontSizeInput.click();
   await fontSizeInput.press("ControlOrMeta+a");
   await fontSizeInput.fill(fontSize);
   await fontSizeInput.press("Enter");
 
+  // ============================================================
+  // Title Font Weight
+  // ============================================================
   const fontWeightInput = playwrightLocators.Title.fontWeight(page);
 
+  if ((await fontWeightInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-title-font-weight' not found.",
+    );
+  }
+
   await fontWeightInput.click();
-  await playwrightLocators.Title.fontWeightOption(page, fontWeight).click();
+
+  const fontWeightOption = playwrightLocators.Title.fontWeightOption(
+    page,
+    fontWeight,
+  );
+
+  if ((await fontWeightOption.count()) === 0) {
+    throw new Error(
+      `Title font weight option '${fontWeight}' not found.`,
+    );
+  }
+
+  await fontWeightOption.click();
   await fontWeightInput.press("Enter");
 
-  await playwrightLocators.Title.verticalAlignment(
-    page,
-    verticalAlignment,
-  ).click();
+  // ============================================================
+  // Title Vertical Alignment
+  // ============================================================
+  const verticalAlignmentControl =
+    playwrightLocators.Title.verticalAlignment(
+      page,
+      verticalAlignment,
+    );
 
-  await playwrightLocators.Title.horizontalAlignment(
-    page,
-    horizontalAlignment,
-  ).click();
+  const verticalAlignmentTestId =
+    `prop-control-title-vertical-alignment-${verticalAlignment}`;
+
+  if ((await verticalAlignmentControl.count()) === 0) {
+    throw new Error(
+      `Test ID '${verticalAlignmentTestId}' not found.`,
+    );
+  }
+
+  await verticalAlignmentControl.click();
+
+  // ============================================================
+  // Title Horizontal Alignment
+  // ============================================================
+  const horizontalAlignmentControl =
+    playwrightLocators.Title.horizontalAlignment(
+      page,
+      horizontalAlignment,
+    );
+
+  const horizontalAlignmentTestId =
+    `prop-control-title-horizontal-alignment-${horizontalAlignment}`;
+
+  if ((await horizontalAlignmentControl.count()) === 0) {
+    throw new Error(
+      `Test ID '${horizontalAlignmentTestId}' not found.`,
+    );
+  }
+
+  await horizontalAlignmentControl.click();
 }
 
 export async function setSubtitleProperties(
@@ -103,33 +185,78 @@ export async function setSubtitleProperties(
   fontSize: string,
   fontWeight: string,
 ) {
+  // ============================================================
+  // Subtitle Text
+  // ============================================================
   const subtitleText = playwrightLocators.Subtitle.text(page);
+
+  if ((await subtitleText.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-title-subtitle-text' not found.",
+    );
+  }
 
   await subtitleText.click();
   await subtitleText.press("ControlOrMeta+a");
   await subtitleText.fill(text);
   await subtitleText.press("Enter");
 
+  // ============================================================
+  // Subtitle Font Color
+  // ============================================================
   const fontColorInput = playwrightLocators.Subtitle.fontColor(page);
+
+  if ((await fontColorInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-title-subtitle-font-color' not found.",
+    );
+  }
 
   await fontColorInput.click();
   await fontColorInput.press("ControlOrMeta+a");
   await fontColorInput.fill(fontColor);
   await fontColorInput.press("Enter");
 
+  // ============================================================
+  // Subtitle Font Size
+  // ============================================================
   const fontSizeInput = playwrightLocators.Subtitle.fontSize(page);
+
+  if ((await fontSizeInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-title-subtitle-font-size' not found.",
+    );
+  }
 
   await fontSizeInput.click();
   await fontSizeInput.press("ControlOrMeta+a");
   await fontSizeInput.fill(fontSize);
   await fontSizeInput.press("Enter");
 
+  // ============================================================
+  // Subtitle Font Weight
+  // ============================================================
   const fontWeightInput = playwrightLocators.Subtitle.fontWeight(page);
+
+  if ((await fontWeightInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-title-subtitle-font-weight' not found.",
+    );
+  }
 
   await fontWeightInput.click();
 
-  await playwrightLocators.Subtitle.fontWeightOption(page, fontWeight).click();
+  // Font Weight Option
+  const fontWeightOption =
+    playwrightLocators.Subtitle.fontWeightOption(page, fontWeight);
 
+  if ((await fontWeightOption.count()) === 0) {
+    throw new Error(
+      `Subtitle font weight option '${fontWeight}' not found.`,
+    );
+  }
+
+  await fontWeightOption.click();
   await fontWeightInput.press("Enter");
 }
 export async function setLegendProperties(
@@ -150,15 +277,31 @@ export async function setLegendProperties(
   // Legend Visible
   const visibleInput = playwrightLocators.Legend.visible(page);
 
+  if ((await visibleInput.count()) === 0) {
+    throw new Error("Test ID 'prop-input-legend-visible' not found.");
+  }
+
   await visibleInput.click();
 
   // Legend Border Visible
   const borderVisibleInput = playwrightLocators.Legend.borderVisible(page);
 
+  if ((await borderVisibleInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-legend-border-visible' not found.",
+    );
+  }
+
   await borderVisibleInput.click();
 
   // Border Color
   const borderColorInput = playwrightLocators.Legend.borderColor(page);
+
+  if ((await borderColorInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-legend-border-color' not found.",
+    );
+  }
 
   await borderColorInput.click();
   await borderColorInput.press("ControlOrMeta+a");
@@ -166,62 +309,126 @@ export async function setLegendProperties(
   await borderColorInput.press("Enter");
 
   // Horizontal Alignment
-  await playwrightLocators.Legend.horizontalAlignment(
-    page,
-    horizontalAlignment,
-  ).click();
+  const horizontalAlignmentInput =
+    playwrightLocators.Legend.horizontalAlignment(
+      page,
+      horizontalAlignment,
+    );
+
+  if ((await horizontalAlignmentInput.count()) === 0) {
+    throw new Error(
+      `Test ID 'prop-control-legend-horizontal-alignment-${horizontalAlignment}' not found.`,
+    );
+  }
+
+  await horizontalAlignmentInput.click();
 
   // Vertical Alignment
-  await playwrightLocators.Legend.verticalAlignment(
-    page,
-    verticalAlignment,
-  ).click();
+  const verticalAlignmentInput =
+    playwrightLocators.Legend.verticalAlignment(
+      page,
+      verticalAlignment,
+    );
+
+  if ((await verticalAlignmentInput.count()) === 0) {
+    throw new Error(
+      `Test ID 'prop-control-legend-vertical-alignment-${verticalAlignment}' not found.`,
+    );
+  }
+
+  await verticalAlignmentInput.click();
+
   // Orientation - only applicable for some widgets
   if (orientation) {
     const orientationInput = playwrightLocators.Legend.orientation(page);
 
+    if ((await orientationInput.count()) === 0) {
+      throw new Error(
+        "Test ID 'prop-input-legend-orientation' not found.",
+      );
+    }
+
     await orientationInput.click();
 
-    await playwrightLocators.Legend.orientationWeightOption(
-      page,
-      orientation,
-    ).click();
+    const orientationWeightOption =
+      playwrightLocators.Legend.orientationWeightOption(
+        page,
+        orientation,
+      );
+
+    if ((await orientationWeightOption.count()) === 0) {
+      throw new Error(
+        `Legend orientation option '${orientation}' not found.`,
+      );
+    }
+
+    await orientationWeightOption.click();
 
     await orientationInput.press("Enter");
   }
-  // Legend Position - only applicable for some widgets
 
+  // Legend Position - only applicable for some widgets
   if (position) {
     const positionInput = playwrightLocators.Legend.position(page);
 
+    if ((await positionInput.count()) === 0) {
+      throw new Error(
+        "Test ID 'prop-input-legend-position' not found.",
+      );
+    }
+
     await positionInput.click();
 
-    await playwrightLocators.Legend.positionOption(page, position).click();
+    const positionOption = playwrightLocators.Legend.positionOption(
+      page,
+      position,
+    );
+
+    if ((await positionOption.count()) === 0) {
+      throw new Error(
+        `Legend position option '${position}' not found.`,
+      );
+    }
+
+    await positionOption.click();
 
     await positionInput.press("Enter");
   }
-  // const positionInput =
-  //   playwrightLocators.Legend.position(page);
-
-  // await positionInput.click();
-
-  // await playwrightLocators.Legend
-  //   .positionOption(page, position)
-  //   .click();
 
   // Item Text Position
   const itemTextPositionInput =
     playwrightLocators.Legend.itemTextPosition(page);
 
+  if ((await itemTextPositionInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-legend-item-text-position' not found.",
+    );
+  }
+
   await itemTextPositionInput.click();
 
-  await playwrightLocators.Legend.itemTextPositionOption(
-    page,
-    itemTextPosition,
-  ).click();
+  const itemTextPositionOption =
+    playwrightLocators.Legend.itemTextPositionOption(
+      page,
+      itemTextPosition,
+    );
+
+  if ((await itemTextPositionOption.count()) === 0) {
+    throw new Error(
+      `Legend item text position option '${itemTextPosition}' not found.`,
+    );
+  }
+
+  await itemTextPositionOption.click();
 
   // Font Color
   const fontColorInput = playwrightLocators.Legend.fontColor(page);
+
+  if ((await fontColorInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-legend-font-color' not found.",
+    );
+  }
 
   await fontColorInput.click();
   await fontColorInput.press("ControlOrMeta+a");
@@ -231,6 +438,12 @@ export async function setLegendProperties(
   // Font Size
   const fontSizeInput = playwrightLocators.Legend.fontSize(page);
 
+  if ((await fontSizeInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-legend-font-size' not found.",
+    );
+  }
+
   await fontSizeInput.click();
   await fontSizeInput.press("ControlOrMeta+a");
   await fontSizeInput.fill(fontSize);
@@ -239,9 +452,26 @@ export async function setLegendProperties(
   // Font Weight
   const fontWeightInput = playwrightLocators.Legend.fontWeight(page);
 
+  if ((await fontWeightInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-legend-font-weight' not found.",
+    );
+  }
+
   await fontWeightInput.click();
 
-  await playwrightLocators.Legend.fontWeightOption(page, fontWeight).click();
+  const fontWeightOption = playwrightLocators.Legend.fontWeightOption(
+    page,
+    fontWeight,
+  );
+
+  if ((await fontWeightOption.count()) === 0) {
+    throw new Error(
+      `Legend font weight option '${fontWeight}' not found.`,
+    );
+  }
+
+  await fontWeightOption.click();
 
   await fontWeightInput.press("Enter");
 
@@ -249,6 +479,12 @@ export async function setLegendProperties(
   if (backgroundColor) {
     const backgroundColorInput =
       playwrightLocators.Legend.backgroundColor(page);
+
+    if ((await backgroundColorInput.count()) === 0) {
+      throw new Error(
+        "Test ID 'prop-input-legend-background-color' not found.",
+      );
+    }
 
     await backgroundColorInput.click();
     await backgroundColorInput.press("ControlOrMeta+a");
@@ -264,12 +500,14 @@ export async function setTooltipProperties(
   fontWeight: string,
   color: string,
 ) {
+  // ============================================================
   // Tooltip Enabled
+  // ============================================================
   const tooltipEnabled = playwrightLocators.Tooltip.enabled(page);
 
   if ((await tooltipEnabled.count()) === 0) {
     throw new Error(
-      "Tooltip 'prop-input-tooltip-enabled' not found or Tooltip enabled control not found.",
+      "Test ID 'prop-input-tooltip-enabled' not found.",
     );
   }
 
@@ -280,34 +518,74 @@ export async function setTooltipProperties(
     await tooltipEnabled.click();
   }
 
-  // Font Color
+  // ============================================================
+  // Tooltip Font Color
+  // ============================================================
   const fontColorInput = playwrightLocators.Tooltip.fontColor(page);
+
+  if ((await fontColorInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-tooltip-font-color' not found.",
+    );
+  }
 
   await fontColorInput.click();
   await fontColorInput.press("ControlOrMeta+a");
   await fontColorInput.fill(fontColor);
   await fontColorInput.press("Enter");
 
-  // Font Size
+  // ============================================================
+  // Tooltip Font Size
+  // ============================================================
   const fontSizeInput = playwrightLocators.Tooltip.fontSize(page);
+
+  if ((await fontSizeInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-tooltip-font-size' not found.",
+    );
+  }
 
   await fontSizeInput.click();
   await fontSizeInput.press("ControlOrMeta+a");
   await fontSizeInput.fill(fontSize);
   await fontSizeInput.press("Enter");
 
-  // Font Weight
+  // ============================================================
+  // Tooltip Font Weight
+  // ============================================================
   const fontWeightInput = playwrightLocators.Tooltip.fontWeight(page);
 
+  if ((await fontWeightInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-tooltip-font-weight' not found.",
+    );
+  }
+
   await fontWeightInput.click();
-  await playwrightLocators.Tooltip.fontWeightOption(
-    page,
-    fontWeight,
-  ).click();
+
+  // Font Weight Option
+  const fontWeightOption =
+    playwrightLocators.Tooltip.fontWeightOption(page, fontWeight);
+
+  if ((await fontWeightOption.count()) === 0) {
+    throw new Error(
+      `Tooltip font weight option '${fontWeight}' not found.`,
+    );
+  }
+
+  await fontWeightOption.click();
   await fontWeightInput.press("Enter");
 
+  // ============================================================
   // Tooltip Background Color
+  // ============================================================
   const colorInput = playwrightLocators.Tooltip.color(page);
+
+  if ((await colorInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-tooltip-color' not found.",
+    );
+  }
 
   await colorInput.click();
   await colorInput.press("ControlOrMeta+a");
@@ -324,12 +602,24 @@ export async function setXAxisTitleProperties(
   // X-Axis Title Text
   const textInput = playwrightLocators.XAxisTitle.text(page);
 
+  if ((await textInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-argument-axis-title-text' not found.",
+    );
+  }
+
   await textInput.click();
   await textInput.fill(text);
   await textInput.press("Enter");
 
   // Font Color
   const fontColorInput = playwrightLocators.XAxisTitle.fontColor(page);
+
+  if ((await fontColorInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-argument-axis-title-font-color' not found.",
+    );
+  }
 
   await fontColorInput.click();
   await fontColorInput.press("ControlOrMeta+a");
@@ -339,19 +629,42 @@ export async function setXAxisTitleProperties(
   // Font Size
   const fontSizeInput = playwrightLocators.XAxisTitle.fontSize(page);
 
+  if ((await fontSizeInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-argument-axis-title-font-size' not found.",
+    );
+  }
+
   await fontSizeInput.click();
   await fontSizeInput.press("ControlOrMeta+a");
   await fontSizeInput.fill(fontSize);
   await fontSizeInput.press("Enter");
 
   // Font Weight
-  const fontWeightInput = playwrightLocators.XAxisTitle.fontWeight(page);
+  const fontWeightInput =
+    playwrightLocators.XAxisTitle.fontWeight(page);
+
+  if ((await fontWeightInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-argument-axis-title-font-weight' not found.",
+    );
+  }
 
   await fontWeightInput.click();
-  await playwrightLocators.XAxisTitle.fontWeightOption(
-    page,
-    fontWeight,
-  ).click();
+
+  const fontWeightOption =
+    playwrightLocators.XAxisTitle.fontWeightOption(
+      page,
+      fontWeight,
+    );
+
+  if ((await fontWeightOption.count()) === 0) {
+    throw new Error(
+      `X-Axis title font weight option '${fontWeight}' not found.`,
+    );
+  }
+
+  await fontWeightOption.click();
   await fontWeightInput.press("Enter");
 }
 export async function setYAxisTitleProperties(
@@ -362,13 +675,29 @@ export async function setYAxisTitleProperties(
   fontWeight: string,
 ) {
   // Y-Axis Visible
-  // const visibleInput =
-  //   playwrightLocators.YAxisTitle.visible(page);
+  const visibleInput = playwrightLocators.YAxisTitle.visible(page);
 
-  // await visibleInput.click();
+  if ((await visibleInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-value-axis-0-visible' not found.",
+    );
+  }
+
+  const isChecked =
+    (await visibleInput.getAttribute("aria-checked")) === "true";
+
+  if (!isChecked) {
+    await visibleInput.click();
+  }
 
   // Y-Axis Title Text
   const textInput = playwrightLocators.YAxisTitle.text(page);
+
+  if ((await textInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-value-axis-0-title-text' not found.",
+    );
+  }
 
   await textInput.click();
   await textInput.fill(text);
@@ -376,6 +705,12 @@ export async function setYAxisTitleProperties(
 
   // Font Color
   const fontColorInput = playwrightLocators.YAxisTitle.fontColor(page);
+
+  if ((await fontColorInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-value-axis-0-title-font-color' not found.",
+    );
+  }
 
   await fontColorInput.click();
   await fontColorInput.press("ControlOrMeta+a");
@@ -385,20 +720,42 @@ export async function setYAxisTitleProperties(
   // Font Size
   const fontSizeInput = playwrightLocators.YAxisTitle.fontSize(page);
 
+  if ((await fontSizeInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-value-axis-0-title-font-size' not found.",
+    );
+  }
+
   await fontSizeInput.click();
   await fontSizeInput.press("ControlOrMeta+a");
   await fontSizeInput.fill(fontSize);
   await fontSizeInput.press("Enter");
 
   // Font Weight
-  const fontWeightInput = playwrightLocators.YAxisTitle.fontWeight(page);
+  const fontWeightInput =
+    playwrightLocators.YAxisTitle.fontWeight(page);
+
+  if ((await fontWeightInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-value-axis-0-title-font-weight' not found.",
+    );
+  }
 
   await fontWeightInput.click();
 
-  await playwrightLocators.YAxisTitle.fontWeightOption(
-    page,
-    fontWeight,
-  ).click();
+  const fontWeightOption =
+    playwrightLocators.YAxisTitle.fontWeightOption(
+      page,
+      fontWeight,
+    );
+
+  if ((await fontWeightOption.count()) === 0) {
+    throw new Error(
+      `Y-Axis title font weight option '${fontWeight}' not found.`,
+    );
+  }
+
+  await fontWeightOption.click();
 
   await fontWeightInput.press("Enter");
 }
@@ -409,31 +766,74 @@ export async function setXAxisLabelProperties(
   fontSize: string,
   fontWeight: string,
 ) {
-  await playwrightLocators.XAxisLabel.visible(page).click();
-  await playwrightLocators.XAxisLabel.visible(page).click();
+  // X-Axis Label Visible
+  const visibleInput = playwrightLocators.XAxisLabel.visible(page);
 
+  if ((await visibleInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-argument-axis-label-visible' not found.",
+    );
+  }
+
+  const isChecked =
+    (await visibleInput.getAttribute("aria-checked")) === "true";
+
+  if (!isChecked) {
+    await visibleInput.click();
+  }
+
+  // Font Color
   const fontColorInput = playwrightLocators.XAxisLabel.fontColor(page);
+
+  if ((await fontColorInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-argument-axis-label-font-color' not found.",
+    );
+  }
 
   await fontColorInput.click();
   await fontColorInput.press("ControlOrMeta+a");
   await fontColorInput.fill(fontColor);
   await fontColorInput.press("Enter");
 
+  // Font Size
   const fontSizeInput = playwrightLocators.XAxisLabel.fontSize(page);
+
+  if ((await fontSizeInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-argument-axis-label-font-size' not found.",
+    );
+  }
 
   await fontSizeInput.click();
   await fontSizeInput.press("ControlOrMeta+a");
   await fontSizeInput.fill(fontSize);
   await fontSizeInput.press("Enter");
 
+  // Font Weight
   const fontWeightInput = playwrightLocators.XAxisLabel.fontWeight(page);
+
+  if ((await fontWeightInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-argument-axis-label-font-weight' not found.",
+    );
+  }
 
   await fontWeightInput.click();
 
-  await playwrightLocators.XAxisLabel.fontWeightOption(
-    page,
-    fontWeight,
-  ).click();
+  const fontWeightOption =
+    playwrightLocators.XAxisLabel.fontWeightOption(
+      page,
+      fontWeight,
+    );
+
+  if ((await fontWeightOption.count()) === 0) {
+    throw new Error(
+      `X-Axis label font weight option '${fontWeight}' not found.`,
+    );
+  }
+
+  await fontWeightOption.click();
 
   await fontWeightInput.press("Enter");
 }
@@ -444,10 +844,28 @@ export async function setYAxisLabelProperties(
   fontSize: string,
   fontWeight: string,
 ) {
-  await playwrightLocators.YAxisLabel.visible(page).click();
-  await playwrightLocators.YAxisLabel.visible(page).click();
+  const visibleInput = playwrightLocators.YAxisLabel.visible(page);
+
+  if ((await visibleInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-value-axis-0-label-visible' not found.",
+    );
+  }
+
+  const isChecked =
+    (await visibleInput.getAttribute("aria-checked")) === "true";
+
+  if (!isChecked) {
+    await visibleInput.click();
+  }
 
   const fontColorInput = playwrightLocators.YAxisLabel.fontColor(page);
+
+  if ((await fontColorInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-value-axis-0-label-font-color' not found.",
+    );
+  }
 
   await fontColorInput.click();
   await fontColorInput.press("ControlOrMeta+a");
@@ -456,6 +874,12 @@ export async function setYAxisLabelProperties(
 
   const fontSizeInput = playwrightLocators.YAxisLabel.fontSize(page);
 
+  if ((await fontSizeInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-value-axis-0-label-font-size' not found.",
+    );
+  }
+
   await fontSizeInput.click();
   await fontSizeInput.press("ControlOrMeta+a");
   await fontSizeInput.fill(fontSize);
@@ -463,25 +887,80 @@ export async function setYAxisLabelProperties(
 
   const fontWeightInput = playwrightLocators.YAxisLabel.fontWeight(page);
 
+  if ((await fontWeightInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-value-axis-0-label-font-weight' not found.",
+    );
+  }
+
   await fontWeightInput.click();
 
-  await playwrightLocators.YAxisLabel.fontWeightOption(
-    page,
-    fontWeight,
-  ).click();
+  const fontWeightOption =
+    playwrightLocators.YAxisLabel.fontWeightOption(page, fontWeight);
+
+  if ((await fontWeightOption.count()) === 0) {
+    throw new Error(
+      `Y-Axis label font weight option '${fontWeight}' not found.`,
+    );
+  }
+
+  await fontWeightOption.click();
 
   await fontWeightInput.press("Enter");
 }
 export async function setXAxisTickProperties(page: Page, color: string) {
+  const visibleInput = playwrightLocators.XAxisTick.visible(page);
+
+  if ((await visibleInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-argument-axis-tick-visible' not found.",
+    );
+  }
+
+  const isChecked =
+    (await visibleInput.getAttribute("aria-checked")) === "true";
+
+  if (!isChecked) {
+    await visibleInput.click();
+  }
+
   const colorInput = playwrightLocators.XAxisTick.color(page);
+
+  if ((await colorInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-argument-axis-tick-color' not found.",
+    );
+  }
 
   await colorInput.click();
   await colorInput.press("ControlOrMeta+a");
   await colorInput.fill(color);
   await colorInput.press("Enter");
 }
+
 export async function setYAxisTickProperties(page: Page, color: string) {
+  const visibleInput = playwrightLocators.YAxisTick.visible(page);
+
+  if ((await visibleInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-value-axis-0-tick-visible' not found.",
+    );
+  }
+
+  const isChecked =
+    (await visibleInput.getAttribute("aria-checked")) === "true";
+
+  if (!isChecked) {
+    await visibleInput.click();
+  }
+
   const colorInput = playwrightLocators.YAxisTick.color(page);
+
+  if ((await colorInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-value-axis-0-tick-color' not found.",
+    );
+  }
 
   await colorInput.click();
   await colorInput.press("ControlOrMeta+a");
@@ -489,19 +968,58 @@ export async function setYAxisTickProperties(page: Page, color: string) {
   await colorInput.press("Enter");
 }
 export async function setXAxisGridProperties(page: Page, color: string) {
-  await playwrightLocators.XAxisGrid.visible(page).click();
+  const visibleInput = playwrightLocators.XAxisGrid.visible(page);
+
+  if ((await visibleInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-argument-axis-grid-visible' not found.",
+    );
+  }
+
+  const isChecked =
+    (await visibleInput.getAttribute("aria-checked")) === "true";
+
+  if (!isChecked) {
+    await visibleInput.click();
+  }
 
   const colorInput = playwrightLocators.XAxisGrid.color(page);
+
+  if ((await colorInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-argument-axis-grid-color' not found.",
+    );
+  }
 
   await colorInput.click();
   await colorInput.press("ControlOrMeta+a");
   await colorInput.fill(color);
   await colorInput.press("Enter");
 }
+
 export async function setYAxisGridProperties(page: Page, color: string) {
-  await playwrightLocators.YAxisGrid.visible(page).click();
+  const visibleInput = playwrightLocators.YAxisGrid.visible(page);
+
+  if ((await visibleInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-value-axis-0-grid-visible' not found.",
+    );
+  }
+
+  const isChecked =
+    (await visibleInput.getAttribute("aria-checked")) === "true";
+
+  if (!isChecked) {
+    await visibleInput.click();
+  }
 
   const colorInput = playwrightLocators.YAxisGrid.color(page);
+
+  if ((await colorInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-value-axis-0-grid-color' not found.",
+    );
+  }
 
   await colorInput.click();
   await colorInput.press("ControlOrMeta+a");
@@ -509,9 +1027,28 @@ export async function setYAxisGridProperties(page: Page, color: string) {
   await colorInput.press("Enter");
 }
 export async function setMinorGridProperties(page: Page, color: string) {
-  await playwrightLocators.MinorGrid.visible(page).click();
+  const visibleInput = playwrightLocators.MinorGrid.visible(page);
+
+  if ((await visibleInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-value-axis-0-minor-grid-visible' not found.",
+    );
+  }
+
+  const isChecked =
+    (await visibleInput.getAttribute("aria-checked")) === "true";
+
+  if (!isChecked) {
+    await visibleInput.click();
+  }
 
   const colorInput = playwrightLocators.MinorGrid.color(page);
+
+  if ((await colorInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-value-axis-0-minor-grid-color' not found.",
+    );
+  }
 
   await colorInput.click();
   await colorInput.press("ControlOrMeta+a");
@@ -573,12 +1110,29 @@ export async function setActionsToNone(page: Page) {
 }
 
 export async function setColorTheme(page: Page, palette: string) {
-  await ColorThemeLocators.paletteLabel(page).click();
+  const paletteLabel = ColorThemeLocators.paletteLabel(page);
+
+  if ((await paletteLabel.count()) === 0) {
+    throw new Error("Test ID 'prop-label-palette' not found.");
+  }
+
+  await paletteLabel.click();
 
   const paletteInput = ColorThemeLocators.palette(page);
+
+  if ((await paletteInput.count()) === 0) {
+    throw new Error("Test ID 'prop-input-palette' not found.");
+  }
+
   await paletteInput.click();
 
-  await ColorThemeLocators.paletteOption(page, palette).click();
+  const paletteOption = ColorThemeLocators.paletteOption(page, palette);
+
+  if ((await paletteOption.count()) === 0) {
+    throw new Error(`Palette option '${palette}' not found.`);
+  }
+
+  await paletteOption.click();
 }
 
 export async function setRunTimeFilter(page: Page) {
@@ -600,12 +1154,33 @@ export async function setRunTimeFilter(page: Page) {
 }
 
 export async function setSeriesType(page: Page, seriesType: string) {
-  await GeneralSettingsLocators.seriesTypeInput(page).click();
-  await page.getByText(seriesType, { exact: true }).click();
+  const seriesTypeInput = GeneralSettingsLocators.seriesTypeInput(page);
+
+  if ((await seriesTypeInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-series-template-type' not found.",
+    );
+  }
+
+  await seriesTypeInput.click();
+
+  const seriesTypeOption = page.getByText(seriesType, { exact: true });
+
+  if ((await seriesTypeOption.count()) === 0) {
+    throw new Error(`Series type option '${seriesType}' not found.`);
+  }
+
+  await seriesTypeOption.click();
 }
 
 export async function setWidgetWidth(page: Page, widthInput: string) {
   const widgetWidthInput = GeneralSettingsLocators.widgetWidthInput(page);
+
+  if ((await widgetWidthInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-series-template-customize-series-width' not found.",
+    );
+  }
 
   await widgetWidthInput.click();
   await widgetWidthInput.press("ControlOrMeta+a");
@@ -614,20 +1189,73 @@ export async function setWidgetWidth(page: Page, widthInput: string) {
 }
 
 export async function setGradient(page: Page) {
-  await GeneralSettingsLocators.gradientLabel(page).click();
-  await GeneralSettingsLocators.gradientInput(page).click();
+  const gradientLabel = GeneralSettingsLocators.gradientLabel(page);
+
+  if ((await gradientLabel.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-label-gradient-setting-gradient' not found.",
+    );
+  }
+
+  await gradientLabel.click();
+
+  const gradientInput = GeneralSettingsLocators.gradientInput(page);
+
+  if ((await gradientInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-gradient-setting-gradient' not found.",
+    );
+  }
+
+  await gradientInput.click();
 }
 
 export async function setRotated(page: Page) {
-  await GeneralSettingsLocators.rotatedLabel(page).click();
-  await GeneralSettingsLocators.rotatedInput(page).click();
+  const rotatedLabel = GeneralSettingsLocators.rotatedLabel(page);
+
+  if ((await rotatedLabel.count()) === 0) {
+    throw new Error("Test ID 'prop-label-rotated' not found.");
+  }
+
+  await rotatedLabel.click();
+
+  const rotatedInput = GeneralSettingsLocators.rotatedInput(page);
+
+  if ((await rotatedInput.count()) === 0) {
+    throw new Error("Test ID 'prop-input-rotated' not found.");
+  }
+
+  const isChecked =
+    (await rotatedInput.getAttribute("aria-checked")) === "true";
+
+  if (!isChecked) {
+    await rotatedInput.click();
+  }
 }
 
-export async function setMaxInstantaneousPoints(page: Page, value: string) {
-  await GeneralSettingsLocators.maxInstantaneousPointsLabel(page).click();
+export async function setMaxInstantaneousPoints(
+  page: Page,
+  value: string,
+) {
+  const maxPointsLabel =
+    GeneralSettingsLocators.maxInstantaneousPointsLabel(page);
+
+  if ((await maxPointsLabel.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-label-max-instantaneous-points' not found.",
+    );
+  }
+
+  await maxPointsLabel.click();
 
   const maxPointsInput =
     GeneralSettingsLocators.maxInstantaneousPointsInput(page);
+
+  if ((await maxPointsInput.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-input-max-instantaneous-points' not found.",
+    );
+  }
 
   await maxPointsInput.click();
   await maxPointsInput.press("ControlOrMeta+a");
