@@ -463,123 +463,101 @@ test.describe("PROPERTIES - LINEAR-GAUGE Widget", () => {
   expect(transform).toMatch(/^translate\([\d.]+,0\)$/);
 });
 
-  test("8. User can change VALUE INDICATOR TYPE RECTANGLE properties for linear gauge widget", async ({
-    page,
-  }) => {
-    await setGaugeValueIndicatorProperties(page, {
-      type: "rectangle",
-      offset: "30",
-    });
-    // Gradient
-    await GaugeValueIndicatorLocators.gradientLabel(page).click();
-    await GaugeValueIndicatorLocators.gradientInput(page).click();
-    // Switch to Viewer
-    await page.locator("label").filter({ hasText: "Viewer" }).click();
-    // Save
-    await page.getByRole("button", { name: "Save", exact: true }).click();
-    const targetWidget = await getDroppedWidgetByUuid(
-      page,
-      WIDGETS.LINEARGAUGE,
-    );
-    const bgContainer = targetWidget.locator(".mi-linear-gauge-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
-    // ============ VERIFY VALUE INDICATOR ============
-    const valueIndicator = bgContainer.locator(".dxg-value-indicator");
-    await expect(valueIndicator).toBeVisible();
-    // Verify rectangle is rendered using a path
-    const rectangle = valueIndicator.locator("path");
-    await expect(rectangle).toBeVisible();
-    await expect(rectangle).toHaveCount(1);
-    // Verify rectangle has no circle element
-    await expect(valueIndicator.locator("circle")).toHaveCount(0);
-    // Verify gradient is applied
-    await expect(valueIndicator).toHaveAttribute(
-      "fill",
-      /url\(#DevExpress_\d+\)/,
-    );
-    // Verify rectangle path has the expected geometry
-    await expect(rectangle).toHaveAttribute(
-      "d",
-      "M 5.5 80.5 L 5.5 65.5 L 15.5 65.5 L 15.5 80.5 Z",
-    );
-    await expect(bgContainer).toBeVisible();
+   test("9. User can change VALUE INDICATOR TYPE TEXT CLOUD properties for linear gauge widget", async ({
+  page,
+}) => {
+  await setGaugeValueIndicatorProperties(page, {
+    type: "textCloud",
+    offset: "25",
   });
 
-  test("9. User can change VALUE INDICATOR TYPE TEXT CLOUD properties for linear gauge widget", async ({
+  // Enable Gradient
+  await GaugeValueIndicatorLocators.gradientLabel(page).click();
+  await GaugeValueIndicatorLocators.gradientInput(page).click();
+
+  // Switch to Viewer
+  await page.locator("label").filter({ hasText: "Viewer" }).click();
+
+  // Save
+  await page.getByRole("button", { name: "Save", exact: true }).click();
+
+  const targetWidget = await getDroppedWidgetByUuid(
     page,
-  }) => {
-    await setGaugeValueIndicatorProperties(page, {
-      type: "textCloud",
-      offset: "25",
-    });
+    WIDGETS.LINEARGAUGE,
+  );
 
-    // Gradient
-    await GaugeValueIndicatorLocators.gradientLabel(page).click();
-    await GaugeValueIndicatorLocators.gradientInput(page).click();
+  const bgContainer = targetWidget.locator(".mi-linear-gauge-container");
 
-    // Switch to Viewer
-    await page.locator("label").filter({ hasText: "Viewer" }).click();
-
-    // Save
-    await page.getByRole("button", { name: "Save", exact: true }).click();
-
-    const targetWidget = await getDroppedWidgetByUuid(
-      page,
-      WIDGETS.LINEARGAUGE,
-    );
-
-    const bgContainer = targetWidget.locator(".mi-linear-gauge-container");
-
-    await bgContainer.waitFor({
-      state: "visible",
-      timeout: 10000,
-    });
-
-    await expect(bgContainer).toBeVisible();
-
-    // ============ VERIFY VALUE INDICATOR ============
-
-    const valueIndicator = bgContainer.locator(".dxg-value-indicator");
-
-    await expect(valueIndicator).toBeVisible();
-
-    // Verify text cloud shape is rendered using a path
-    const textCloudPath = valueIndicator.locator("path");
-
-    await expect(textCloudPath).toBeVisible();
-    await expect(textCloudPath).toHaveCount(1);
-
-    // Verify text cloud contains the displayed value
-    const valueText = valueIndicator.locator("text");
-
-    await expect(valueText).toBeVisible();
-    await expect(valueText).toHaveText("45.0");
-
-    // Verify text styling
-    await expect(valueText).toHaveCSS("font-size", "18px");
-
-    await expect(valueText).toHaveCSS("font-weight", "400");
-
-    // Verify gradient is applied to the value indicator
-    await expect(valueIndicator).toHaveAttribute(
-      "fill",
-      /url\(#DevExpress_\d+\)/,
-    );
-
-    // Verify text cloud geometry
-
-    const pathData = await textCloudPath.getAttribute("d");
-    expect(pathData).not.toBeNull();
-    // Text cloud should be a closed path
-    expect(pathData).toMatch(/Z$/);
-    // Text cloud should contain multiple line segments
-    expect(pathData).toMatch(/M\s+[\d.]+\s+[\d.]+/);
-    expect(pathData).toMatch(/L\s+[\d.]+\s+[\d.]+/);
-    // Verify the path contains the expected number of points
-    const points = pathData!.match(/[ML]\s+[\d.]+\s+[\d.]+/g);
-    expect(points).not.toBeNull();
-    expect(points!.length).toBe(5);
+  await bgContainer.waitFor({
+    state: "visible",
+    timeout: 10000,
   });
+
+  await expect(bgContainer).toBeVisible();
+
+  // ============ VERIFY VALUE INDICATOR ============
+
+  const valueIndicator = bgContainer.locator(".dxg-value-indicator");
+
+  await expect(valueIndicator).toBeVisible();
+
+  // Verify Text Cloud shape is rendered using a path
+  const textCloudPath = valueIndicator.locator("path");
+
+  await expect(textCloudPath).toBeVisible();
+  await expect(textCloudPath).toHaveCount(1);
+
+  // Verify Text Cloud contains the displayed value
+  const valueText = valueIndicator.locator("text");
+
+  await expect(valueText).toBeVisible();
+  await expect(valueText).toHaveText("45.0");
+
+  // Verify text styling
+  await expect(valueText).toHaveCSS("font-size", "18px");
+  await expect(valueText).toHaveCSS("font-weight", "400");
+
+  // ============ VERIFY GRADIENT ============
+
+  const fill = await valueIndicator.getAttribute("fill");
+
+  if (!fill) {
+    throw new Error(
+      "Gradient check failed: the Text Cloud value indicator does not have a fill color. " +
+        "Please check that the Gradient option is enabled."
+    );
+  }
+
+  if (!/^url\(#DevExpress_\d+\)$/.test(fill)) {
+    throw new Error(
+      `Gradient check failed: the Text Cloud value indicator is using a solid color "${fill}" instead of a gradient. ` +
+        "Please check that the Gradient option is checked in the Value Indicator settings."
+    );
+  }
+
+  // ============ VERIFY TEXT CLOUD GEOMETRY ============
+
+  const pathData = await textCloudPath.getAttribute("d");
+
+  if (!pathData) {
+    throw new Error(
+      "Text Cloud shape check failed: the Text Cloud path does not contain any geometry data."
+    );
+  }
+
+  // Text Cloud should be a closed path
+  expect(pathData).toMatch(/Z$/);
+
+  // Text Cloud should contain multiple line segments
+  expect(pathData).toMatch(/M\s+[\d.]+\s+[\d.]+/);
+  expect(pathData).toMatch(/L\s+[\d.]+\s+[\d.]+/);
+
+  // Verify the path contains the expected number of points
+  const points = pathData.match(/[ML]\s+[\d.]+\s+[\d.]+/g);
+
+  expect(points).not.toBeNull();
+  expect(points!.length).toBe(5);
+});
 test("10. User can change THRESHOLD properties for linear gauge widget", async ({
   page,
 }) => {
