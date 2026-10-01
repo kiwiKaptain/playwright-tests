@@ -35,6 +35,7 @@ import {
 import {
   GaugeValueIndicatorLocators,
   RangeContainerLocators,
+  ThresholdLocators
 } from "../../Locators/commonGaugeLocators";
 import { ScaleRangeLocators } from "../../Locators/commonLocators";
 
@@ -562,73 +563,133 @@ test.describe("PROPERTIES - LINEAR-GAUGE Widget", () => {
     expect(points).not.toBeNull();
     expect(points!.length).toBe(5);
   });
+test("10. User can change THRESHOLD properties for linear gauge widget", async ({
+  page,
+}) => {
+  // ============ THRESHOLD ENABLED ============
 
-  test("10. User can change THRESHOLD  properties for linear gauge widget", async ({
-    page,
-  }) => {
-    await page.getByTestId("prop-label-threshold-enabled").click();
-    await page.getByTestId("prop-input-threshold-enabled").click();
-    await page.getByTestId("prop-input-threshold-enabled").click();
-    await page.getByTestId("prop-label-threshold-value").click();
-    await page.getByTestId("prop-input-threshold-value").click();
-    await page
-      .getByTestId("prop-input-threshold-value")
-      .press("ControlOrMeta+a");
-    await page.getByTestId("prop-input-threshold-value").fill("80");
-    await page.getByTestId("prop-input-threshold-value").press("Enter");
-    await page.getByTestId("prop-input-subvalue-indicator-type").click();
-    await page.getByText("textCloud").click();
+  const thresholdEnabledLabel =
+    ThresholdLocators.enabledLabel(page);
 
-    // Switch to Viewer
-    await page.locator("label").filter({ hasText: "Viewer" }).click();
-
-    // Save
-    await page.getByRole("button", { name: "Save", exact: true }).click();
-
-    const targetWidget = await getDroppedWidgetByUuid(
-      page,
-      WIDGETS.LINEARGAUGE,
+  if ((await thresholdEnabledLabel.count()) === 0) {
+    throw new Error(
+      "Test ID prop-label-threshold-enabled not found.",
     );
+  }
 
-    const bgContainer = targetWidget.locator(".mi-linear-gauge-container");
+  await thresholdEnabledLabel.click();
 
-    await bgContainer.waitFor({
-      state: "visible",
-      timeout: 10000,
-    });
+  const thresholdEnabled =
+    ThresholdLocators.enabled(page);
 
-    // ============ VERIFY THRESHOLD ============
+  if ((await thresholdEnabled.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-threshold-enabled not found.",
+    );
+  }
 
-    const gaugeSvg = bgContainer.locator("svg.dxg-linear-gauge");
+  const isChecked =
+    (await thresholdEnabled.getAttribute("aria-checked")) === "true";
 
-    await expect(gaugeSvg).toBeVisible();
+  if (!isChecked) {
+    await thresholdEnabled.click();
+  }
 
-    // Verify threshold subvalue indicator
-    const subvalueIndicator = gaugeSvg
-      .locator(".dxg-subvalue-indicators .dxg-subvalue-indicator")
-      .first();
+  // ============ THRESHOLD VALUE ============
 
-    await expect(subvalueIndicator).toBeVisible();
+  const thresholdValueLabel =
+    ThresholdLocators.valueLabel(page);
 
-    // Verify textCloud shape is rendered
-    const textCloudPath = subvalueIndicator.locator("path");
+  if ((await thresholdValueLabel.count()) === 0) {
+    throw new Error(
+      "Test ID prop-label-threshold-value not found.",
+    );
+  }
 
-    await expect(textCloudPath).toHaveCount(1);
-    await expect(textCloudPath).toBeVisible();
+  await thresholdValueLabel.click();
 
-    // Verify threshold value is displayed
-    const thresholdText = subvalueIndicator.locator("text");
+  const thresholdValue =
+    ThresholdLocators.value(page);
 
-    await expect(thresholdText).toHaveCount(1);
-    await expect(thresholdText).toBeVisible();
-    await expect(thresholdText).toHaveText("80.0");
+  if ((await thresholdValue.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-threshold-value not found.",
+    );
+  }
 
-    // Verify threshold text styling
-    await expect(thresholdText).toHaveCSS("font-size", "18px");
+  await thresholdValue.click();
+  await thresholdValue.press("ControlOrMeta+a");
+  await thresholdValue.fill("80");
+  await thresholdValue.press("Enter");
 
-    await expect(thresholdText).toHaveCSS("font-weight", "400");
+  // ============ SUBVALUE INDICATOR TYPE ============
+
+  const subvalueIndicatorType =
+    ThresholdLocators.subvalueIndicatorType(page);
+
+  if ((await subvalueIndicatorType.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-subvalue-indicator-type not found.",
+    );
+  }
+
+  await subvalueIndicatorType.click();
+  await page.getByText("textCloud").click();
+
+  // ============ SWITCH TO VIEWER ============
+
+  await page.locator("label").filter({ hasText: "Viewer" }).click();
+
+  // ============ SAVE ============
+
+  await page.getByRole("button", { name: "Save", exact: true }).click();
+
+  const targetWidget = await getDroppedWidgetByUuid(
+    page,
+    WIDGETS.LINEARGAUGE,
+  );
+
+  const bgContainer = targetWidget.locator(
+    ".mi-linear-gauge-container",
+  );
+
+  await bgContainer.waitFor({
+    state: "visible",
+    timeout: 10000,
   });
 
+  // ============ VERIFY THRESHOLD ============
+
+  const gaugeSvg = bgContainer.locator("svg.dxg-linear-gauge");
+
+  await expect(gaugeSvg).toBeVisible();
+
+  // Verify threshold subvalue indicator
+  const subvalueIndicator = gaugeSvg
+    .locator(
+      ".dxg-subvalue-indicators .dxg-subvalue-indicator",
+    )
+    .first();
+
+  await expect(subvalueIndicator).toBeVisible();
+
+  // Verify textCloud shape is rendered
+  const textCloudPath = subvalueIndicator.locator("path");
+
+  await expect(textCloudPath).toHaveCount(1);
+  await expect(textCloudPath).toBeVisible();
+
+  // Verify threshold value is displayed
+  const thresholdText = subvalueIndicator.locator("text");
+
+  await expect(thresholdText).toHaveCount(1);
+  await expect(thresholdText).toBeVisible();
+  await expect(thresholdText).toHaveText("80.0");
+
+  // Verify threshold text styling
+  await expect(thresholdText).toHaveCSS("font-size", "18px");
+  await expect(thresholdText).toHaveCSS("font-weight", "400");
+});
   test("11. User can change SCALE LABEL properties for Linear gauge widget", async ({
     page,
   }) => {
