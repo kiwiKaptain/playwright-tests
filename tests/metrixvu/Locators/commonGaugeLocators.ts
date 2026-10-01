@@ -164,3 +164,19 @@ export const RangeContainerLocators = {
 
   rangeDelete: (page: Page) => page.getByTestId("prop-button-range-delete"),
 };
+export const ThresholdLocators = {
+  enabledLabel: (page: Page) =>
+    page.getByTestId("prop-label-threshold-enabled"),
+
+  enabled: (page: Page) =>
+    page.getByTestId("prop-input-threshold-enabled"),
+
+  valueLabel: (page: Page) =>
+    page.getByTestId("prop-label-threshold-value"),
+
+  value: (page: Page) =>
+    page.getByTestId("prop-input-threshold-value"),
+
+  subvalueIndicatorType: (page: Page) =>
+    page.getByTestId("prop-input-subvalue-indicator-type"),
+};
