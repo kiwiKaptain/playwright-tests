@@ -12,8 +12,8 @@ export const TEST_DATA = {
   },
 
   dashboards: {
-    newDashboardName: "TestingNewDashboard",
-    updatedDashboardName: "UpdatedDashboardForTesting",
+    newDashboardName: "TestingDashboard",
+    updatedDashboardName: "UpdatedTestingDashboard",
  
     dashboardNameForWidgetPropertiesTesting: "TestDashboardForProperties",
 
