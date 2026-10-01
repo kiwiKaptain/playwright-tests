@@ -112,7 +112,7 @@ test.describe("DASHBOARD OPERATIONS", () => {
     // Verify dashboard exists
     await expect(dashboardToEdit).toBeVisible();
     if (!(await dashboardToEdit.isVisible())) {
-      throw new Error(`Dashboard to update was not found.`);
+       throw new Error(`Dashboard "TestingDashboard" was not found to update.Please create a dashboard named "TestingDashboard" or run Test Case 1 first to create it, then run this test. `);
     }
 
     await dashboardToEdit.click();
@@ -148,8 +148,7 @@ test.describe("DASHBOARD OPERATIONS", () => {
        const dashboardCard = page.locator("div.group", { has: page.getByText(dashboardName, { exact: true }), }); 
        await expect(dashboardCard).toBeVisible(); 
         if (!(await dashboardCard.isVisible())) {
-         throw new Error(`Dashboard "TestingNewDashboard" was not found. ` +
-  `Please create a dashboard named "TestingNewDashboard" or run Test Case 1 first, then run this test.`);
+         throw new Error(`Dashboard "TestingDashboard" was not found to delete.Please create a dashboard named "TestingDashboard" or run Test Case 1 first to create it, then run this test. `);
     }
        await dashboardCard .locator("div.absolute.top-3.right-3 button") .click(); 
        await page .getByRole("button", { name: "Delete", exact: true }) .click(); 
