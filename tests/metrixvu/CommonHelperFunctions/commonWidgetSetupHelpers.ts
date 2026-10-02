@@ -217,30 +217,30 @@ export async function setupWidgets(
 
     // Card widget
     if (cardWidgetTypes.includes(widgetType)) {
-      await page.getByTestId("prop-label-title-text").click();
+     // await page.getByTestId("prop-label-title-text").click();
 
-      const titleInput = page.getByTestId("prop-input-title-text");
+    //  const titleInput = page.getByTestId("prop-input-title-text");
 
-      await titleInput.click();
-      await titleInput.press("ControlOrMeta+a");
-      await titleInput.fill(`Widget ${i + 1}`);
+      //await titleInput.click();
+     // await titleInput.press("ControlOrMeta+a");
+    //  await titleInput.fill(`Widget ${i + 1}`);
 
-      await page.waitForTimeout(200);
+    //  await page.waitForTimeout(200);
 
-      const borderWidthInput = page.getByTestId("prop-input-border-width");
+    //  const borderWidthInput = page.getByTestId("prop-input-border-width");
 
-      await borderWidthInput.click();
-      await borderWidthInput.press("ControlOrMeta+a");
-      await borderWidthInput.fill("3");
+    //  await borderWidthInput.click();
+     // await borderWidthInput.press("ControlOrMeta+a");
+    //  await borderWidthInput.fill("3");
 
-      await page.getByTestId("prop-label-border-color").click();
+    //  await page.getByTestId("prop-label-border-color").click();
 
-      const borderColorInput = page.getByTestId("prop-input-border-color");
+    //  const borderColorInput = page.getByTestId("prop-input-border-color");
 
-      await borderColorInput.click();
-      await borderColorInput.press("ControlOrMeta+a");
-      await borderColorInput.fill("rgb(94, 94, 93)");
-      await borderColorInput.press("Enter");
+    //  await borderColorInput.click();
+    //  await borderColorInput.press("ControlOrMeta+a");
+    //  await borderColorInput.fill("rgb(94, 94, 93)");
+    //  await borderColorInput.press("Enter");
     }
 
     // Image widget
