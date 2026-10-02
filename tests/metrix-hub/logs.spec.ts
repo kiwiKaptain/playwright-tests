@@ -20,13 +20,13 @@ test.describe("Driver / Audit Error Logs", () => {
         await headerPage.logout();
     });
     
-    test("monitoring", async ({ page }) => {
+    test("monitoring tab details check", async ({ page }) => {
         const monitoringPage = new LogsPage(page);
 
         await monitoringPage.gotoMonitoring();
     });
 
-    test("driver error logs", async ({ page }) => {
+    test("driver error logs search filter check", async ({ page }) => {
         const driverErrorLogsPage = new LogsPage(page);
 
         await driverErrorLogsPage.gotoDriverErrorLogs();
@@ -45,7 +45,7 @@ test.describe("Driver / Audit Error Logs", () => {
         await driverErrorLogsPage.filterByDetails("");
     });
 
-    test("audit logs", async ({ page }) => {
+    test("audit logs search filter check", async ({ page }) => {
         const auditLogsPage = new LogsPage(page);
 
         await auditLogsPage.gotoAuditLogs();
