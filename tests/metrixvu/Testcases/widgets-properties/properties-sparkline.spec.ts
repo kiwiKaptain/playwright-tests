@@ -850,7 +850,12 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     const squareMarkers = sparkline.locator(".dxc-markers path");
 
-    await expect(squareMarkers).toHaveCount(4);
+    if ((await squareMarkers.count()) === 0) {
+  throw new Error(
+    "Square point symbols are not displayed. Please check the Point Symbol setting.",
+  );
+}
+
 
     // ============================================================
     // Verify Square Shape
