@@ -143,10 +143,15 @@ const markers = series.locator("g.dxc-markers circle");
 await expect(markers).toHaveCount(8);
 
 for (let i = 0; i < 8; i++) {
-  await expect(markers.nth(i)).toHaveAttribute(
-    "fill",
-    "#fb7764"
-  );
+  const markerColor = await markers.nth(i).evaluate((el) => {
+    return window.getComputedStyle(el).fill;
+  });
+
+  if (markerColor !== "rgb(251, 119, 100)") {
+    throw new Error(
+      `Carmine marker color is not applied. Expected #fb7764, but received ${markerColor || "no color"}.`,
+    );
+  }
 }
 
 // --------------------------------------------------
