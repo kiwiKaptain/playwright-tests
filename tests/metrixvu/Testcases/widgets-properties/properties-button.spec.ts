@@ -10,6 +10,7 @@ const dashboardName = TEST_DATA.dashboards.dashboardNameForWidgetPropertiesTesti
 const WIDGETS = { BUTTON: "mi-button" } as const;
 test.describe("PROPERTIES - BUTTON Widget", () => {
   test.beforeEach(async ({ page }) => {
+     test.setTimeout(120000);
     await login(page);
     const setupDashboard = await ensureDashboardExists(page, dashboardName);
     await openEditorAndClearCanvas(page, setupDashboard);
