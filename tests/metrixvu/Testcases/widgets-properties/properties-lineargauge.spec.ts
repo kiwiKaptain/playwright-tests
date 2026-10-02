@@ -261,11 +261,24 @@ test.describe("PROPERTIES - LINEAR-GAUGE Widget", () => {
   test("5. User can change SUBTITLE properties for linear gauge widget", async ({
     page,
   }) => {
-    await page.getByTestId("prop-label-title-text").click();
-    await page.getByTestId("prop-input-title-text").click();
-    await page.getByTestId("prop-input-title-text").press("ControlOrMeta+a");
-    await page.getByTestId("prop-input-title-text").fill("Test Title");
-    await page.getByTestId("prop-input-title-text").press("Enter");
+   const titleTextLabel = page.getByTestId("prop-label-title-text");
+
+if ((await titleTextLabel.count()) === 0) {
+  throw new Error("Test ID prop-label-title-text not found.");
+}
+
+await titleTextLabel.click();
+
+const titleTextInput = page.getByTestId("prop-input-title-text");
+
+if ((await titleTextInput.count()) === 0) {
+  throw new Error("Test ID prop-input-title-text not found.");
+}
+
+await titleTextInput.click();
+await titleTextInput.press("ControlOrMeta+A");
+await titleTextInput.fill("Test Title");
+await titleTextInput.press("Enter");
 
     await setSubtitleProperties(
       page,
