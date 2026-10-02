@@ -178,7 +178,7 @@ export async function setupWidgets(
     }
 
     // Chart widgets
-  if (titleWidgetTypes.includes(widgetType)) {
+    if (titleWidgetTypes.includes(widgetType)) {
       // await setTitleProperties(
       //   page,
       //   `Widget ${i + 1}`,
@@ -192,55 +192,55 @@ export async function setupWidgets(
 
     // Button widget
     if (buttonWidgetTypes.includes(widgetType)) {
-      await page.getByTestId("prop-label-text").click();
+      // await page.getByTestId("prop-label-text").click();
 
-      const textInput = page.getByTestId("prop-input-text");
+      // const textInput = page.getByTestId("prop-input-text");
 
-      await textInput.click();
-      await textInput.press("ControlOrMeta+a");
-      await textInput.fill(` ${i + 1}`);
-      await textInput.press("Enter");
+      // await textInput.click();
+      // await textInput.press("ControlOrMeta+a");
+      // await textInput.fill(` ${i + 1}`);
+      // await textInput.press("Enter");
 
-      await page
-        .getByTestId("prop-label-mi-widget-settings-text-color")
-        .click();
+      // await page
+      //   .getByTestId("prop-label-mi-widget-settings-text-color")
+      //   .click();
 
-      const textColorInput = page.getByTestId(
-        "prop-input-mi-widget-settings-text-color",
-      );
+      // const textColorInput = page.getByTestId(
+      //   "prop-input-mi-widget-settings-text-color",
+      // );
 
-      await textColorInput.click();
-      await textColorInput.press("ControlOrMeta+a");
-      await textColorInput.fill("rgb(41, 40, 39)");
-      await textColorInput.press("Enter");
+      // await textColorInput.click();
+      // await textColorInput.press("ControlOrMeta+a");
+      // await textColorInput.fill("rgb(41, 40, 39)");
+      // await textColorInput.press("Enter");
     }
 
     // Card widget
     if (cardWidgetTypes.includes(widgetType)) {
-     // await page.getByTestId("prop-label-title-text").click();
+      // await page.getByTestId("prop-label-title-text").click();
 
-    //  const titleInput = page.getByTestId("prop-input-title-text");
+      // const titleInput = page.getByTestId("prop-input-title-text");
 
-      //await titleInput.click();
-     // await titleInput.press("ControlOrMeta+a");
-    //  await titleInput.fill(`Widget ${i + 1}`);
+      // await titleInput.click();
+      // await titleInput.press("ControlOrMeta+a");
+      // await titleInput.fill(`Widget ${i + 1}`);
 
-    //  await page.waitForTimeout(200);
+      // await page.waitForTimeout(200);
 
-    //  const borderWidthInput = page.getByTestId("prop-input-border-width");
+      // const borderWidthInput = page.getByTestId("prop-input-border-width");
 
-    //  await borderWidthInput.click();
-     // await borderWidthInput.press("ControlOrMeta+a");
-    //  await borderWidthInput.fill("3");
+      // await borderWidthInput.click();
+      // await borderWidthInput.press("ControlOrMeta+a");
+      // await borderWidthInput.fill("3");
 
-    //  await page.getByTestId("prop-label-border-color").click();
+      // await page.getByTestId("prop-label-border-color").click();
 
-    //  const borderColorInput = page.getByTestId("prop-input-border-color");
+      // const borderColorInput = page.getByTestId("prop-input-border-color");
 
-    //  await borderColorInput.click();
-    //  await borderColorInput.press("ControlOrMeta+a");
-    //  await borderColorInput.fill("rgb(94, 94, 93)");
-    //  await borderColorInput.press("Enter");
+      // await borderColorInput.click();
+      // await borderColorInput.press("ControlOrMeta+a");
+      // await borderColorInput.fill("rgb(94, 94, 93)");
+      // await borderColorInput.press("Enter");
     }
 
     // Image widget
@@ -250,16 +250,16 @@ export async function setupWidgets(
       await page.waitForTimeout(500);
 
       // Set background color
-      await page.getByTestId("prop-label-image-background-color").click();
+      // await page.getByTestId("prop-label-image-background-color").click();
 
-      const backgroundColorInput = page.getByTestId(
-        "prop-input-image-background-color",
-      );
+      // const backgroundColorInput = page.getByTestId(
+      //   "prop-input-image-background-color",
+      // );
 
-      await backgroundColorInput.click();
-      await backgroundColorInput.press("ControlOrMeta+a");
-      await backgroundColorInput.fill(widgetColors[i]);
-      await backgroundColorInput.press("Enter");
+      // await backgroundColorInput.click();
+      // await backgroundColorInput.press("ControlOrMeta+a");
+      // await backgroundColorInput.fill(widgetColors[i]);
+      // await backgroundColorInput.press("Enter");
 
       await page.waitForTimeout(300);
     }
