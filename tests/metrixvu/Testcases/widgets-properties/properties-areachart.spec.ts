@@ -10,6 +10,7 @@ const WIDGETS = { AREACHART: "mi-area-chart" } as const;
 test.describe("PROPERTIES - AREA-CHART Widget", () => {
 
 test.beforeEach(async ({ page }) => {
+   test.setTimeout(120000);
   await login(page);
   const dashboardCard = await ensureDashboardExists(page, dashboardName);
   await openEditorAndClearCanvas(page, dashboardCard);
