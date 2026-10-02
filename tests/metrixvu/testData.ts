@@ -7,7 +7,7 @@ export const TEST_DATA = {
   //  //baseUrl: "http://192.168.1.54/metrixvu/#/",
   //   username: "admin",
   //   password: "adm!n$25",
-      imagePathUrl :"D:\\MetrixVU\\PlayWright Test Runner-win32-x64\\resources\\test-runtime\\test-data\\"
+      imagePathUrl :"SampleImages"
   //https://github.com/kiwiKaptain/playwright-tests
   },
 
