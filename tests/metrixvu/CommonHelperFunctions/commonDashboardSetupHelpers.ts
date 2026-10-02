@@ -7,21 +7,22 @@ import { TEST_DATA } from "../testData";
 import process from "process";
 
 /** Logs the given user into the app. */
-// export async function login(
-//   page: Page,
-//   username: string = TEST_DATA.app.username,
-//   password: string = TEST_DATA.app.password,
-// ): Promise<void> {
-//   await page.goto(TEST_DATA.app.baseUrl);
-
-
-
 export async function login(
   page: Page,
   username: string = process.env.TEST_USERNAME!,
   password: string = process.env.TEST_PASSWORD!,
 ): Promise<void> {
-  await page.goto(process.env.BASE_URL!);
+  try {
+  await page.goto(process.env.BASE_URL!, {
+    timeout: 60000,
+    waitUntil: "domcontentloaded",
+  });
+} catch (error) {
+  throw new Error(
+    "Metrix VU website took too long to load. The website did not respond within the expected time",
+  );
+}
+//  await page.goto(process.env.BASE_URL!);
   await page
     .getByRole("textbox", { name: "Enter your username" })
     .fill(username);
