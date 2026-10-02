@@ -892,13 +892,22 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     await expect(linePath).toHaveAttribute("stroke", "rgba(49, 235, 235, 1)");
 
-    // ============================================================
-    // Verify Point Color
-    // ============================================================
+     // ============================================================
+  // Verify Point Color
+  // ============================================================
 
-    for (const marker of await squareMarkers.all()) {
-      await expect(marker).toHaveAttribute("fill", "rgba(234, 92, 247, 1)");
+  for (const marker of await squareMarkers.all()) {
+    try {
+      await expect(marker).toHaveAttribute(
+        "fill",
+        "rgba(234, 92, 247, 1)",
+      );
+    } catch {
+      throw new Error(
+        "Point color is not applied. The specified color rgba(234, 92, 247, 1) is not reflected on the point symbols. Please check the Point Color setting.",
+      );
     }
+  }
   });
   test("7. User can change TOOLTIP properties for sparkline chart widget", async ({
     page,
