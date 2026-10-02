@@ -139,136 +139,163 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
   //   );
   // });
   test("3. User can change GENERAL properties for sparkline chart widget", async ({
-    page,
-  }) => {
-    // ============================================================
-    // Type
-    // ============================================================
+  page,
+}) => {
+  // ============================================================
+  // Type
+  // ============================================================
 
-    const typeLabel = SparklineLocators.typeLabel(page);
+  const typeLabel = SparklineLocators.typeLabel(page);
 
-    if ((await typeLabel.count()) === 0) {
-      throw new Error("Test ID prop-label-type not found.");
-    }
+  if ((await typeLabel.count()) === 0) {
+    throw new Error("Test ID prop-label-type not found.");
+  }
 
-    await typeLabel.click();
+  await typeLabel.click();
 
-    const typeInput = SparklineLocators.typeInput(page);
+  const typeInput = SparklineLocators.typeInput(page);
 
-    if ((await typeInput.count()) === 0) {
-      throw new Error("Test ID prop-input-type not found.");
-    }
+  if ((await typeInput.count()) === 0) {
+    throw new Error("Test ID prop-input-type not found.");
+  }
 
-    await typeInput.click();
+  await typeInput.click();
 
-    const lineOption = page.getByText("line", { exact: true });
+  const lineOption = page.getByText("line", { exact: true });
 
-    if ((await lineOption.count()) === 0) {
-      throw new Error("Sparkline type option 'line' not found.");
-    }
+  if ((await lineOption.count()) === 0) {
+    throw new Error("Sparkline type option 'line' not found.");
+  }
 
-    await lineOption.click();
+  await lineOption.click();
 
-    // ============================================================
-    // Line Width
-    // ============================================================
+  // ============================================================
+  // Line Width
+  // ============================================================
 
-    const lineWidthLabel = SparklineLocators.lineWidthLabel(page);
+  const lineWidthLabel = SparklineLocators.lineWidthLabel(page);
 
-    if ((await lineWidthLabel.count()) === 0) {
-      throw new Error("Test ID prop-label-line-width not found.");
-    }
+  if ((await lineWidthLabel.count()) === 0) {
+    throw new Error("Test ID prop-label-line-width not found.");
+  }
 
-    await lineWidthLabel.click();
+  await lineWidthLabel.click();
 
-    const lineWidthInput = SparklineLocators.lineWidthInput(page);
+  const lineWidthInput = SparklineLocators.lineWidthInput(page);
 
-    if ((await lineWidthInput.count()) === 0) {
-      throw new Error("Test ID prop-input-line-width not found.");
-    }
+  if ((await lineWidthInput.count()) === 0) {
+    throw new Error("Test ID prop-input-line-width not found.");
+  }
 
-    await lineWidthInput.click();
-    await lineWidthInput.press("ControlOrMeta+A");
-    await lineWidthInput.fill("15");
-    await lineWidthInput.press("Enter");
+  await lineWidthInput.click();
+  await lineWidthInput.press("ControlOrMeta+A");
+  await lineWidthInput.fill("15");
+  await lineWidthInput.press("Enter");
 
-    // ============================================================
-    // Gradient
-    // ============================================================
+  // ============================================================
+  // Gradient
+  // ============================================================
 
-    const gradientLabel = SparklineLocators.gradientLabel(page);
+  const gradientLabel = SparklineLocators.gradientLabel(page);
 
-    if ((await gradientLabel.count()) === 0) {
-      throw new Error(
-        "Test ID prop-label-gradient-setting-gradient not found.",
-      );
-    }
-
-    await gradientLabel.click();
-
-    const gradientInput = SparklineLocators.gradientInput(page);
-
-    if ((await gradientInput.count()) === 0) {
-      throw new Error(
-        "Test ID prop-input-gradient-setting-gradient not found.",
-      );
-    }
-
-    await gradientInput.click();
-
-    // ============================================================
-    // Switch to Viewer
-    // ============================================================
-
-    await page.locator("label").filter({ hasText: "Viewer" }).click();
-
-    // ============================================================
-    // Save
-    // ============================================================
-
-    await page
-      .getByRole("button", {
-        name: "Save",
-        exact: true,
-      })
-      .click();
-
-    // ============================================================
-    // Get Sparkline
-    // ============================================================
-
-    const targetWidget = await getDroppedWidgetByUuid(page, WIDGETS.SPARKLINE);
-
-    const sparkline = targetWidget.locator("#mi-sparkline-chart");
-
-    await expect(sparkline).toBeVisible();
-
-    // ============================================================
-    // Verify Line
-    // ============================================================
-
-    const linePath = sparkline.locator(".dxc-elements path");
-
-    await expect(linePath).toBeVisible();
-
-    // Verify line width = 15
-    await expect(linePath).toHaveAttribute("stroke-width", "15");
-
-    // ============================================================
-    // Verify Gradient
-    // ============================================================
-
-    const stroke = await linePath.getAttribute("stroke");
-
-    expect(stroke).toMatch(/^url\(#sparkline-gradient-/);
-
-    // Verify gradient definition exists
-    const gradient = sparkline.locator(
-      "defs linearGradient[id^='sparkline-gradient-']",
+  if ((await gradientLabel.count()) === 0) {
+    throw new Error(
+      "Test ID prop-label-gradient-setting-gradient not found.",
     );
+  }
 
-    await expect(gradient).toBeVisible();
-  });
+  await gradientLabel.click();
+
+  const gradientInput = SparklineLocators.gradientInput(page);
+
+  if ((await gradientInput.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-gradient-setting-gradient not found.",
+    );
+  }
+
+  await gradientInput.click();
+
+  // ============================================================
+  // Switch to Viewer
+  // ============================================================
+
+  await page.locator("label").filter({ hasText: "Viewer" }).click();
+
+  // ============================================================
+  // Save
+  // ============================================================
+
+  await page
+    .getByRole("button", {
+      name: "Save",
+      exact: true,
+    })
+    .click();
+
+  // ============================================================
+  // Get Sparkline
+  // ============================================================
+
+  const targetWidget = await getDroppedWidgetByUuid(
+    page,
+    WIDGETS.SPARKLINE,
+  );
+
+  const sparkline = targetWidget.locator("#mi-sparkline-chart");
+
+  try {
+    await expect(sparkline).toBeVisible();
+  } catch {
+    throw new Error("Sparkline chart widget is not visible.");
+  }
+
+  // ============================================================
+  // Verify Line
+  // ============================================================
+
+  const linePath = sparkline.locator(".dxc-elements path");
+
+  try {
+    await expect(linePath).toBeVisible();
+  } catch {
+    throw new Error("Sparkline line path is not visible.");
+  }
+
+  // Verify line width = 15
+  try {
+    await expect(linePath).toHaveAttribute("stroke-width", "15");
+  } catch {
+    throw new Error(
+      "Sparkline line width is not 15.",
+    );
+  }
+
+  // ============================================================
+  // Verify Gradient is Applied
+  // ============================================================
+
+  const stroke = await linePath.getAttribute("stroke");
+
+  if (!stroke || !/^url\(#sparkline-gradient-/.test(stroke)) {
+    throw new Error(
+      `Sparkline gradient is not applied to the line. Expected gradient stroke, but received: ${stroke}`,
+    );
+  }
+
+  // Verify gradient definition exists
+  const gradient = sparkline.locator(
+    "defs linearGradient[id^='sparkline-gradient-']",
+  );
+
+  try {
+    await expect(gradient).toHaveCount(1);
+  } catch {
+    throw new Error(
+      "Sparkline gradient is applied in the stroke .Please check the Gradient checkbox or if it applied to widget .",
+    );
+  }
+});
   // test("4. User can apply WINLOSS for sparkline chart widget", async ({
   //   page,
   // }) => {
