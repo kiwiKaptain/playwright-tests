@@ -50,7 +50,7 @@ test.describe("PROPERTIES - IMAGE Widget", () => {
     const imageWidget = await getDroppedWidgetByUuid(page, WIDGETS.IMAGE);
 
     // Upload image 
-    await page.locator('input[type="file"]').setInputFiles("SampleImages/sample1.jpg");
+    await page.locator('input[type="file"]').setInputFiles("tests\\metrixvu\\SampleImages\\sample1.jpg");
     // Update Layout & Spacing
 
      await setLayoutAndSpacing(page, "10", "15", "20", "25");
@@ -68,7 +68,7 @@ test.describe("PROPERTIES - IMAGE Widget", () => {
 test("2. User can upload JPG format in IMAGE widget", async ({ page }) => {
   const imageWidget = await getDroppedWidgetByUuid(page, WIDGETS.IMAGE);
 
- await page.locator('input[type="file"]').setInputFiles("test-data/sample1.jpg");
+ await page.locator('input[type="file"]').setInputFiles("tests\\metrixvu\\SampleImages\\sample1.jpg");
 
   await page.locator("label").filter({ hasText: "Viewer" }).click();
   await page.getByRole("button", { name: "Save", exact: true }).click();
@@ -81,7 +81,7 @@ test("2. User can upload JPG format in IMAGE widget", async ({ page }) => {
 test("3. User can upload png format in IMAGE widget", async ({ page }) => {
   const imageWidget = await getDroppedWidgetByUuid(page, WIDGETS.IMAGE);
 
-  await page.locator('input[type="file"]').setInputFiles("test-data/sample2.png");
+  await page.locator('input[type="file"]').setInputFiles("tests\\metrixvu\\SampleImages\\sample2.png");
   
   await page.locator("label").filter({ hasText: "Viewer" }).click();
   await page.getByRole("button", { name: "Save", exact: true }).click();
@@ -94,7 +94,7 @@ test("3. User can upload png format in IMAGE widget", async ({ page }) => {
 test("4. User can upload jpeg format in IMAGE widget", async ({ page }) => {
   const imageWidget = await getDroppedWidgetByUuid(page, WIDGETS.IMAGE);
 
-  await page.locator('input[type="file"]').setInputFiles("test-data/sample3.jpeg");
+  await page.locator('input[type="file"]').setInputFiles("tests\\metrixvu\\SampleImages\\sample3.jpeg");
   
   await page.locator("label").filter({ hasText: "Viewer" }).click();
   await page.getByRole("button", { name: "Save", exact: true }).click();
@@ -167,7 +167,7 @@ test("5. User can change APPEARANCE properties for IMAGE widget", async ({
 
   await page
     .locator('input[type="file"]')
-    .setInputFiles("test-data/sample1.jpg");
+    .setInputFiles("tests\\metrixvu\\SampleImages\\sample1.jpg");
 
   // ============================================================
   // Image Fit
