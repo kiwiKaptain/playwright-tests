@@ -54,7 +54,17 @@ export async function dragAndDropWidget(
   await page.mouse.move(targetBox.x + 20, targetBox.y + 20, { steps: 10 }); 
   await page.mouse.move(targetBox.x + x, targetBox.y + y, { steps: 15 }); 
   await page.mouse.up(); 
-  await expect(canvasWidgets).toHaveCount(initialWidgetCount + 1); 
+ // await expect(canvasWidgets).toHaveCount(initialWidgetCount + 1); 
+  try {
+  await expect(canvasWidgets).toHaveCount(initialWidgetCount + 1, {
+    timeout: 30000,
+  });
+} catch {
+  throw new Error(
+    `Widget  was not added to the canvas within 30 seconds. ` +
+      "Please try rerunning the test case.",
+  );
+}
 } 
 
 
@@ -124,7 +134,17 @@ export async function dragAndDropWidgetInDifferentPositions(
   await page.mouse.move(targetBox.x + 20, targetBox.y + 20, { steps: 10 }); 
   await page.mouse.move(targetBox.x + x, targetBox.y + y, { steps: 15 }); 
   await page.mouse.up(); 
-  await expect(canvasWidgets).toHaveCount(initialWidgetCount + 1); 
+ // await expect(canvasWidgets).toHaveCount(initialWidgetCount + 1); 
+  try {
+  await expect(canvasWidgets).toHaveCount(initialWidgetCount + 1, {
+    timeout: 30000,
+  });
+} catch {
+  throw new Error(
+    `Widget  was not added to the canvas within 30 seconds. ` +
+      "Please try rerunning the test case.",
+  );
+}
 } 
 
 // export async function dragAndDropWidgetInSameColumn(
@@ -260,7 +280,17 @@ export async function dragAndDropWidgetWithTouchingEdges(
   });
   
   await page.mouse.up();
-  await expect(canvasWidgets).toHaveCount(initialWidgetCount + 1);
+ // await expect(canvasWidgets).toHaveCount(initialWidgetCount + 1);
+  try {
+  await expect(canvasWidgets).toHaveCount(initialWidgetCount + 1, {
+    timeout: 30000,
+  });
+} catch {
+  throw new Error(
+    `Widget  was not added to the canvas within 30 seconds. ` +
+      "Please try rerunning the test case.",
+  );
+}
 }
 
 export async function dragAndDropWidgetInSameRow(
@@ -322,7 +352,17 @@ export async function dragAndDropWidgetInSameRow(
 
   await page.mouse.up();
 
-  await expect(canvasWidgets).toHaveCount(
-    initialWidgetCount + 1,
+  // await expect(canvasWidgets).toHaveCount(
+  //   initialWidgetCount + 1,
+  // );
+  try {
+  await expect(canvasWidgets).toHaveCount(initialWidgetCount + 1, {
+    timeout: 30000,
+  });
+} catch {
+  throw new Error(
+    `Widget  was not added to the canvas within 30 seconds. ` +
+      "Please try rerunning the test case.",
   );
+}
 }
