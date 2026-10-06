@@ -12,7 +12,7 @@ const WIDGETS = { AREACHART: "mi-area-chart" } as const;
 const widgetCssSelector = '.grid-stack-item[data-widget-type="mi-area-chart"]';
 const dashboardName = TEST_DATA.dashboards.dashboardNameForWidgetPropertiesTesting;
 
-test.describe("ALIGNMENT - AREACHART Widget", () => {
+test.describe("TOOLBAR - ALIGNMENT - AREACHART Widget", () => {
   test.beforeEach(async ({ page }) => {
     await login(page);
     const setupDashboard = await ensureDashboardExists(page, dashboardName);
