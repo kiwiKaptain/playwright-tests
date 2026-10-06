@@ -477,7 +477,7 @@ await setTooltipProperties(
  
 
 });
-test("8. User can change X-AXIS TITLE properties for bar chart widget", async ({
+test("8. User can change X-AXIS TITLE properties for bar-chart widget", async ({
   page,
 }) => {
   
@@ -500,7 +500,7 @@ await setXAxisTitleProperties(
 
   // Wait for container
   const bgContainer = targetWidget.locator(".mi-bar-chart-container");
-  await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+  await bgContainer.waitFor({ state: "visible"});
 
   // ============ VERIFY X-AXIS TITLE PROPERTIES ============
   
