@@ -72,7 +72,7 @@ const targetWidget = await getDroppedWidgetByUuid(page, WIDGETS.BARCHART);
   const bgContainer = targetWidget.locator(".mi-bar-chart-container");
   
   // Wait for the container to be visible
-  await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+  await bgContainer.waitFor({ state: "visible" });
   
   // Check the background color 
   await expect(bgContainer).toHaveCSS("background-color", "rgb(229, 214, 73)");
@@ -182,7 +182,7 @@ const targetWidget = await getDroppedWidgetByUuid(page, WIDGETS.BARCHART);
   const bgContainer = targetWidget.locator(".mi-bar-chart-container");
   
   // Wait for the container to be visible
-  await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+  await bgContainer.waitFor({ state: "visible" });
  
     
   // ============ VERIFY TITLE PROPERTIES ============
@@ -270,7 +270,7 @@ const targetWidget = await getDroppedWidgetByUuid(page, WIDGETS.BARCHART);
   const bgContainer = targetWidget.locator(".mi-bar-chart-container");
   
   // Wait for the container to be visible
-  await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+  await bgContainer.waitFor({ state: "visible" });
  
 
 
@@ -339,7 +339,7 @@ const targetWidget = await getDroppedWidgetByUuid(page, WIDGETS.BARCHART);
   const bgContainer = targetWidget.locator(".mi-bar-chart-container");
   
   // Wait for the container to be visible
-  await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+  await bgContainer.waitFor({ state: "visible" });
  
 // ============ COMPLETE VERIFICATION ============
   // Get the legend group
@@ -437,7 +437,7 @@ await setTooltipProperties(
 
   // Verify background color
   const bgContainer = targetWidget.locator(".mi-bar-chart-container");
-  await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+  await bgContainer.waitFor({ state: "visible" });
 
   // ============ VERIFY TOOLTIP PROPERTIES ============
   
@@ -547,7 +547,7 @@ test("9. User can change Y-AXIS TITLE properties for bar chart widget", async ({
 
   // Wait for container
   const bgContainer = targetWidget.locator(".mi-bar-chart-container");
-  await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+  await bgContainer.waitFor({ state: "visible" });
 
   // ============ VERIFY Y-AXIS TITLE PROPERTIES ============
   
@@ -594,7 +594,7 @@ await setXAxisLabelProperties(
 
   // Wait for container
   const bgContainer = targetWidget.locator(".mi-bar-chart-container");
-  await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+  await bgContainer.waitFor({ state: "visible" });
 
   // ============ VERIFY X-AXIS LABEL PROPERTIES ============
   
@@ -643,7 +643,7 @@ test("11. User can change Y-AXIS LABEL properties for bar chart widget", async (
 
   // Wait for container
   const bgContainer = targetWidget.locator(".mi-bar-chart-container");
-  await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+  await bgContainer.waitFor({ state: "visible" });
 
   // ============ VERIFY X-AXIS LABEL PROPERTIES ============
   
@@ -686,7 +686,7 @@ test("12. User can change X-AXIS TICK properties for bar chart widget", async ({
 
   // Wait for container
   const bgContainer = targetWidget.locator(".mi-bar-chart-container");
-  await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+  await bgContainer.waitFor({ state: "visible" });
 
   // ============ VERIFY X-AXIS TICK PROPERTIES ============
   
@@ -727,7 +727,7 @@ test("13. User can change Y-AXIS TICK properties for bar chart widget", async ({
 
   // Wait for container
   const bgContainer = targetWidget.locator(".mi-bar-chart-container");
-  await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+  await bgContainer.waitFor({ state: "visible" });
 
   // ============ VERIFY Y-AXIS TICK PROPERTIES ============
   
@@ -767,7 +767,7 @@ await setXAxisGridProperties(
 
   // Wait for container
   const bgContainer = targetWidget.locator(".mi-bar-chart-container");
-  await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+  await bgContainer.waitFor({ state: "visible" });
 
   // ============ VERIFY X-AXIS GRID PROPERTIES ============
   
@@ -807,7 +807,7 @@ await setYAxisGridProperties(
 
   // Wait for container
   const bgContainer = targetWidget.locator(".mi-bar-chart-container");
-  await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+  await bgContainer.waitFor({ state: "visible" });
 
   // ============ VERIFY Y-AXIS GRID PROPERTIES ============
   
@@ -847,7 +847,7 @@ await setMinorGridProperties(
 
   // Wait for container
   const bgContainer = targetWidget.locator(".mi-bar-chart-container");
-  await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+  await bgContainer.waitFor({ state: "visible" });
 
   // ============ VERIFY y-AXIS MINOR GRID PROPERTIES ============
   

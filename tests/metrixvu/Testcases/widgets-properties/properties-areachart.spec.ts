@@ -64,7 +64,7 @@ test.afterEach(async ({ page }) => {
     const bgContainer = targetWidget.locator(".mi-area-chart-container");
 
     // Wait for the container to be visible
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // Check the background color
     await expect(bgContainer).toHaveCSS(
@@ -184,7 +184,7 @@ await setRotated(page);
     const bgContainer = targetWidget.locator(".mi-area-chart-container");
 
     // Wait for the container to be visible
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ VERIFY TITLE PROPERTIES ============
 
@@ -269,7 +269,7 @@ await titleTextInput.press("Enter");
     const bgContainer = targetWidget.locator(".mi-area-chart-container");
 
     // Wait for the container to be visible
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ VERIFY SUBTITLE PROPERTIES ============
 
@@ -323,7 +323,7 @@ await setLegendProperties(
     const bgContainer = targetWidget.locator(".mi-area-chart-container");
 
     // Wait for the container to be visible
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ COMPLETE VERIFICATION ============
     // Get the legend group
@@ -409,7 +409,7 @@ await setLegendProperties(
 
     // Verify background color
     const bgContainer = targetWidget.locator(".mi-area-chart-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ VERIFY TOOLTIP PROPERTIES ============
 
@@ -467,7 +467,7 @@ await setLegendProperties(
 
     // Wait for container
     const bgContainer = targetWidget.locator(".mi-area-chart-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ VERIFY X-AXIS TITLE PROPERTIES ============
 
@@ -512,7 +512,7 @@ await setLegendProperties(
 
     // Wait for container
     const bgContainer = targetWidget.locator(".mi-area-chart-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ VERIFY Y-AXIS TITLE PROPERTIES ============
 
@@ -551,7 +551,7 @@ await setLegendProperties(
 
     // Wait for container
     const bgContainer = targetWidget.locator(".mi-area-chart-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ VERIFY X-AXIS LABEL PROPERTIES ============
 
@@ -591,7 +591,7 @@ await setLegendProperties(
 
     // Wait for container
     const bgContainer = targetWidget.locator(".mi-area-chart-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ VERIFY X-AXIS LABEL PROPERTIES ============
 
@@ -631,7 +631,7 @@ await setLegendProperties(
 
     // Wait for container
     const bgContainer = targetWidget.locator(".mi-area-chart-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ VERIFY X-AXIS TICK PROPERTIES ============
 
@@ -666,7 +666,7 @@ await setLegendProperties(
 
     // Wait for container
     const bgContainer = targetWidget.locator(".mi-area-chart-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ VERIFY Y-AXIS TICK PROPERTIES ============
 
@@ -698,7 +698,7 @@ await setLegendProperties(
 
     // Wait for container
     const bgContainer = targetWidget.locator(".mi-area-chart-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ VERIFY X-AXIS GRID PROPERTIES ============
 
@@ -733,7 +733,7 @@ await setLegendProperties(
 
     // Wait for container
     const bgContainer = targetWidget.locator(".mi-area-chart-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ VERIFY Y-AXIS GRID PROPERTIES ============
 
@@ -768,7 +768,7 @@ await setLegendProperties(
 
     // Wait for container
     const bgContainer = targetWidget.locator(".mi-area-chart-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ VERIFY y-AXIS MINOR GRID PROPERTIES ============
 

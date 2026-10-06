@@ -87,7 +87,7 @@ test.describe("PROPERTIES - BAR-GAUGE Widget", () => {
     const bgContainer = targetWidget.locator(".mi-bar-gauge-container");
 
     // Wait for the container to be visible
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // Check the background color
     await expect(bgContainer).toHaveCSS(
@@ -117,7 +117,7 @@ const runtimeFilter = targetWidget.locator(
 
     const targetWidget = await getDroppedWidgetByUuid(page, WIDGETS.BARGAUGE);
     const bgContainer = targetWidget.locator(".mi-bar-gauge-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // Verify color theme
 
@@ -415,7 +415,7 @@ const runtimeFilter = targetWidget.locator(
     const bgContainer = targetWidget.locator(".mi-bar-gauge-container");
 
     // Wait for the container to be visible
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ VERIFY TITLE PROPERTIES ============
     // 1. Verify the Title text appears in the SVG
@@ -516,7 +516,7 @@ await titleTextInput.press("Enter");
     const bgContainer = targetWidget.locator(".mi-bar-gauge-container");
 
     // Wait for the container to be visible
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ VERIFY SUBTITLE PROPERTIES ============
 
@@ -668,7 +668,7 @@ await titleTextInput.press("Enter");
 
     // Verify background color
     const bgContainer = targetWidget.locator(".mi-bar-gauge-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ VERIFY TOOLTIP PROPERTIES ============
 
@@ -728,7 +728,7 @@ await titleTextInput.press("Enter");
 
     // Wait for container
     const bgContainer = targetWidget.locator(".mi-bar-gauge-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ VERIFY  PROPERTIES ============
     //   First bar:   77 → 70
@@ -779,7 +779,7 @@ await titleTextInput.press("Enter");
 
     // Wait for container
     const bgContainer = targetWidget.locator(".mi-bar-gauge-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ VERIFY  PROPERTIES ============
 
@@ -826,7 +826,7 @@ await titleTextInput.press("Enter");
 
     // Wait for container
     const bgContainer = targetWidget.locator(".mi-bar-gauge-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ VERIFY SCALE RANGE ============
 

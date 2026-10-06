@@ -105,7 +105,7 @@ test.describe("PROPERTIES - CIRCULAR-GAUGE Widget", () => {
     const bgContainer = targetWidget.locator(".mi-circular-gauge-container");
 
     // Wait for the container to be visible
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // Check the background color
     await expect(bgContainer).toHaveCSS(
@@ -279,7 +279,7 @@ await titleTextInput.press("Enter");
     );
 
     const bgContainer = targetWidget.locator(".mi-circular-gauge-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // ============ VERIFY TOOLTIP PROPERTIES ============
     const trackerPath = targetWidget
@@ -335,7 +335,7 @@ await titleTextInput.press("Enter");
       WIDGETS.CIRCULARGAUGE,
     );
     const bgContainer = targetWidget.locator(".mi-circular-gauge-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
     await expect(bgContainer).toBeVisible();
     // VALUE INDICATOR
     const valueIndicator = bgContainer.locator(".dxg-value-indicator");
@@ -383,7 +383,7 @@ await titleTextInput.press("Enter");
       WIDGETS.CIRCULARGAUGE,
     );
     const bgContainer = targetWidget.locator(".mi-circular-gauge-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
     await expect(bgContainer).toBeVisible();
     const valueIndicator = bgContainer.locator(".dxg-value-indicator");
 
@@ -761,7 +761,7 @@ await titleTextInput.press("Enter");
     );
 
     const bgContainer = targetWidget.locator(".mi-circular-gauge-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     await expect(bgContainer).toBeVisible();
     // Verify Scale Range properties input values
@@ -789,7 +789,7 @@ await titleTextInput.press("Enter");
     );
 
     const bgContainer = targetWidget.locator(".mi-circular-gauge-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     await expect(bgContainer).toBeVisible();
     // Verify Scale Range properties input values
@@ -841,7 +841,7 @@ await titleTextInput.press("Enter");
     );
 
     const bgContainer = targetWidget.locator(".mi-circular-gauge-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     await expect(bgContainer).toBeVisible();
     // Verify Update Range properties input values
@@ -879,7 +879,7 @@ await titleTextInput.press("Enter");
     );
 
     const bgContainer = targetWidget.locator(".mi-circular-gauge-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     await expect(bgContainer).toBeVisible();
     // Verify Scale Range properties input values

@@ -103,7 +103,7 @@ test.describe("PROPERTIES - LINEAR-GAUGE Widget", () => {
     const bgContainer = targetWidget.locator(".mi-linear-gauge-container");
 
     // Wait for the container to be visible
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     // Check the background color
     await expect(bgContainer).toHaveCSS(
@@ -978,7 +978,7 @@ test("10. User can change THRESHOLD properties for linear gauge widget", async (
     );
 
     const bgContainer = targetWidget.locator(".mi-linear-gauge-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     await expect(bgContainer).toBeVisible();
   });
@@ -1007,7 +1007,7 @@ test("10. User can change THRESHOLD properties for linear gauge widget", async (
     );
 
     const bgContainer = targetWidget.locator(".mi-linear-gauge-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     await expect(bgContainer).toBeVisible();
 
@@ -1057,7 +1057,7 @@ test("10. User can change THRESHOLD properties for linear gauge widget", async (
     );
 
     const bgContainer = targetWidget.locator(".mi-linear-gauge-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     await expect(bgContainer).toBeVisible();
 
@@ -1090,7 +1090,7 @@ test("10. User can change THRESHOLD properties for linear gauge widget", async (
     );
 
     const bgContainer = targetWidget.locator(".mi-linear-gauge-container");
-    await bgContainer.waitFor({ state: "visible", timeout: 10000 });
+    await bgContainer.waitFor({ state: "visible" });
 
     await expect(bgContainer).toBeVisible();
 
