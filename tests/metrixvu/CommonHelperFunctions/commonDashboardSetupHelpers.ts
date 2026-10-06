@@ -194,7 +194,7 @@ export async function goToHomeAndVerify(page: Page, name: string): Promise<void>
     throw error;
   }
 
-  await page.waitForURL("**/#/home");
+  //await page.waitForURL("**/#/home");
   try {
     await page.waitForURL("**/#/home", { timeout: 10000 });
     await page
