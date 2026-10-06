@@ -38,7 +38,7 @@ test.describe("ALIGNMENT - CARD Widget", () => {
   }
 
   await alignLeft.click();
-
+await page.waitForTimeout(1000);
     await page.locator("label").filter({ hasText: "Viewer" }).click();
     await page.getByRole("button", { name: "Save", exact: true }).click();
 
