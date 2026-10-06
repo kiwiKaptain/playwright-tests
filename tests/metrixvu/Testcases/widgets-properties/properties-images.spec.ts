@@ -176,7 +176,8 @@ test("5. User can change APPEARANCE properties for IMAGE widget", async ({
   const imageFitLabel = ImageLocators.imageFitLabel(page);
 
   if ((await imageFitLabel.count()) === 0) {
-    throw new Error("Test ID prop-label-image-fit not found.");
+    throw new Error("Test ID prop-label-image-fit not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
   }
 
   await imageFitLabel.click();
@@ -184,7 +185,8 @@ test("5. User can change APPEARANCE properties for IMAGE widget", async ({
   const imageFitInput = ImageLocators.imageFitInput(page);
 
   if ((await imageFitInput.count()) === 0) {
-    throw new Error("Test ID prop-input-image-fit not found.");
+    throw new Error("Test ID prop-input-image-fit not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
   }
 
   await imageFitInput.click();
@@ -192,7 +194,8 @@ test("5. User can change APPEARANCE properties for IMAGE widget", async ({
   const scaleDownOption = page.getByText("scale-down");
 
   if ((await scaleDownOption.count()) === 0) {
-    throw new Error("Image fit option 'scale-down' not found.");
+    throw new Error("Image fit option 'scale-down' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
   }
 
   await scaleDownOption.click();
@@ -206,7 +209,8 @@ test("5. User can change APPEARANCE properties for IMAGE widget", async ({
 
   if ((await imageBorderRadiusLabel.count()) === 0) {
     throw new Error(
-      "Test ID prop-label-image-border-radius not found.",
+      "Test ID prop-label-image-border-radius not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -217,7 +221,8 @@ test("5. User can change APPEARANCE properties for IMAGE widget", async ({
 
   if ((await imageBorderRadiusInput.count()) === 0) {
     throw new Error(
-      "Test ID prop-input-image-border-radius not found.",
+      "Test ID prop-input-image-border-radius not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -235,7 +240,8 @@ test("5. User can change APPEARANCE properties for IMAGE widget", async ({
 
   if ((await imageBackgroundColorLabel.count()) === 0) {
     throw new Error(
-      "Test ID prop-label-image-background-color not found.",
+      "Test ID prop-label-image-background-color not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -246,7 +252,8 @@ test("5. User can change APPEARANCE properties for IMAGE widget", async ({
 
   if ((await imageBackgroundColorInput.count()) === 0) {
     throw new Error(
-      "Test ID prop-input-image-background-color not found.",
+      "Test ID prop-input-image-background-color not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -262,7 +269,8 @@ test("5. User can change APPEARANCE properties for IMAGE widget", async ({
   const rotateOption = page.getByText("Rotate", { exact: true });
 
   if ((await rotateOption.count()) === 0) {
-    throw new Error("Rotate option not found.");
+    throw new Error("Rotate option not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
   }
 
   await rotateOption.click();
@@ -272,7 +280,8 @@ test("5. User can change APPEARANCE properties for IMAGE widget", async ({
   });
 
   if ((await rotateLeftButton.count()) === 0) {
-    throw new Error("Rotate left button not found.");
+    throw new Error("Rotate left button not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
   }
 
   await rotateLeftButton.click();

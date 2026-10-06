@@ -264,7 +264,8 @@ test.describe("PROPERTIES - LINEAR-GAUGE Widget", () => {
    const titleTextLabel = page.getByTestId("prop-label-title-text");
 
 if ((await titleTextLabel.count()) === 0) {
-  throw new Error("Test ID prop-label-title-text not found.");
+  throw new Error("Test ID prop-label-title-text not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
 }
 
 await titleTextLabel.click();
@@ -272,7 +273,8 @@ await titleTextLabel.click();
 const titleTextInput = page.getByTestId("prop-input-title-text");
 
 if ((await titleTextInput.count()) === 0) {
-  throw new Error("Test ID prop-input-title-text not found.");
+  throw new Error("Test ID prop-input-title-text not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
 }
 
 await titleTextInput.click();
@@ -654,7 +656,8 @@ test("10. User can change THRESHOLD properties for linear gauge widget", async (
 
   if ((await thresholdEnabledLabel.count()) === 0) {
     throw new Error(
-      "Test ID prop-label-threshold-enabled not found.",
+      "Test ID prop-label-threshold-enabled not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -665,7 +668,8 @@ test("10. User can change THRESHOLD properties for linear gauge widget", async (
 
   if ((await thresholdEnabled.count()) === 0) {
     throw new Error(
-      "Test ID prop-input-threshold-enabled not found.",
+      "Test ID prop-input-threshold-enabled not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -683,7 +687,8 @@ test("10. User can change THRESHOLD properties for linear gauge widget", async (
 
   if ((await thresholdValueLabel.count()) === 0) {
     throw new Error(
-      "Test ID prop-label-threshold-value not found.",
+      "Test ID prop-label-threshold-value not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -694,7 +699,8 @@ test("10. User can change THRESHOLD properties for linear gauge widget", async (
 
   if ((await thresholdValue.count()) === 0) {
     throw new Error(
-      "Test ID prop-input-threshold-value not found.",
+      "Test ID prop-input-threshold-value not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -710,7 +716,8 @@ test("10. User can change THRESHOLD properties for linear gauge widget", async (
 
   if ((await subvalueIndicatorType.count()) === 0) {
     throw new Error(
-      "Test ID prop-input-subvalue-indicator-type not found.",
+      "Test ID prop-input-subvalue-indicator-type not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 

@@ -46,7 +46,8 @@ export async function setAppearance(page: Page, color: string) {
 
   if ((await backgroundColor.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-common-background-color' not found.",
+      "Test ID 'prop-input-common-background-color' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
   await backgroundColor.click();
@@ -70,7 +71,8 @@ export async function setTitleProperties(
   const titleText = playwrightLocators.Title.text(page);
 
   if ((await titleText.count()) === 0) {
-    throw new Error("Test ID 'prop-input-title-text' not found.");
+    throw new Error("Test ID 'prop-input-title-text' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
   }
 
   await titleText.click();
@@ -85,7 +87,8 @@ export async function setTitleProperties(
 
   if ((await fontColorInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-title-font-color' not found.",
+      "Test ID 'prop-input-title-font-color' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -101,7 +104,8 @@ export async function setTitleProperties(
 
   if ((await fontSizeInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-title-font-size' not found.",
+      "Test ID 'prop-input-title-font-size' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -117,7 +121,8 @@ export async function setTitleProperties(
 
   if ((await fontWeightInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-title-font-weight' not found.",
+      "Test ID 'prop-input-title-font-weight' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -130,7 +135,8 @@ export async function setTitleProperties(
 
   if ((await fontWeightOption.count()) === 0) {
     throw new Error(
-      `Title font weight option '${fontWeight}' not found.`,
+      `Title font weight option '${fontWeight}' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
     );
   }
 
@@ -151,7 +157,8 @@ export async function setTitleProperties(
 
   if ((await verticalAlignmentControl.count()) === 0) {
     throw new Error(
-      `Test ID '${verticalAlignmentTestId}' not found.`,
+      `Test ID '${verticalAlignmentTestId}' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
     );
   }
 
@@ -171,7 +178,8 @@ export async function setTitleProperties(
 
   if ((await horizontalAlignmentControl.count()) === 0) {
     throw new Error(
-      `Test ID '${horizontalAlignmentTestId}' not found.`,
+      `Test ID '${horizontalAlignmentTestId}' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
     );
   }
 
@@ -192,7 +200,8 @@ export async function setSubtitleProperties(
 
   if ((await subtitleText.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-title-subtitle-text' not found.",
+      "Test ID 'prop-input-title-subtitle-text' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -208,7 +217,8 @@ export async function setSubtitleProperties(
 
   if ((await fontColorInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-title-subtitle-font-color' not found.",
+      "Test ID 'prop-input-title-subtitle-font-color' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -224,7 +234,8 @@ export async function setSubtitleProperties(
 
   if ((await fontSizeInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-title-subtitle-font-size' not found.",
+      "Test ID 'prop-input-title-subtitle-font-size' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -240,7 +251,8 @@ export async function setSubtitleProperties(
 
   if ((await fontWeightInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-title-subtitle-font-weight' not found.",
+      "Test ID 'prop-input-title-subtitle-font-weight' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -252,7 +264,8 @@ export async function setSubtitleProperties(
 
   if ((await fontWeightOption.count()) === 0) {
     throw new Error(
-      `Subtitle font weight option '${fontWeight}' not found.`,
+      `Subtitle font weight option '${fontWeight}' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
     );
   }
 
@@ -278,7 +291,8 @@ export async function setLegendProperties(
   const visibleInput = playwrightLocators.Legend.visible(page);
 
   if ((await visibleInput.count()) === 0) {
-    throw new Error("Test ID 'prop-input-legend-visible' not found.");
+    throw new Error("Test ID 'prop-input-legend-visible' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
   }
 
   await visibleInput.click();
@@ -288,7 +302,8 @@ export async function setLegendProperties(
 
   if ((await borderVisibleInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-legend-border-visible' not found.",
+      "Test ID 'prop-input-legend-border-visible' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -299,7 +314,8 @@ export async function setLegendProperties(
 
   if ((await borderColorInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-legend-border-color' not found.",
+      "Test ID 'prop-input-legend-border-color' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -317,7 +333,8 @@ export async function setLegendProperties(
 
   if ((await horizontalAlignmentInput.count()) === 0) {
     throw new Error(
-      `Test ID 'prop-control-legend-horizontal-alignment-${horizontalAlignment}' not found.`,
+      `Test ID 'prop-control-legend-horizontal-alignment-${horizontalAlignment}' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
     );
   }
 
@@ -332,7 +349,8 @@ export async function setLegendProperties(
 
   if ((await verticalAlignmentInput.count()) === 0) {
     throw new Error(
-      `Test ID 'prop-control-legend-vertical-alignment-${verticalAlignment}' not found.`,
+      `Test ID 'prop-control-legend-vertical-alignment-${verticalAlignment}' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
     );
   }
 
@@ -344,7 +362,8 @@ export async function setLegendProperties(
 
     if ((await orientationInput.count()) === 0) {
       throw new Error(
-        "Test ID 'prop-input-legend-orientation' not found.",
+        "Test ID 'prop-input-legend-orientation' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
       );
     }
 
@@ -358,7 +377,8 @@ export async function setLegendProperties(
 
     if ((await orientationWeightOption.count()) === 0) {
       throw new Error(
-        `Legend orientation option '${orientation}' not found.`,
+        `Legend orientation option '${orientation}' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
       );
     }
 
@@ -373,7 +393,8 @@ export async function setLegendProperties(
 
     if ((await positionInput.count()) === 0) {
       throw new Error(
-        "Test ID 'prop-input-legend-position' not found.",
+        "Test ID 'prop-input-legend-position' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
       );
     }
 
@@ -386,7 +407,8 @@ export async function setLegendProperties(
 
     if ((await positionOption.count()) === 0) {
       throw new Error(
-        `Legend position option '${position}' not found.`,
+        `Legend position option '${position}' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
       );
     }
 
@@ -401,7 +423,8 @@ export async function setLegendProperties(
 
   if ((await itemTextPositionInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-legend-item-text-position' not found.",
+      "Test ID 'prop-input-legend-item-text-position' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -415,7 +438,8 @@ export async function setLegendProperties(
 
   if ((await itemTextPositionOption.count()) === 0) {
     throw new Error(
-      `Legend item text position option '${itemTextPosition}' not found.`,
+      `Legend item text position option '${itemTextPosition}' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
     );
   }
 
@@ -426,7 +450,8 @@ export async function setLegendProperties(
 
   if ((await fontColorInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-legend-font-color' not found.",
+      "Test ID 'prop-input-legend-font-color' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -440,7 +465,8 @@ export async function setLegendProperties(
 
   if ((await fontSizeInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-legend-font-size' not found.",
+      "Test ID 'prop-input-legend-font-size' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -454,7 +480,8 @@ export async function setLegendProperties(
 
   if ((await fontWeightInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-legend-font-weight' not found.",
+      "Test ID 'prop-input-legend-font-weight' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -467,7 +494,8 @@ export async function setLegendProperties(
 
   if ((await fontWeightOption.count()) === 0) {
     throw new Error(
-      `Legend font weight option '${fontWeight}' not found.`,
+      `Legend font weight option '${fontWeight}' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
     );
   }
 
@@ -482,7 +510,8 @@ export async function setLegendProperties(
 
     if ((await backgroundColorInput.count()) === 0) {
       throw new Error(
-        "Test ID 'prop-input-legend-background-color' not found.",
+        "Test ID 'prop-input-legend-background-color' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
       );
     }
 
@@ -507,7 +536,8 @@ export async function setTooltipProperties(
 
   if ((await tooltipEnabled.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-tooltip-enabled' not found.",
+      "Test ID 'prop-input-tooltip-enabled' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -525,7 +555,8 @@ export async function setTooltipProperties(
 
   if ((await fontColorInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-tooltip-font-color' not found.",
+      "Test ID 'prop-input-tooltip-font-color' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -541,7 +572,8 @@ export async function setTooltipProperties(
 
   if ((await fontSizeInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-tooltip-font-size' not found.",
+      "Test ID 'prop-input-tooltip-font-size' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -557,7 +589,8 @@ export async function setTooltipProperties(
 
   if ((await fontWeightInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-tooltip-font-weight' not found.",
+      "Test ID 'prop-input-tooltip-font-weight' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -569,7 +602,8 @@ export async function setTooltipProperties(
 
   if ((await fontWeightOption.count()) === 0) {
     throw new Error(
-      `Tooltip font weight option '${fontWeight}' not found.`,
+      `Tooltip font weight option '${fontWeight}' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
     );
   }
 
@@ -583,7 +617,8 @@ export async function setTooltipProperties(
 
   if ((await colorInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-tooltip-color' not found.",
+      "Test ID 'prop-input-tooltip-color' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -604,7 +639,8 @@ export async function setXAxisTitleProperties(
 
   if ((await textInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-argument-axis-title-text' not found.",
+      "Test ID 'prop-input-argument-axis-title-text' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -617,7 +653,8 @@ export async function setXAxisTitleProperties(
 
   if ((await fontColorInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-argument-axis-title-font-color' not found.",
+      "Test ID 'prop-input-argument-axis-title-font-color' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -631,7 +668,8 @@ export async function setXAxisTitleProperties(
 
   if ((await fontSizeInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-argument-axis-title-font-size' not found.",
+      "Test ID 'prop-input-argument-axis-title-font-size' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -646,7 +684,8 @@ export async function setXAxisTitleProperties(
 
   if ((await fontWeightInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-argument-axis-title-font-weight' not found.",
+      "Test ID 'prop-input-argument-axis-title-font-weight' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -660,7 +699,8 @@ export async function setXAxisTitleProperties(
 
   if ((await fontWeightOption.count()) === 0) {
     throw new Error(
-      `X-Axis title font weight option '${fontWeight}' not found.`,
+      `X-Axis title font weight option '${fontWeight}' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
     );
   }
 
@@ -679,7 +719,8 @@ export async function setYAxisTitleProperties(
 
   if ((await visibleInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-value-axis-0-visible' not found.",
+      "Test ID 'prop-input-value-axis-0-visible' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -695,7 +736,8 @@ export async function setYAxisTitleProperties(
 
   if ((await textInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-value-axis-0-title-text' not found.",
+      "Test ID 'prop-input-value-axis-0-title-text' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -708,7 +750,8 @@ export async function setYAxisTitleProperties(
 
   if ((await fontColorInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-value-axis-0-title-font-color' not found.",
+      "Test ID 'prop-input-value-axis-0-title-font-color' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -722,7 +765,8 @@ export async function setYAxisTitleProperties(
 
   if ((await fontSizeInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-value-axis-0-title-font-size' not found.",
+      "Test ID 'prop-input-value-axis-0-title-font-size' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -737,7 +781,8 @@ export async function setYAxisTitleProperties(
 
   if ((await fontWeightInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-value-axis-0-title-font-weight' not found.",
+      "Test ID 'prop-input-value-axis-0-title-font-weight' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -751,7 +796,8 @@ export async function setYAxisTitleProperties(
 
   if ((await fontWeightOption.count()) === 0) {
     throw new Error(
-      `Y-Axis title font weight option '${fontWeight}' not found.`,
+      `Y-Axis title font weight option '${fontWeight}' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
     );
   }
 
@@ -771,7 +817,8 @@ export async function setXAxisLabelProperties(
 
   if ((await visibleInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-argument-axis-label-visible' not found.",
+      "Test ID 'prop-input-argument-axis-label-visible' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -787,7 +834,8 @@ export async function setXAxisLabelProperties(
 
   if ((await fontColorInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-argument-axis-label-font-color' not found.",
+      "Test ID 'prop-input-argument-axis-label-font-color' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -801,7 +849,8 @@ export async function setXAxisLabelProperties(
 
   if ((await fontSizeInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-argument-axis-label-font-size' not found.",
+      "Test ID 'prop-input-argument-axis-label-font-size' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -815,7 +864,8 @@ export async function setXAxisLabelProperties(
 
   if ((await fontWeightInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-argument-axis-label-font-weight' not found.",
+      "Test ID 'prop-input-argument-axis-label-font-weight' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -829,7 +879,8 @@ export async function setXAxisLabelProperties(
 
   if ((await fontWeightOption.count()) === 0) {
     throw new Error(
-      `X-Axis label font weight option '${fontWeight}' not found.`,
+      `X-Axis label font weight option '${fontWeight}' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
     );
   }
 
@@ -848,7 +899,8 @@ export async function setYAxisLabelProperties(
 
   if ((await visibleInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-value-axis-0-label-visible' not found.",
+      "Test ID 'prop-input-value-axis-0-label-visible' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -863,7 +915,8 @@ export async function setYAxisLabelProperties(
 
   if ((await fontColorInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-value-axis-0-label-font-color' not found.",
+      "Test ID 'prop-input-value-axis-0-label-font-color' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -876,7 +929,8 @@ export async function setYAxisLabelProperties(
 
   if ((await fontSizeInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-value-axis-0-label-font-size' not found.",
+      "Test ID 'prop-input-value-axis-0-label-font-size' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -889,7 +943,8 @@ export async function setYAxisLabelProperties(
 
   if ((await fontWeightInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-value-axis-0-label-font-weight' not found.",
+      "Test ID 'prop-input-value-axis-0-label-font-weight' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -900,7 +955,8 @@ export async function setYAxisLabelProperties(
 
   if ((await fontWeightOption.count()) === 0) {
     throw new Error(
-      `Y-Axis label font weight option '${fontWeight}' not found.`,
+      `Y-Axis label font weight option '${fontWeight}' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
     );
   }
 
@@ -913,7 +969,8 @@ export async function setXAxisTickProperties(page: Page, color: string) {
 
   if ((await visibleInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-argument-axis-tick-visible' not found.",
+      "Test ID 'prop-input-argument-axis-tick-visible' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -928,7 +985,8 @@ export async function setXAxisTickProperties(page: Page, color: string) {
 
   if ((await colorInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-argument-axis-tick-color' not found.",
+      "Test ID 'prop-input-argument-axis-tick-color' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -943,7 +1001,8 @@ export async function setYAxisTickProperties(page: Page, color: string) {
 
   if ((await visibleInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-value-axis-0-tick-visible' not found.",
+      "Test ID 'prop-input-value-axis-0-tick-visible' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -958,7 +1017,8 @@ export async function setYAxisTickProperties(page: Page, color: string) {
 
   if ((await colorInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-value-axis-0-tick-color' not found.",
+      "Test ID 'prop-input-value-axis-0-tick-color' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -972,7 +1032,8 @@ export async function setXAxisGridProperties(page: Page, color: string) {
 
   if ((await visibleInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-argument-axis-grid-visible' not found.",
+      "Test ID 'prop-input-argument-axis-grid-visible' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -987,7 +1048,8 @@ export async function setXAxisGridProperties(page: Page, color: string) {
 
   if ((await colorInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-argument-axis-grid-color' not found.",
+      "Test ID 'prop-input-argument-axis-grid-color' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -1002,7 +1064,8 @@ export async function setYAxisGridProperties(page: Page, color: string) {
 
   if ((await visibleInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-value-axis-0-grid-visible' not found.",
+      "Test ID 'prop-input-value-axis-0-grid-visible' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -1017,7 +1080,8 @@ export async function setYAxisGridProperties(page: Page, color: string) {
 
   if ((await colorInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-value-axis-0-grid-color' not found.",
+      "Test ID 'prop-input-value-axis-0-grid-color' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -1031,7 +1095,8 @@ export async function setMinorGridProperties(page: Page, color: string) {
 
   if ((await visibleInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-value-axis-0-minor-grid-visible' not found.",
+      "Test ID 'prop-input-value-axis-0-minor-grid-visible' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -1046,7 +1111,8 @@ export async function setMinorGridProperties(page: Page, color: string) {
 
   if ((await colorInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-value-axis-0-minor-grid-color' not found.",
+      "Test ID 'prop-input-value-axis-0-minor-grid-color' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -1062,7 +1128,8 @@ export async function setActionsProperties(page: Page, dashboardName: string) {
   // Verify Action setting type input exists
   if ((await settingTypeInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-mi-widget-settings-click-setting-type' or 'prop-label-mi-widget-settings-click-setting-type' for Action setting type input not found.",
+      "Test ID 'prop-input-mi-widget-settings-click-setting-type' or 'prop-label-mi-widget-settings-click-setting-type' for Action setting type input not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
   // Click Action setting type
@@ -1096,7 +1163,8 @@ export async function setActionsToNone(page: Page) {
   // Verify Action setting type input exists
   if ((await settingTypeInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-mi-widget-settings-click-setting-type' or 'prop-label-mi-widget-settings-click-setting-type' for Action setting type input not found.",
+      "Test ID 'prop-input-mi-widget-settings-click-setting-type' or 'prop-label-mi-widget-settings-click-setting-type' for Action setting type input not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
   // Click Action setting type
@@ -1113,7 +1181,8 @@ export async function setColorTheme(page: Page, palette: string) {
   const paletteLabel = ColorThemeLocators.paletteLabel(page);
 
   if ((await paletteLabel.count()) === 0) {
-    throw new Error("Test ID 'prop-label-palette' not found.");
+    throw new Error("Test ID 'prop-label-palette' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
   }
 
   await paletteLabel.click();
@@ -1121,7 +1190,8 @@ export async function setColorTheme(page: Page, palette: string) {
   const paletteInput = ColorThemeLocators.palette(page);
 
   if ((await paletteInput.count()) === 0) {
-    throw new Error("Test ID 'prop-input-palette' not found.");
+    throw new Error("Test ID 'prop-input-palette' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
   }
 
   await paletteInput.click();
@@ -1129,7 +1199,8 @@ export async function setColorTheme(page: Page, palette: string) {
   const paletteOption = ColorThemeLocators.paletteOption(page, palette);
 
   if ((await paletteOption.count()) === 0) {
-    throw new Error(`Palette option '${palette}' not found.`);
+    throw new Error(`Palette option '${palette}' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`);
   }
 
   await paletteOption.click();
@@ -1141,7 +1212,8 @@ export async function setRunTimeFilter(page: Page) {
 
   if ((await runTimeFilter.count()) === 0) {
     throw new Error(
-      "Test ID prop-input-common-runtime-filter-required not found.",
+      "Test ID prop-input-common-runtime-filter-required not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -1158,7 +1230,8 @@ export async function setSeriesType(page: Page, seriesType: string) {
 
   if ((await seriesTypeInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-series-template-type' not found.",
+      "Test ID 'prop-input-series-template-type' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -1167,7 +1240,8 @@ export async function setSeriesType(page: Page, seriesType: string) {
   const seriesTypeOption = page.getByText(seriesType, { exact: true });
 
   if ((await seriesTypeOption.count()) === 0) {
-    throw new Error(`Series type option '${seriesType}' not found.`);
+    throw new Error(`Series type option '${seriesType}' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`);
   }
 
   await seriesTypeOption.click();
@@ -1178,7 +1252,8 @@ export async function setWidgetWidth(page: Page, widthInput: string) {
 
   if ((await widgetWidthInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-series-template-customize-series-width' not found.",
+      "Test ID 'prop-input-series-template-customize-series-width' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -1193,7 +1268,8 @@ export async function setGradient(page: Page) {
 
   if ((await gradientLabel.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-label-gradient-setting-gradient' not found.",
+      "Test ID 'prop-label-gradient-setting-gradient' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -1203,7 +1279,8 @@ export async function setGradient(page: Page) {
 
   if ((await gradientInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-gradient-setting-gradient' not found.",
+      "Test ID 'prop-input-gradient-setting-gradient' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -1214,7 +1291,8 @@ export async function setRotated(page: Page) {
   const rotatedLabel = GeneralSettingsLocators.rotatedLabel(page);
 
   if ((await rotatedLabel.count()) === 0) {
-    throw new Error("Test ID 'prop-label-rotated' not found.");
+    throw new Error("Test ID 'prop-label-rotated' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
   }
 
   await rotatedLabel.click();
@@ -1222,7 +1300,8 @@ export async function setRotated(page: Page) {
   const rotatedInput = GeneralSettingsLocators.rotatedInput(page);
 
   if ((await rotatedInput.count()) === 0) {
-    throw new Error("Test ID 'prop-input-rotated' not found.");
+    throw new Error("Test ID 'prop-input-rotated' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
   }
 
   const isChecked =
@@ -1242,7 +1321,8 @@ export async function setMaxInstantaneousPoints(
 
   if ((await maxPointsLabel.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-label-max-instantaneous-points' not found.",
+      "Test ID 'prop-label-max-instantaneous-points' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 
@@ -1253,7 +1333,8 @@ export async function setMaxInstantaneousPoints(
 
   if ((await maxPointsInput.count()) === 0) {
     throw new Error(
-      "Test ID 'prop-input-max-instantaneous-points' not found.",
+      "Test ID 'prop-input-max-instantaneous-points' not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
     );
   }
 

@@ -192,7 +192,8 @@ test.describe("PROPERTIES - CIRCULAR-GAUGE Widget", () => {
   const titleTextLabel = page.getByTestId("prop-label-title-text");
 
 if ((await titleTextLabel.count()) === 0) {
-  throw new Error("Test ID prop-label-title-text not found.");
+  throw new Error("Test ID prop-label-title-text not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
 }
 
 await titleTextLabel.click();
@@ -200,7 +201,8 @@ await titleTextLabel.click();
 const titleTextInput = page.getByTestId("prop-input-title-text");
 
 if ((await titleTextInput.count()) === 0) {
-  throw new Error("Test ID prop-input-title-text not found.");
+  throw new Error("Test ID prop-input-title-text not found. " +
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
 }
 
 await titleTextInput.click();
