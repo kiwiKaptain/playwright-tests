@@ -149,7 +149,7 @@ test("2.User can change APPEARANCE properties for Button widget", async ({
   if ((await backgroundColorLabel.count()) === 0) {
     throw new Error(
       "Test ID prop-label-common-background-color-button not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -161,7 +161,7 @@ test("2.User can change APPEARANCE properties for Button widget", async ({
   if ((await backgroundColorControl.count()) === 0) {
     throw new Error(
       "Test ID prop-control-common-background-color-button not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -173,7 +173,7 @@ test("2.User can change APPEARANCE properties for Button widget", async ({
   if ((await primaryColor.count()) === 0) {
     throw new Error(
       "Testid or Gradient primary color input not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -182,7 +182,7 @@ test("2.User can change APPEARANCE properties for Button widget", async ({
   if ((await secondaryColor.count()) === 0) {
     throw new Error(
       "Testid or Gradient secondary color input not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -191,7 +191,7 @@ test("2.User can change APPEARANCE properties for Button widget", async ({
   if ((await angleInput.count()) === 0) {
     throw new Error(
       "Testid or Gradient angle input not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -347,7 +347,7 @@ test("3. User can change GENERAL SETTINGS properties for Button widget", async (
   if ((await borderVisibleLabel.count()) === 0) {
     throw new Error(
       "Test ID prop-label-mi-widget-settings-border-visible not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -357,7 +357,7 @@ test("3. User can change GENERAL SETTINGS properties for Button widget", async (
   if ((await borderVisibleInput.count()) === 0) {
     throw new Error(
       "Test ID prop-input-mi-widget-settings-border-visible not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -372,7 +372,7 @@ test("3. User can change GENERAL SETTINGS properties for Button widget", async (
   if ((await borderColorLabel.count()) === 0) {
     throw new Error(
       "Test ID prop-label-mi-widget-settings-border-color not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -382,7 +382,7 @@ test("3. User can change GENERAL SETTINGS properties for Button widget", async (
   if ((await borderColorInput.count()) === 0) {
     throw new Error(
       "Test ID prop-input-mi-widget-settings-border-color not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -399,7 +399,7 @@ test("3. User can change GENERAL SETTINGS properties for Button widget", async (
   if ((await borderWidthLabel.count()) === 0) {
     throw new Error(
       "Test ID prop-label-mi-widget-settings-border-width not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -409,7 +409,7 @@ test("3. User can change GENERAL SETTINGS properties for Button widget", async (
   if ((await borderWidthInput.count()) === 0) {
     throw new Error(
       "Test ID prop-input-mi-widget-settings-border-width not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -426,7 +426,7 @@ test("3. User can change GENERAL SETTINGS properties for Button widget", async (
   if ((await fontSizeLabel.count()) === 0) {
     throw new Error(
       "Test ID prop-label-mi-widget-settings-font-size not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -436,7 +436,7 @@ test("3. User can change GENERAL SETTINGS properties for Button widget", async (
   if ((await fontSizeInput.count()) === 0) {
     throw new Error(
       "Test ID prop-input-mi-widget-settings-font-size not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -453,7 +453,7 @@ test("3. User can change GENERAL SETTINGS properties for Button widget", async (
   if ((await textColorLabel.count()) === 0) {
     throw new Error(
       "Test ID prop-label-mi-widget-settings-text-color not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -463,7 +463,7 @@ test("3. User can change GENERAL SETTINGS properties for Button widget", async (
   if ((await textColorInput.count()) === 0) {
     throw new Error(
       "Test ID prop-input-mi-widget-settings-text-color not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -480,7 +480,7 @@ test("3. User can change GENERAL SETTINGS properties for Button widget", async (
   if ((await textAlignLabel.count()) === 0) {
     throw new Error(
       "Test ID prop-label-mi-widget-settings-text-align not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -490,7 +490,7 @@ test("3. User can change GENERAL SETTINGS properties for Button widget", async (
   if ((await textAlignRight.count()) === 0) {
     throw new Error(
       "Test ID prop-control-mi-widget-settings-text-align-right not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -604,7 +604,7 @@ test("4. User can change DISPLAY properties for Button widget", async ({
   const visibleLabel = ButtonLocators.visibleLabel(page);
   if ((await visibleLabel.count()) === 0) {
     throw new Error("Test ID prop-label-visible not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
   }
 
   await visibleLabel.click();
@@ -612,7 +612,7 @@ test("4. User can change DISPLAY properties for Button widget", async ({
   const visibleInput = ButtonLocators.visibleInput(page);
   if ((await visibleInput.count()) === 0) {
     throw new Error("Test ID prop-input-visible not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
   }
 
   await visibleInput.click();
@@ -625,7 +625,7 @@ test("4. User can change DISPLAY properties for Button widget", async ({
   const textLabel = ButtonLocators.textLabel(page);
   if ((await textLabel.count()) === 0) {
     throw new Error("Test ID prop-label-text not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
   }
 
   await textLabel.click();
@@ -633,7 +633,7 @@ test("4. User can change DISPLAY properties for Button widget", async ({
   const textInput = ButtonLocators.textInput(page);
   if ((await textInput.count()) === 0) {
     throw new Error("Test ID prop-input-text not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
   }
 
   await textInput.click();
@@ -648,7 +648,7 @@ test("4. User can change DISPLAY properties for Button widget", async ({
   const iconLabel = ButtonLocators.iconLabel(page);
   if ((await iconLabel.count()) === 0) {
     throw new Error("Test ID prop-label-icon not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
   }
 
   await iconLabel.click();
@@ -656,7 +656,7 @@ test("4. User can change DISPLAY properties for Button widget", async ({
   const iconInput = ButtonLocators.iconInput(page);
   if ((await iconInput.count()) === 0) {
     throw new Error("Test ID prop-input-icon not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
   }
 
   await iconInput.click();
@@ -664,7 +664,7 @@ test("4. User can change DISPLAY properties for Button widget", async ({
   const airplaneIcon = page.getByText("airplane");
   if ((await airplaneIcon.count()) === 0) {
     throw new Error("Icon option 'airplane' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
   }
 
   await airplaneIcon.click();
@@ -676,7 +676,7 @@ test("4. User can change DISPLAY properties for Button widget", async ({
   const hintLabel = ButtonLocators.hintLabel(page);
   if ((await hintLabel.count()) === 0) {
     throw new Error("Test ID prop-label-hint not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
   }
 
   await hintLabel.click();
@@ -684,7 +684,7 @@ test("4. User can change DISPLAY properties for Button widget", async ({
   const hintInput = ButtonLocators.hintInput(page);
   if ((await hintInput.count()) === 0) {
     throw new Error("Test ID prop-input-hint not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
   }
 
   await hintInput.click();

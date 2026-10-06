@@ -22,14 +22,14 @@ export async function setGaugeShape(
   if ((await startAngleLabel.count()) === 0) {
     throw new Error(
       "Test ID 'prop-label-geometry-start-angle' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
   if ((await startSlider.count()) === 0) {
     throw new Error(
       "Test ID 'prop-input-geometry-start-angle' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -49,14 +49,14 @@ export async function setGaugeShape(
   if ((await endAngleLabel.count()) === 0) {
     throw new Error(
       "Test ID 'prop-label-geometry-end-angle' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
   if ((await endSlider.count()) === 0) {
     throw new Error(
       "Test ID 'prop-input-geometry-end-angle' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -86,14 +86,14 @@ export async function setGaugeValueIndicatorProperties(
     if ((await typeLabel.count()) === 0) {
       throw new Error(
         "Test ID 'prop-label-value-indicator-type' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
       );
     }
 
     if ((await typeInput.count()) === 0) {
       throw new Error(
         "Test ID 'prop-input-value-indicator-type' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
       );
     }
 
@@ -111,14 +111,14 @@ export async function setGaugeValueIndicatorProperties(
     if ((await offsetLabel.count()) === 0) {
       throw new Error(
         "Test ID 'prop-label-value-indicator-offset' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
       );
     }
 
     if ((await offsetInput.count()) === 0) {
       throw new Error(
         "Test ID 'prop-input-value-indicator-offset' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
       );
     }
 
@@ -138,14 +138,14 @@ export async function setGaugeValueIndicatorProperties(
     if ((await sizeLabel.count()) === 0) {
       throw new Error(
         "Test ID 'prop-label-value-indicator-size' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
       );
     }
 
     if ((await sizeInput.count()) === 0) {
       throw new Error(
         "Test ID 'prop-input-value-indicator-size' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
       );
     }
 
@@ -171,14 +171,14 @@ export async function setGaugeScaleLabel(
   if ((await fontColorLabel.count()) === 0) {
     throw new Error(
       "Test ID prop-label-scale-label-font-color not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
   if ((await fontColorInput.count()) === 0) {
     throw new Error(
       "Test ID prop-input-scale-label-font-color not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -196,14 +196,14 @@ export async function setGaugeScaleLabel(
   if ((await fontSizeLabel.count()) === 0) {
     throw new Error(
       "Test ID prop-label-scale-label-font-size not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
   if ((await fontSizeInput.count()) === 0) {
     throw new Error(
       "Test ID prop-input-scale-label-font-size not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -221,14 +221,14 @@ export async function setGaugeScaleLabel(
   if ((await fontWeightLabel.count()) === 0) {
     throw new Error(
       "Test ID prop-label-scale-label-font-weight not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
   if ((await fontWeightInput.count()) === 0) {
     throw new Error(
       "Test ID prop-input-scale-label-font-weight not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -261,7 +261,7 @@ export async function setGaugeScaleRange(
     if ((await startValueInput.count()) === 0) {
       throw new Error(
         "Test ID prop-input-scale-start-value not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
       );
     }
 
@@ -278,7 +278,7 @@ export async function setGaugeScaleRange(
     if ((await endValueInput.count()) === 0) {
       throw new Error(
         "Test ID prop-input-scale-end-value not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
       );
     }
 
@@ -295,7 +295,7 @@ export async function setGaugeScaleRange(
     if ((await offsetInput.count()) === 0) {
       throw new Error(
         "Test ID prop-input-range-container-offset not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
       );
     }
 
@@ -458,7 +458,7 @@ export async function addGaugeRange(page: Page) {
   if ((await rangeAdd.count()) === 0) {
     throw new Error(
       "Test ID 'prop-button-range-add' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -483,7 +483,7 @@ export async function updateGaugeRange(
   if ((await rangeItem.count()) === 0) {
     throw new Error(
       `Test ID 'prop-container-range-item-${options.index}' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.`,
     );
   }
 
@@ -499,7 +499,7 @@ export async function updateGaugeRange(
     if ((await startValueInput.count()) === 0) {
       throw new Error(
         `Test ID 'prop-input-range-start-value-${options.index}' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.`,
       );
     }
 
@@ -519,7 +519,7 @@ export async function updateGaugeRange(
     if ((await endValueInput.count()) === 0) {
       throw new Error(
         `Test ID 'prop-input-range-end-value-${options.index}' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.`,
       );
     }
 
@@ -539,7 +539,7 @@ export async function updateGaugeRange(
     if ((await gradientInput.count()) === 0) {
       throw new Error(
         `Test ID 'prop-input-range-gradient-${options.index}' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.`,
       );
     }
 
@@ -564,7 +564,7 @@ export async function deleteGaugeRange(
   if ((await rangeItem.count()) === 0) {
     throw new Error(
       `Test ID 'prop-container-range-item-${index}' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",`,
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.`,
     );
   }
 
@@ -576,7 +576,7 @@ export async function deleteGaugeRange(
   if ((await rangeDelete.count()) === 0) {
     throw new Error(
       "Test ID 'prop-button-range-delete' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 

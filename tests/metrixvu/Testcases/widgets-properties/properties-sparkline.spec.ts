@@ -149,7 +149,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
   if ((await typeLabel.count()) === 0) {
     throw new Error("Test ID prop-label-type not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
   }
 
   await typeLabel.click();
@@ -158,7 +158,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
   if ((await typeInput.count()) === 0) {
     throw new Error("Test ID prop-input-type not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
   }
 
   await typeInput.click();
@@ -167,7 +167,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
   if ((await lineOption.count()) === 0) {
     throw new Error("Sparkline type option 'line' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
   }
 
   await lineOption.click();
@@ -180,7 +180,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
   if ((await lineWidthLabel.count()) === 0) {
     throw new Error("Test ID prop-label-line-width not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
   }
 
   await lineWidthLabel.click();
@@ -189,7 +189,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
   if ((await lineWidthInput.count()) === 0) {
     throw new Error("Test ID prop-input-line-width not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
   }
 
   await lineWidthInput.click();
@@ -206,7 +206,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
   if ((await gradientLabel.count()) === 0) {
     throw new Error(
       "Test ID prop-label-gradient-setting-gradient not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -217,7 +217,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
   if ((await gradientInput.count()) === 0) {
     throw new Error(
       "Test ID prop-input-gradient-setting-gradient not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -338,7 +338,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await typeLabel.count()) === 0) {
       throw new Error("Test ID prop-label-type not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await typeLabel.click();
@@ -347,7 +347,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await typeInput.count()) === 0) {
       throw new Error("Test ID prop-input-type not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await typeInput.click();
@@ -356,7 +356,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await winlossOption.count()) === 0) {
       throw new Error("Sparkline type option 'winloss' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await winlossOption.click();
@@ -468,7 +468,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await showMinMaxLabel.count()) === 0) {
       throw new Error("Test ID prop-label-show-min-max not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await showMinMaxLabel.click();
@@ -477,7 +477,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await showMinMaxInput.count()) === 0) {
       throw new Error("Test ID prop-input-show-min-max not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await showMinMaxInput.click();
@@ -490,7 +490,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await pointSizeLabel.count()) === 0) {
       throw new Error("Test ID prop-label-point-size not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await pointSizeLabel.click();
@@ -499,7 +499,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await pointSizeInput.count()) === 0) {
       throw new Error("Test ID prop-input-point-size not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await pointSizeInput.click();
@@ -515,7 +515,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await pointColorLabel.count()) === 0) {
       throw new Error("Test ID prop-label-point-color not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await pointColorLabel.click();
@@ -524,7 +524,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await pointColorInput.count()) === 0) {
       throw new Error("Test ID prop-input-point-color not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await pointColorInput.click();
@@ -539,7 +539,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await pointSymbolLabel.count()) === 0) {
       throw new Error("Test ID prop-label-point-symbol not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await pointSymbolLabel.click();
@@ -548,7 +548,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await pointSymbolInput.count()) === 0) {
       throw new Error("Test ID prop-input-point-symbol not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await pointSymbolInput.click();
@@ -557,7 +557,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await circleOption.count()) === 0) {
       throw new Error("Sparkline point symbol option 'circle' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await circleOption.click();
@@ -570,7 +570,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await lineColorLabel.count()) === 0) {
       throw new Error("Test ID prop-label-line-color not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await lineColorLabel.click();
@@ -579,7 +579,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await lineColorInput.count()) === 0) {
       throw new Error("Test ID prop-input-line-color not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await lineColorInput.click();
@@ -731,7 +731,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await showMinMaxLabel.count()) === 0) {
       throw new Error("Test ID prop-label-show-min-max not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await showMinMaxLabel.click();
@@ -740,7 +740,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await showMinMaxInput.count()) === 0) {
       throw new Error("Test ID prop-input-show-min-max not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await showMinMaxInput.click();
@@ -753,7 +753,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await pointSizeLabel.count()) === 0) {
       throw new Error("Test ID prop-label-point-size not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await pointSizeLabel.click();
@@ -762,7 +762,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await pointSizeInput.count()) === 0) {
       throw new Error("Test ID prop-input-point-size not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await pointSizeInput.click();
@@ -778,7 +778,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await pointColorLabel.count()) === 0) {
       throw new Error("Test ID prop-label-point-color not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await pointColorLabel.click();
@@ -787,7 +787,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await pointColorInput.count()) === 0) {
       throw new Error("Test ID prop-input-point-color not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await pointColorInput.click();
@@ -802,7 +802,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await pointSymbolLabel.count()) === 0) {
       throw new Error("Test ID prop-label-point-symbol not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await pointSymbolLabel.click();
@@ -811,7 +811,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await pointSymbolInput.count()) === 0) {
       throw new Error("Test ID prop-input-point-symbol not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await pointSymbolInput.click();
@@ -820,7 +820,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await squareOption.count()) === 0) {
       throw new Error("Sparkline point symbol option 'square' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await squareOption.click();
@@ -833,7 +833,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await lineColorLabel.count()) === 0) {
       throw new Error("Test ID prop-label-line-color not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await lineColorLabel.click();
@@ -842,7 +842,7 @@ test.describe("PROPERTIES - SPARKLINE Widget", () => {
 
     if ((await lineColorInput.count()) === 0) {
       throw new Error("Test ID prop-input-line-color not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",");
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.");
     }
 
     await lineColorInput.click();

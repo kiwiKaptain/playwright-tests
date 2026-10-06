@@ -32,7 +32,7 @@ test.describe("ALIGNMENT - IMAGE Widget", () => {
   if ((await alignLeft.count()) === 0) {
     throw new Error(
       "Test ID 'prop-control-align-left' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -65,7 +65,7 @@ test("2. User can change LEFT alignment for Image widgets  arranged with touchin
   if ((await alignLeft.count()) === 0) {
     throw new Error(
       "Test ID 'prop-control-align-left' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
     );
   }
 
@@ -103,7 +103,7 @@ const alignCenterHorizontal = AlignmentLocators.alignCenterHorizontal(page);
 if ((await alignCenterHorizontal.count()) === 0) {
   throw new Error(
     "Test ID 'prop-control-align-center-horizontal' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
   );
 }
 
@@ -193,7 +193,7 @@ const alignRight = AlignmentLocators.alignRight(page);
 if ((await alignRight.count()) === 0) {
   throw new Error(
     "Test ID 'prop-control-align-right' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
   );
 }
 
@@ -233,7 +233,7 @@ test("6. User can change RIGHT alignment for Image widgets  arranged with touchi
 if ((await alignRight.count()) === 0) {
   throw new Error(
     "Test ID 'prop-control-align-right' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
   );
 }
 
@@ -282,7 +282,7 @@ const alignTop = AlignmentLocators.alignTop(page);
 if ((await alignTop.count()) === 0) {
   throw new Error(
     "Test ID 'prop-control-align-top' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
   );
 }
 
@@ -313,7 +313,7 @@ const alignTop = AlignmentLocators.alignTop(page);
 if ((await alignTop.count()) === 0) {
   throw new Error(
     "Test ID 'prop-control-align-top' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
   );
 }
 
@@ -347,7 +347,7 @@ const alignCenterVertical = AlignmentLocators.alignCenterVertical(page);
 if ((await alignCenterVertical.count()) === 0) {
   throw new Error(
     "Test ID 'prop-control-align-center-vertical' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
   );
 }
 
@@ -391,7 +391,7 @@ const alignCenterVertical = AlignmentLocators.alignCenterVertical(page);
 if ((await alignCenterVertical.count()) === 0) {
   throw new Error(
     "Test ID 'prop-control-align-center-vertical' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
   );
 }
 
@@ -433,7 +433,7 @@ const alignBottom = AlignmentLocators.alignBottom(page);
 if ((await alignBottom.count()) === 0) {
   throw new Error(
     "Test ID 'prop-control-align-bottom' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
   );
 }
 
@@ -472,7 +472,7 @@ const alignBottom = AlignmentLocators.alignBottom(page);
 if ((await alignBottom.count()) === 0) {
   throw new Error(
     "Test ID 'prop-control-align-bottom' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
   );
 }
 
@@ -515,7 +515,7 @@ const resizeAll = AlignmentLocators.resizeAll(page);
 if ((await resizeAll.count()) === 0) {
   throw new Error(
     "Test ID 'prop-control-resize-all' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
   );
 }
 
@@ -547,7 +547,7 @@ const resizeAll = AlignmentLocators.resizeAll(page);
 if ((await resizeAll.count()) === 0) {
   throw new Error(
     "Test ID 'prop-control-resize-all' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
   );
 }
 
@@ -584,7 +584,7 @@ const resizeWidth = AlignmentLocators.resizeWidth(page);
 if ((await resizeWidth.count()) === 0) {
   throw new Error(
     "Test ID 'prop-control-resize-width' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
   );
 }
 
@@ -614,7 +614,7 @@ const resizeWidth = AlignmentLocators.resizeWidth(page);
 if ((await resizeWidth.count()) === 0) {
   throw new Error(
     "Test ID 'prop-control-resize-width' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
   );
 }
 
@@ -646,7 +646,7 @@ const resizeHeight = AlignmentLocators.resizeHeight(page);
 if ((await resizeHeight.count()) === 0) {
   throw new Error(
     "Test ID 'prop-control-resize-height' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
   );
 }
 
@@ -675,7 +675,7 @@ const resizeHeight = AlignmentLocators.resizeHeight(page);
 if ((await resizeHeight.count()) === 0) {
   throw new Error(
     "Test ID 'prop-control-resize-height' not found. " +
-    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",",
+    "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
   );
 }
 
