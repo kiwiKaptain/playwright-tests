@@ -1,4 +1,3 @@
-
 // =====================================================================
 // DASHBOARD SETUP HELPERS
 // =====================================================================
@@ -13,16 +12,16 @@ export async function login(
   password: string = process.env.TEST_PASSWORD!,
 ): Promise<void> {
   try {
-  await page.goto(process.env.BASE_URL!, {
-    timeout: 60000,
-    waitUntil: "domcontentloaded",
-  });
-} catch (error) {
-  throw new Error(
-    "Metrix VU website took too long to load. The website did not respond within the expected time",
-  );
-}
-//  await page.goto(process.env.BASE_URL!);
+    await page.goto(process.env.BASE_URL!, {
+      timeout: 60000,
+      waitUntil: "domcontentloaded",
+    });
+  } catch (error) {
+    throw new Error(
+      "Metrix VU website took too long to load. The website did not respond within the expected time",
+    );
+  }
+  //  await page.goto(process.env.BASE_URL!);
   await page
     .getByRole("textbox", { name: "Enter your username" })
     .fill(username);
@@ -101,76 +100,125 @@ export async function openEditorAndClearCanvas(
   } catch {
     // Popup not displayed — fine.
   }
+  await deleteAllWidgets(page);
 
-  const existingWidgetsCount = await page
-    .locator(".grid-stack .grid-stack-item")
-    .count();
+  console.log("Continuing with next steps...");
+  // const existingWidgetsCount = await page
+  //   .locator(".grid-stack .grid-stack-item")
+  //   .count();
 
-  if (existingWidgetsCount > 0) {
-    await deleteAllWidgets(page);
-    await page.waitForTimeout(500);
+  // if (existingWidgetsCount > 0) {
+  //   await deleteAllWidgets(page);
+  //   await page.waitForTimeout(500);
 
-    const loaderOverlay = page.locator(".widget-loader-overlay");
-    const loaderIndicator = page.locator(".widget-loader");
-    try {
-      await loaderOverlay.waitFor({ state: "hidden", timeout: 10000 });
-      await loaderIndicator.waitFor({ state: "hidden", timeout: 10000 });
-    } catch (error) {
-      console.error(
-        "Page is still loading. The loader did not disappear within the expected time.",
-      );
-      throw error;
-    }
-  }
-  // Click arrow 
-// const arrowButton = page
-//   .locator("button.fixed.z-50")
-//   .filter({
-//     has: page.locator('svg path[d="M15 6l-6 6 6 6"]'),
-//   });
+  //   const loaderOverlay = page.locator(".widget-loader-overlay");
+  //   const loaderIndicator = page.locator(".widget-loader");
+  //   try {
+  //     await loaderOverlay.waitFor({ state: "hidden", timeout: 10000 });
+  //     await loaderIndicator.waitFor({ state: "hidden", timeout: 10000 });
+  //   } catch (error) {
+  //     console.error(
+  //       "Page is still loading. The loader did not disappear within the expected time.",
+  //     );
+  //     throw error;
+  //   }
+  // }
+  // Click arrow
+  // const arrowButton = page
+  //   .locator("button.fixed.z-50")
+  //   .filter({
+  //     has: page.locator('svg path[d="M15 6l-6 6 6 6"]'),
+  //   });
 
-// await arrowButton.click();
+  // await arrowButton.click();
 
-// // Then pin property panel
-// await page
-//   .getByRole("button", { name: "Pin Property Panel" })
-//   .click();
+  // // Then pin property panel
+  // await page
+  //   .getByRole("button", { name: "Pin Property Panel" })
+  //   .click();
 }
 
+// export async function deleteAllWidgets(page: Page): Promise<void> {
+//   console.log("Deleting all existing widgets with Ctrl+A...");
+//   try {
+//     const gridStack = page.locator(".grid-stack");
+//     await gridStack.waitFor({ state: "visible", timeout: 5000 });
+//     await gridStack.click();
+//     await page.keyboard.press("ControlOrMeta+A");
+//     await page.waitForTimeout(300);
 
+//     const deleteButton = page.getByRole("button").filter({ hasText: /^Delete$/ });
+//     await deleteButton.click();
+//     await page.waitForTimeout(500);
+
+//     const confirmDelete = page.getByRole("button", { name: "Delete" });
+//     await confirmDelete.click();
+//     await page.waitForTimeout(1000);
+
+//     const remainingWidgets = await page
+//       .locator(".grid-stack .grid-stack-item")
+//       .count();
+//     if (remainingWidgets === 0) {
+//       console.log("All widgets deleted successfully");
+//     } else {
+//       console.warn(`${remainingWidgets} widgets still remain after deletion`);
+//     }
+//   } catch (error) {
+//     console.error("Error during deletion:", error);
+//   }
+// }
 export async function deleteAllWidgets(page: Page): Promise<void> {
-  console.log("Deleting all existing widgets with Ctrl+A...");
-  try {
-    const gridStack = page.locator(".grid-stack");
-    await gridStack.waitFor({ state: "visible", timeout: 5000 });
-    await gridStack.click();
-    await page.keyboard.press("ControlOrMeta+A");
-    await page.waitForTimeout(300);
+  console.log("Checking for widgets to delete...");
 
-    const deleteButton = page.getByRole("button").filter({ hasText: /^Delete$/ });
-    await deleteButton.click();
-    await page.waitForTimeout(500);
+  const gridStack = page.locator(".grid-stack");
 
-    const confirmDelete = page.getByRole("button", { name: "Delete" });
-    await confirmDelete.click();
-    await page.waitForTimeout(1000);
+  await gridStack.waitFor({
+    state: "visible",
+    timeout: 5000,
+  });
 
-    const remainingWidgets = await page
-      .locator(".grid-stack .grid-stack-item")
-      .count();
-    if (remainingWidgets === 0) {
-      console.log("All widgets deleted successfully");
-    } else {
-      console.warn(`${remainingWidgets} widgets still remain after deletion`);
-    }
-  } catch (error) {
-    console.error("Error during deletion:", error);
+  // Select all widgets
+  await gridStack.click();
+  await page.keyboard.press("ControlOrMeta+A");
+  await page.waitForTimeout(300);
+
+  const deleteButton = page
+    .getByRole("button", {
+      name: "Delete",
+      exact: true,
+    })
+    .first();
+
+  // If there are no widgets, Delete should be disabled.
+  if (await deleteButton.isDisabled().catch(() => true)) {
+    console.log("No widgets selected. Delete button is disabled.");
+    return;
   }
-}
 
+  console.log("Widgets found. Deleting...");
+
+  await deleteButton.click();
+  await page.waitForTimeout(500);
+
+  // Confirmation dialog
+  const confirmDelete = page
+    .getByRole("button", {
+      name: "Delete",
+      exact: true,
+    })
+    .last();
+
+  await confirmDelete.click();
+  await page.waitForTimeout(5000);
+
+  console.log("All widgets deleted.");
+}
 
 //** Navigates back Home and confirms the dashboard card is visible after performing test case */
-export async function goToHomeAndVerify(page: Page, name: string): Promise<void> {
+export async function goToHomeAndVerify(
+  page: Page,
+  name: string,
+): Promise<void> {
   const editorLabel = page.locator("label").filter({ hasText: "Editor" });
   if (await editorLabel.isVisible()) {
     await editorLabel.click();

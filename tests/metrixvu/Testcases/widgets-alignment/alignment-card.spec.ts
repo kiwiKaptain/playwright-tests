@@ -10,18 +10,18 @@ const CardWidgetCssSelector = '.grid-stack-item[data-widget-type="mi-card"]';
 const dashboardName = TEST_DATA.dashboards.dashboardNameForWidgetPropertiesTesting;
 
 
+test.beforeEach(async ({ page }) => {
+  test.setTimeout(120000);
+  await login(page);
+  const setupDashboard = await ensureDashboardExists(page, dashboardName);
+  await openEditorAndClearCanvas(page, setupDashboard);
+});
+
+test.afterEach(async ({ page }) => {
+  await goToHomeAndVerify(page, dashboardName);
+});
+
 test.describe("ALIGNMENT - CARD Widget", () => {
-  test.beforeEach(async ({ page }) => {
-     test.setTimeout(120000);
-    await login(page);
-    const setupDashboard = await ensureDashboardExists(page, dashboardName);
-    await openEditorAndClearCanvas(page, setupDashboard);
-  });
-
-  test.afterEach(async ({ page }) => {
-    await goToHomeAndVerify(page, dashboardName);
-  });
-
   test("1.User can change LEFT alignment for Card  widgets .Expected: all selected widgets should have the same left alignment.", async ({
     page,
   }) => {

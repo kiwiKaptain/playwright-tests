@@ -9,17 +9,17 @@ const WIDGETS = { BUTTON: "mi-button" } as const;
 const CardWidgetCssSelector = '.grid-stack-item[data-widget-type="mi-button"]';
 const dashboardName = TEST_DATA.dashboards.dashboardNameForWidgetPropertiesTesting;
 
-test.describe("ALIGNMENT - BUTTON Widget", () => {
-  test.beforeEach(async ({ page }) => {
-    await login(page);
-    const setupDashboard = await ensureDashboardExists(page, dashboardName);
-    await openEditorAndClearCanvas(page, setupDashboard);
-  });
+test.beforeEach(async ({ page }) => {
+  await login(page);
+  const setupDashboard = await ensureDashboardExists(page, dashboardName);
+  await openEditorAndClearCanvas(page, setupDashboard);
+});
 
-  test.afterEach(async ({ page }) => {
+test.afterEach(async ({ page }) => {
     await goToHomeAndVerify(page, dashboardName);
   });
-
+  
+  test.describe("ALIGNMENT - BUTTON Widget", () => {
   test("1. User can change LEFT alignment for Button  widgets .Expected: all selected widgets should have the same left alignment.", async ({
     page,
   }) => {

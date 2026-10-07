@@ -27,17 +27,17 @@ const widgetCssSelector = '.grid-stack-item[data-widget-type="mi-sparkline"]';
 const dashboardName =
   TEST_DATA.dashboards.dashboardNameForWidgetPropertiesTesting;
 
-test.describe("ALIGNMENT - SPARKILNE Widget", () => {
   test.beforeEach(async ({ page }) => {
     await login(page);
     const setupDashboard = await ensureDashboardExists(page, dashboardName);
     await openEditorAndClearCanvas(page, setupDashboard);
   });
-
+  
   test.afterEach(async ({ page }) => {
     await goToHomeAndVerify(page, dashboardName);
   });
-
+  
+  test.describe("ALIGNMENT - SPARKILNE Widget", () => {
   test("1. User can change LEFT alignment for Sparkline widgets .Expected: all selected widgets should have the same left alignment.", async ({
     page,
   }) => {

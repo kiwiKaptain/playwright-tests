@@ -12,17 +12,17 @@ const WIDGETS = { LINECHART: "mi-line-chart" } as const;
 const widgetCssSelector = '.grid-stack-item[data-widget-type="mi-line-chart"]';
 const dashboardName = TEST_DATA.dashboards.dashboardNameForWidgetPropertiesTesting;
 
-test.describe("ALIGNMENT - LINECHART Widget", () => {
-  test.beforeEach(async ({ page }) => {
-    await login(page);
-    const setupDashboard = await ensureDashboardExists(page, dashboardName);
-    await openEditorAndClearCanvas(page, setupDashboard);
+test.beforeEach(async ({ page }) => {
+  await login(page);
+  const setupDashboard = await ensureDashboardExists(page, dashboardName);
+  await openEditorAndClearCanvas(page, setupDashboard);
   });
-
+  
   test.afterEach(async ({ page }) => {
     await goToHomeAndVerify(page, dashboardName);
   });
-
+  
+  test.describe("ALIGNMENT - LINECHART Widget", () => {
   test("1. User can change LEFT alignment for Line Chart widgets.Expected: all selected widgets should have the same left alignment.", async ({
     page,
   }) => {

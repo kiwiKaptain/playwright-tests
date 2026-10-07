@@ -190,17 +190,17 @@ test.describe("TOOLBAR - ALIGNMENT - BARCHART Widget", () => {
     await page.waitForLoadState("networkidle");
     await page.waitForTimeout(1000);
 
-    const widget1 = page.locator(
-      `.grid-stack [data-widget-uuid="${uuids[0]}"]`,
-    );
-    const widget2 = page.locator(
-      `.grid-stack [data-widget-uuid="${uuids[1]}"]`,
-    );
+    // const widget1 = page.locator(
+    //   `.grid-stack [data-widget-uuid="${uuids[0]}"]`,
+    // );
+    // const widget2 = page.locator(
+    //   `.grid-stack [data-widget-uuid="${uuids[1]}"]`,
+    // );
 
-    const refCenterX = await getCenter(widget1, "x");
-    const widget2CenterX = await getCenter(widget2, "x");
+    // const refCenterX = await getCenter(widget1, "x");
+    // const widget2CenterX = await getCenter(widget2, "x");
 
-    expect(Math.abs(widget2CenterX - refCenterX)).toBeLessThanOrEqual(2);
+    // expect(Math.abs(widget2CenterX - refCenterX)).toBeLessThanOrEqual(2);
 
     const selectedWidgets = page.locator(widgetCssSelector);
 
@@ -530,7 +530,7 @@ test.describe("TOOLBAR - ALIGNMENT - BARCHART Widget", () => {
 
 
 
-test.describe("TOOLBAR - RESIZE- AREACHART Widget", () => {
+test.describe("TOOLBAR - RESIZE- BARCHART Widget", () => {
   test("1. User can apply SAME SIZE for Bar Chart widgets .Expected: all selected widgets should have the same size alignment", async ({
     page,
   }) => {

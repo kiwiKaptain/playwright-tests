@@ -27,7 +27,6 @@ const widgetCssSelector = '.grid-stack-item[data-widget-type="mi-linear-gauge"]'
 const dashboardName =
   TEST_DATA.dashboards.dashboardNameForWidgetPropertiesTesting;
 
-test.describe("ALIGNMENT - LINEARGAUGE Widget", () => {
   test.beforeEach(async ({ page }) => {
     await login(page);
     const setupDashboard = await ensureDashboardExists(page, dashboardName);
@@ -37,7 +36,8 @@ test.describe("ALIGNMENT - LINEARGAUGE Widget", () => {
   test.afterEach(async ({ page }) => {
     await goToHomeAndVerify(page, dashboardName);
   });
-
+  
+  test.describe("ALIGNMENT - LINEARGAUGE Widget", () => {
   test("1. User can change LEFT alignment for Linear Gauge widgets .Expected: all selected widgets should have the same left alignment.", async ({
     page,
   }) => {
