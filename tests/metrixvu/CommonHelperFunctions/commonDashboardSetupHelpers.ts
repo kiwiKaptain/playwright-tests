@@ -180,7 +180,7 @@ export async function deleteAllWidgets(page: Page): Promise<void> {
   // Select all widgets
   await gridStack.click();
   await page.keyboard.press("ControlOrMeta+A");
-  await page.waitForTimeout(300);
+  await page.waitForTimeout(5000);
 
   const deleteButton = page
     .getByRole("button", {
@@ -198,7 +198,7 @@ export async function deleteAllWidgets(page: Page): Promise<void> {
   console.log("Widgets found. Deleting...");
 
   await deleteButton.click();
-  await page.waitForTimeout(500);
+  await page.waitForTimeout(5000);
 
   // Confirmation dialog
   const confirmDelete = page
