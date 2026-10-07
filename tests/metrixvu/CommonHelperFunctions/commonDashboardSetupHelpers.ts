@@ -83,89 +83,6 @@ export async function ensureDashboardExists(
 /**
  * Opens the given dashboard card in the editor and deletes any pre-existing widgets.
  */
-// export async function openEditorAndClearCanvas(
-//   page: Page,
-//   setupDashboard: Locator,
-// ): Promise<void> {
-//   await setupDashboard.hover();
-//   await setupDashboard.getByRole("button", { name: "Editor" }).click();
-
-//   const closeFavouritePopup = page
-//     .locator("mi-favourite-data-points-modal")
-//     .getByRole("button")
-//     .filter({ hasText: /^$/ });
-//   try {
-//     await closeFavouritePopup.waitFor({ state: "visible", timeout: 5000 });
-//     await closeFavouritePopup.click();
-//   } catch {
-//     // Popup not displayed — fine.
-//   }
-
-//   const existingWidgetsCount = await page
-//     .locator(".grid-stack .grid-stack-item")
-//     .count();
-
-//   if (existingWidgetsCount > 0) {
-//     await deleteAllWidgets(page);
-//     await page.waitForTimeout(500);
-
-//     const loaderOverlay = page.locator(".widget-loader-overlay");
-//     const loaderIndicator = page.locator(".widget-loader");
-//     try {
-//       await loaderOverlay.waitFor({ state: "hidden", timeout: 10000 });
-//       await loaderIndicator.waitFor({ state: "hidden", timeout: 10000 });
-//     } catch (error) {
-//       console.error(
-//         "Page is still loading. The loader did not disappear within the expected time.",
-//       );
-//       throw error;
-//     }
-//   }
-//   // Click arrow
-//   // const arrowButton = page
-//   //   .locator("button.fixed.z-50")
-//   //   .filter({
-//   //     has: page.locator('svg path[d="M15 6l-6 6 6 6"]'),
-//   //   });
-
-//   // await arrowButton.click();
-
-//   // // Then pin property panel
-//   // await page
-//   //   .getByRole("button", { name: "Pin Property Panel" })
-//   //   .click();
-// }
-
-// export async function deleteAllWidgets(page: Page): Promise<void> {
-//   console.log("Deleting all existing widgets with Ctrl+A...");
-//   try {
-//     const gridStack = page.locator(".grid-stack");
-//     await gridStack.waitFor({ state: "visible", timeout: 5000 });
-//     await gridStack.click();
-//     await page.keyboard.press("ControlOrMeta+A");
-//     await page.waitForTimeout(300);
-
-//     const deleteButton = page.getByRole("button").filter({ hasText: /^Delete$/ });
-//     await deleteButton.click();
-//     await page.waitForTimeout(500);
-
-//     const confirmDelete = page.getByRole("button", { name: "Delete" });
-//     await confirmDelete.click();
-//     await page.waitForTimeout(1000);
-
-//     const remainingWidgets = await page
-//       .locator(".grid-stack .grid-stack-item")
-//       .count();
-//     if (remainingWidgets === 0) {
-//       console.log("All widgets deleted successfully");
-//     } else {
-//       console.warn(`${remainingWidgets} widgets still remain after deletion`);
-//     }
-//   } catch (error) {
-//     console.error("Error during deletion:", error);
-//   }
-// }
-
 export async function openEditorAndClearCanvas(
   page: Page,
   setupDashboard: Locator,
@@ -177,45 +94,47 @@ export async function openEditorAndClearCanvas(
     .locator("mi-favourite-data-points-modal")
     .getByRole("button")
     .filter({ hasText: /^$/ });
-
   try {
-    await closeFavouritePopup.waitFor({
-      state: "visible",
-      timeout: 5000,
-    });
+    await closeFavouritePopup.waitFor({ state: "visible", timeout: 5000 });
     await closeFavouritePopup.click();
   } catch {
     // Popup not displayed — fine.
   }
 
-  // Select all widgets first
-  const gridStack = page.locator(".grid-stack");
+  const existingWidgetsCount = await page
+    .locator(".grid-stack .grid-stack-item")
+    .count();
 
-  await gridStack.waitFor({
-    state: "visible",
-    timeout: 5000,
-  });
-
-  await gridStack.click();
-  await page.keyboard.press("ControlOrMeta+A");
-  await page.waitForTimeout(500);
-
-  const deleteButton =  page.locator(
-    'button:has(svg path[d="M19 6v14a2 2 0 0 1-2-2H7a2 2 0 0 1-2-2V6m5 6v6m4-6v6"])'
-  ).first();
-
-  // Delete button disabled = no widgets selected
-  if (await deleteButton.isDisabled()) {
-    console.log("Delete button is disabled. No widgets to delete.");
-  } else {
-    console.log("Delete button is enabled. Widgets found. Deleting...");
+  if (existingWidgetsCount > 0) {
     await deleteAllWidgets(page);
+    await page.waitForTimeout(500);
+
+    const loaderOverlay = page.locator(".widget-loader-overlay");
+    const loaderIndicator = page.locator(".widget-loader");
+    try {
+      await loaderOverlay.waitFor({ state: "hidden", timeout: 10000 });
+      await loaderIndicator.waitFor({ state: "hidden", timeout: 10000 });
+    } catch (error) {
+      console.error(
+        "Page is still loading. The loader did not disappear within the expected time.",
+      );
+      throw error;
+    }
   }
+  // Click arrow
+  // const arrowButton = page
+  //   .locator("button.fixed.z-50")
+  //   .filter({
+  //     has: page.locator('svg path[d="M15 6l-6 6 6 6"]'),
+  //   });
 
-  console.log("Continuing with next steps...");
+  // await arrowButton.click();
+
+  // // Then pin property panel
+  // await page
+  //   .getByRole("button", { name: "Pin Property Panel" })
+  //   .click();
 }
-
-
 
 export async function deleteAllWidgets(page: Page): Promise<void> {
   console.log("Deleting all existing widgets with Ctrl+A...");
@@ -226,9 +145,7 @@ export async function deleteAllWidgets(page: Page): Promise<void> {
     await page.keyboard.press("ControlOrMeta+A");
     await page.waitForTimeout(300);
 
-    const deleteButton =  page.locator(
-    'button:has(svg path[d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m5 6v6m4-6v6"])'
-  );
+    const deleteButton = page.getByRole("button").filter({ hasText: /^Delete$/ });
     await deleteButton.click();
     await page.waitForTimeout(500);
 
@@ -248,6 +165,89 @@ export async function deleteAllWidgets(page: Page): Promise<void> {
     console.error("Error during deletion:", error);
   }
 }
+
+// export async function openEditorAndClearCanvas(
+//   page: Page,
+//   setupDashboard: Locator,
+// ): Promise<void> {
+//   await setupDashboard.hover();
+//   await setupDashboard.getByRole("button", { name: "Editor" }).click();
+
+//   const closeFavouritePopup = page
+//     .locator("mi-favourite-data-points-modal")
+//     .getByRole("button")
+//     .filter({ hasText: /^$/ });
+
+//   try {
+//     await closeFavouritePopup.waitFor({
+//       state: "visible",
+//       timeout: 5000,
+//     });
+//     await closeFavouritePopup.click();
+//   } catch {
+//     // Popup not displayed — fine.
+//   }
+
+//   // Select all widgets first
+//   const gridStack = page.locator(".grid-stack");
+
+//   await gridStack.waitFor({
+//     state: "visible",
+//     timeout: 5000,
+//   });
+
+//   await gridStack.click();
+//   await page.keyboard.press("ControlOrMeta+A");
+//   await page.waitForTimeout(500);
+
+//   const deleteButton =  page.locator(
+//     'button:has(svg path[d="M19 6v14a2 2 0 0 1-2-2H7a2 2 0 0 1-2-2V6m5 6v6m4-6v6"])'
+//   ).first();
+
+//   // Delete button disabled = no widgets selected
+//   if (await deleteButton.isDisabled()) {
+//     console.log("Delete button is disabled. No widgets to delete.");
+//   } else {
+//     console.log("Delete button is enabled. Widgets found. Deleting...");
+//     await deleteAllWidgets(page);
+//   }
+
+//   console.log("Continuing with next steps...");
+// }
+
+
+
+// export async function deleteAllWidgets(page: Page): Promise<void> {
+//   console.log("Deleting all existing widgets with Ctrl+A...");
+//   try {
+//     const gridStack = page.locator(".grid-stack");
+//     await gridStack.waitFor({ state: "visible", timeout: 5000 });
+//     await gridStack.click();
+//     await page.keyboard.press("ControlOrMeta+A");
+//     await page.waitForTimeout(300);
+
+//     const deleteButton =  page.locator(
+//     'button:has(svg path[d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m5 6v6m4-6v6"])'
+//   );
+//     await deleteButton.click();
+//     await page.waitForTimeout(500);
+
+//     const confirmDelete = page.getByRole("button", { name: "Delete" });
+//     await confirmDelete.click();
+//     await page.waitForTimeout(1000);
+
+//     const remainingWidgets = await page
+//       .locator(".grid-stack .grid-stack-item")
+//       .count();
+//     if (remainingWidgets === 0) {
+//       console.log("All widgets deleted successfully");
+//     } else {
+//       console.warn(`${remainingWidgets} widgets still remain after deletion`);
+//     }
+//   } catch (error) {
+//     console.error("Error during deletion:", error);
+//   }
+// }
 
 
 
