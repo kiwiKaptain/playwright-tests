@@ -229,7 +229,9 @@ export async function deleteAllWidgets(page: Page): Promise<void> {
     await page.keyboard.press("ControlOrMeta+A");
     await page.waitForTimeout(300);
 
-    const deleteButton = page.getByRole("button").filter({ hasText: /^Delete$/ });
+    const deleteButton =  page.locator(
+    'button:has(svg path[d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m5 6v6m4-6v6"])'
+  );
     await deleteButton.click();
     await page.waitForTimeout(500);
 
