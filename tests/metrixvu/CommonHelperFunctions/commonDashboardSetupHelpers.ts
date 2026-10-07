@@ -200,12 +200,9 @@ export async function openEditorAndClearCanvas(
   await page.keyboard.press("ControlOrMeta+A");
   await page.waitForTimeout(500);
 
-  const deleteButton = page
-    .getByRole("button", {
-      name: "Delete",
-      exact: true,
-    })
-    .first();
+  const deleteButton =  const deleteButton = page.locator(
+    'button:has(svg path[d="M19 6v14a2 2 0 0 1-2-2H7a2 2 0 0 1-2-2V6m5 6v6m4-6v6"])'
+  ).first();
 
   // Delete button disabled = no widgets selected
   if (await deleteButton.isDisabled()) {
