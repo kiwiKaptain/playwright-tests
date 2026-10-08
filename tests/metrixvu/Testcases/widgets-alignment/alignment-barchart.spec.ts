@@ -73,7 +73,7 @@ test.describe("TOOLBAR - ALIGNMENT - BARCHART Widget", () => {
     expectAllValuesEqual(leftPositions, "left position (gs-x)");
   });
 
-  test("2. User can change LEFT alignment for Bar Chart widgets that overlap each other . Expected: selected widgets should be aligned correctly..", async ({
+  test("2. User can change LEFT alignment for Bar Chart widgets that overlap each other . Expected: selected widgets must be aligned correctly.", async ({
     page,
   }) => {
     const { uuids } = await setupWidgets(
@@ -159,7 +159,7 @@ test.describe("TOOLBAR - ALIGNMENT - BARCHART Widget", () => {
   //   expect(Math.abs(widget2CenterX - refCenterX)).toBeLessThanOrEqual(2);
   // });
 
-  test("3. User can change MIDDLE alignment for Bar Chart widgets that overlap each other . Expected: selected widgets should be aligned correctly..", async ({
+  test("3. User can change MIDDLE alignment for Bar Chart widgets that overlap each other . Expected: selected widgets must be aligned correctly.", async ({
     page,
   }) => {
     const { uuids } = await setupWidgets(
@@ -249,7 +249,7 @@ test.describe("TOOLBAR - ALIGNMENT - BARCHART Widget", () => {
     console.log("Widget right edge positions:", rightPositions);
     expectAllValuesEqual(rightPositions, "right edge (gs-x + gs-w)");
   });
-  test("5. User can change RIGHT alignment for Bar Chart widgets that overlap each other  . Expected: selected widgets should be aligned correctly..", async ({
+  test("5. User can change RIGHT alignment for Bar Chart widgets that overlap each other  . Expected: selected widgets must be aligned correctly.", async ({
     page,
   }) => {
     const { uuids } = await setupWidgets(
@@ -332,7 +332,7 @@ test.describe("TOOLBAR - ALIGNMENT - BARCHART Widget", () => {
     expectAllValuesEqual(topPositions, "top position (gs-y)");
   });
 
-  test("7. User can change TOP alignment for Bar Chart widgets that overlap each other . Expected: selected widgets should be aligned correctly..", async ({
+  test("7. User can change TOP alignment for Bar Chart widgets that overlap each other . Expected: selected widgets must be aligned correctly.", async ({
     page,
   }) => {
     //const { uuids } = await setupWidgetsWithTouchingEdges(page,WIDGETS.BARCHART,3);
@@ -402,7 +402,7 @@ test.describe("TOOLBAR - ALIGNMENT - BARCHART Widget", () => {
   //   expect(Math.abs(widget2CenterY - refCenterY)).toBeLessThanOrEqual(2);
   // });
 
-  test("8. User can change CENTER alignment for Bar Chart widgets that overlap each other . Expected: selected widgets should be aligned correctly..", async ({
+  test("8. User can change CENTER alignment for Bar Chart widgets that overlap each other . Expected: selected widgets must be aligned correctly.", async ({
     page,
   }) => {
     const { uuids } = await setupWidgets(
@@ -481,7 +481,7 @@ test.describe("TOOLBAR - ALIGNMENT - BARCHART Widget", () => {
     expectAllValuesEqual(bottomPositions, "bottom edge (gs-y + gs-h)");
   });
 
-  test("10. User can change BOTTOM alignment for Bar Chart widgets that overlap each other  . Expected: selected widgets should be aligned correctly..", async ({
+  test("10. User can change BOTTOM alignment for Bar Chart widgets that overlap each other  . Expected: selected widgets must be aligned correctly.", async ({
     page,
   }) => {
     const { uuids } = await setupWidgets(
@@ -563,7 +563,7 @@ test.describe("TOOLBAR - RESIZE- BARCHART Widget", () => {
     expectAllValuesEqual(heights, "height (gs-h)");
   });
 
-  test("2. User can apply SAME SIZE for Bar Chart widgets that overlap each other . Expected: selected widgets should be aligned correctly..", async ({
+  test("2. User can apply SAME SIZE for Bar Chart widgets that overlap each other . Expected: selected widgets must be aligned correctly.", async ({
     page,
   }) => {
     const { uuids } = await setupWidgets(
@@ -630,7 +630,7 @@ test.describe("TOOLBAR - RESIZE- BARCHART Widget", () => {
     expectAllValuesEqual(widths, "width (gs-w)");
   });
 
-  test("4. User can apply SAME WIDTH for Bar Chart widgets that overlap each other . Expected: selected widgets should be aligned correctly..", async ({
+  test("4. User can apply SAME WIDTH for Bar Chart widgets that overlap each other . Expected: selected widgets must be aligned correctly.", async ({
     page,
   }) => {
     const { uuids } = await setupWidgets(
@@ -694,7 +694,7 @@ test.describe("TOOLBAR - RESIZE- BARCHART Widget", () => {
     expectAllValuesEqual(heights, "height (gs-h)");
   });
 
-  test("6. User can apply SAME HEIGHT for Bar Chart widgets that overlap each other  . Expected: selected widgets should be aligned correctly..", async ({
+  test("6. User can apply SAME HEIGHT for Bar Chart widgets that overlap each other  . Expected: selected widgets must be aligned correctly.", async ({
     page,
   }) => {
     const { uuids } = await setupWidgets(

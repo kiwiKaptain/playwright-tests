@@ -48,7 +48,7 @@ test.describe("TOOLBAR -ALIGNMENT - IMAGE Widget", () => {
     expectAllValuesEqual(leftPositions, "left position (gs-x)");
   });
 
-test("2. User can change LEFT alignment for Image widgets  that overlap each other . Expected: selected widgets should be aligned correctly..", async ({
+test("2. User can change LEFT alignment for Image widgets  that overlap each other . Expected: selected widgets must be aligned correctly.", async ({
   page,
 }) => {
   const { uuids } = await setupWidgets(
@@ -133,7 +133,7 @@ test("2. User can change LEFT alignment for Image widgets  that overlap each oth
  
 //   });
 
-test("3. User can change MIDDLE alignment for Image widgets  that overlap each other . Expected: selected widgets should be aligned correctly..", async ({
+test("3. User can change MIDDLE alignment for Image widgets  that overlap each other . Expected: selected widgets must be aligned correctly.", async ({
   page,
 }) => {
   const { uuids } = await setupWidgets(
@@ -216,7 +216,7 @@ await alignRight.click();
     expectAllValuesEqual(rightPositions, "right edge (gs-x + gs-w)");
   });
 
-test("5. User can change RIGHT alignment for Image widgets  that overlap each other . Expected: selected widgets should be aligned correctly..", async ({
+test("5. User can change RIGHT alignment for Image widgets  that overlap each other . Expected: selected widgets must be aligned correctly.", async ({
   page,
 }) => {
   const { uuids } = await setupWidgets(
@@ -294,7 +294,7 @@ await alignTop.click();
   expectAllValuesEqual( topPositions,"top position (gs-y)",);
   });
 
- test("7. User can change TOP alignment for Image widgets  that overlap each other . Expected: selected widgets should be aligned correctly..", async ({
+ test("7. User can change TOP alignment for Image widgets  that overlap each other . Expected: selected widgets must be aligned correctly.", async ({
     page,
   }) => {
 
@@ -374,7 +374,7 @@ const xPositions = await getWidgetAttributeValues(
 //     expect(Math.abs(widget3CenterY - refCenterY)).toBeLessThanOrEqual(2);
 //   });
 
-test("8. User can change CENTER alignment for Image widgets  that overlap each other . Expected: selected widgets should be aligned correctly..", async ({
+test("8. User can change CENTER alignment for Image widgets  that overlap each other . Expected: selected widgets must be aligned correctly.", async ({
   page,
 }) => {
   const { uuids } = await setupWidgets(
@@ -455,7 +455,7 @@ await alignBottom.click();
     expectAllValuesEqual(bottomPositions, "bottom edge (gs-y + gs-h)");
   });
 
-test("10. User can change BOTTOM alignment for Image widgets  that overlap each other . Expected: selected widgets should be aligned correctly..", async ({
+test("10. User can change BOTTOM alignment for Image widgets  that overlap each other . Expected: selected widgets must be aligned correctly.", async ({
   page,
 }) => {
   const { uuids } = await setupWidgets(
@@ -536,7 +536,7 @@ await resizeAll.click();
     expectAllValuesEqual(heights, "height (gs-h)");
   });
 
-test("2. User can apply SAME SIZE for Image widgets  that overlap each other . Expected: selected widgets should be aligned correctly..", async ({
+test("2. User can apply SAME SIZE for Image widgets  that overlap each other . Expected: selected widgets must be aligned correctly.", async ({
   page,
 }) => {
   const { uuids } = await setupWidgets(
@@ -603,7 +603,7 @@ await resizeWidth.click();
     expectAllValuesEqual(widths, "width (gs-w)");
   });
 
-test("4. User can apply SAME WIDTH for Image widgets  that overlap each other . Expected: selected widgets should be aligned correctly..", async ({
+test("4. User can apply SAME WIDTH for Image widgets  that overlap each other . Expected: selected widgets must be aligned correctly.", async ({
   page,
 }) => {
   const { uuids } = await setupWidgets(
@@ -664,7 +664,7 @@ await resizeHeight.click();
     const heights = await getWidgetAttributeValues(selectedWidgets, "gs-h");
     expectAllValuesEqual(heights, "height (gs-h)");
   });
-test("6. User can apply SAME HEIGHT for Image widgets  that overlap each other . Expected: selected widgets should be aligned correctly..", async ({
+test("6. User can apply SAME HEIGHT for Image widgets  that overlap each other . Expected: selected widgets must be aligned correctly.", async ({
   page,
 }) => {
   const { uuids } = await setupWidgets(
