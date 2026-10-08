@@ -1,9 +1,9 @@
 import { test, expect } from "@playwright/test";
-import { HeaderPage } from "../pages/header.page";
-import { LoginPage } from "../pages/login.page";
-import { CommsPage } from "../pages/communications.page";
+import { HeaderPage } from "./pages/header.page";
+import { LoginPage } from "./pages/login.page";
+import { CommsPage } from "./pages/communications.page";
 import { randomUUID } from "crypto";
-import { getDrivers } from "../helpers/xml-properties.helpers";
+import { getDrivers } from "./helpers/xml-properties.helpers";
 
 let commsPage: CommsPage;
 

@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
-import { LoginPage } from "../pages/login.page";
-import { HeaderPage } from "../pages/header.page";
-import { LogsPage } from "../pages/logs.page";
+import { LoginPage } from "./pages/login.page";
+import { HeaderPage } from "./pages/header.page";
+import { LogsPage } from "./pages/logs.page";
 
 test.describe("Driver / Audit Error Logs", () => {
     const username = process.env.TEST_USERNAME!;
