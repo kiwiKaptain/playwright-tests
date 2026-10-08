@@ -73,7 +73,7 @@ const dashboardName =
     expectAllValuesEqual(leftPositions, "left position (gs-x)");
   });
 
-  test("2. User can change LEFT alignment for Sparkline widgets arranged with touching edges  .Expected: widgets should not overlap each other.", async ({
+  test("2. User can change LEFT alignment for Sparkline widgets that overlap each other  .Expected: widgets should not overlap each other.", async ({
     page,
   }) => {
     const { uuids } = await setupWidgets(
@@ -159,7 +159,7 @@ const dashboardName =
 //     expect(Math.abs(widget2CenterX - refCenterX)).toBeLessThanOrEqual(2);
 //   });
 
-  test("3. User can change MIDDLE alignment for Sparkline widgets arranged with touching edges  .Expected: widgets should not overlap each other.", async ({
+  test("3. User can change MIDDLE alignment for Sparkline widgets that overlap each other  .Expected: widgets should not overlap each other.", async ({
     page,
   }) => {
     const { uuids } = await setupWidgets(
@@ -250,7 +250,7 @@ await alignRight.click();
     expectAllValuesEqual(rightPositions, "right edge (gs-x + gs-w)");
   });
 
-  test("5. User can change RIGHT alignment for Sparkline widgets arranged with touching edges  .Expected: widgets should not overlap each other.", async ({
+  test("5. User can change RIGHT alignment for Sparkline widgets that overlap each other  .Expected: widgets should not overlap each other.", async ({
     page,
   }) => {
     const { uuids } = await setupWidgets(
@@ -333,7 +333,7 @@ await alignTop.click();
     expectAllValuesEqual(topPositions, "top position (gs-y)");
   });
 
-  test("7. User can change TOP alignment for Sparkline widgets arranged with touching edges  .Expected: widgets should not overlap each other", async ({
+  test("7. User can change TOP alignment for Sparkline widgets that overlap each other  .Expected: widgets should not overlap each other", async ({
     page,
   }) => {
     //const { uuids } = await setupWidgetsWithTouchingEdges(page,WIDGETS.SPARKILNE,3);
@@ -403,7 +403,7 @@ await alignTop.click();
 //     expect(Math.abs(widget2CenterY - refCenterY)).toBeLessThanOrEqual(2);
 //   });
 
-  test("8. User can change CENTER alignment for Sparkline widgets arranged with touching edges  .Expected: widgets should not overlap each other.", async ({
+  test("8. User can change CENTER alignment for Sparkline widgets that overlap each other  .Expected: widgets should not overlap each other.", async ({
     page,
   }) => {
     const { uuids } = await setupWidgets(
@@ -482,7 +482,7 @@ await alignBottom.click();
     expectAllValuesEqual(bottomPositions, "bottom edge (gs-y + gs-h)");
   });
 
-  test("10. User can change BOTTOM alignment for Sparkline widgets arranged with touching edges  .Expected: widgets should not overlap each other.", async ({
+  test("10. User can change BOTTOM alignment for Sparkline widgets that overlap each other  .Expected: widgets should not overlap each other.", async ({
     page,
   }) => {
     const { uuids } = await setupWidgets(
@@ -565,7 +565,7 @@ await resizeAll.click();
     expectAllValuesEqual(heights, "height (gs-h)");
   });
 
-  test("2. User can apply SAME SIZE for Sparkline widgets arranged with touching edges  .Expected: widgets should not overlap each other.", async ({
+  test("2. User can apply SAME SIZE for Sparkline widgets that overlap each other  .Expected: widgets should not overlap each other.", async ({
     page,
   }) => {
     const { uuids } = await setupWidgets(
@@ -632,7 +632,7 @@ await resizeWidth.click();
     expectAllValuesEqual(widths, "width (gs-w)");
   });
 
-  test("4. User can apply SAME WIDTH for Sparkline widgets arranged with touching edges  .Expected: widgets should not overlap each other.", async ({
+  test("4. User can apply SAME WIDTH for Sparkline widgets that overlap each other  .Expected: widgets should not overlap each other.", async ({
     page,
   }) => {
     const { uuids } = await setupWidgets(
@@ -696,7 +696,7 @@ await resizeHeight.click();
     expectAllValuesEqual(heights, "height (gs-h)");
   });
 
-  test("6. User can apply SAME HEIGHT for Sparkline widgets arranged with touching edges  .Expected: widgets should not overlap each other.", async ({
+  test("6. User can apply SAME HEIGHT for Sparkline widgets that overlap each other  .Expected: widgets should not overlap each other.", async ({
     page,
   }) => {
     const { uuids } = await setupWidgets(
