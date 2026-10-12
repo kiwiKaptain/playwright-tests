@@ -151,6 +151,17 @@ export async function setupWidgets(
       timeout: 10000,
     });
 
+// Scroll down after dropping the first data grid
+if (widgetType === "mi-data-grid" && i === 0) {
+    await page.locator("#settings-panel-pin-btn").click();
+  console.log("Property panel pinned.");
+
+  await page.mouse.wheel(0, 500);
+  await page.waitForTimeout(300);
+
+  console.log("Mouse scroll completed.");
+}
+
     await droppedWidget.click();
     await page.waitForTimeout(300);
     if (resizeEnabled) {
