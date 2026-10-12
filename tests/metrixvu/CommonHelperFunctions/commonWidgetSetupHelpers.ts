@@ -74,8 +74,17 @@ export async function resizeWidget(
 
 export async function selectWidgetsOnCanvas(page: Page, uuids: string[]) {
   const gridStack = page.locator(".grid-stack");
-  await gridStack.click();
-  await page.keyboard.press("ControlOrMeta+A");
+  //await gridStack.click();
+//  await page.keyboard.press("ControlOrMeta+A");
+   if (uuids.length > 0) {
+    // Click the last added widget first
+    await page.locator(`[data-widget-uuid="${uuids[uuids.length - 1]}"]`).click();
+
+    // Press Ctrl and click the first widget
+await page.keyboard.down("Control");
+await page.locator(`[data-widget-uuid="${uuids[0]}"]`).click();
+await page.keyboard.up("Control");
+  }
 }
 export async function getAllWidgetUuids(
   page: Page,
