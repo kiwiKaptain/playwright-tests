@@ -1,6 +1,6 @@
 import { test, expect, Page, Locator } from "@playwright/test";
 import { setTitleProperties } from "./commonPropertiesHelpers";
-import { dragAndDropWidget } from "./commonDragDropHelpers";
+import { dragAndDropWidget, dragAndDropWidgetWithTouchingEdges } from "./commonDragDropHelpers";
 import { TEST_DATA } from "../testData";
 const imagePath = TEST_DATA.app.imagePathUrl;
 
@@ -74,17 +74,19 @@ export async function resizeWidget(
 
 export async function selectWidgetsOnCanvas(page: Page, uuids: string[]) {
   const gridStack = page.locator(".grid-stack");
-  //await gridStack.click();
-//  await page.keyboard.press("ControlOrMeta+A");
-   if (uuids.length > 0) {
-    // Click the last added widget first
-    await page.locator(`[data-widget-uuid="${uuids[uuids.length - 1]}"]`).click();
+ await gridStack.click();
+   await page.keyboard.press("ControlOrMeta+A");
 
-    // Press Ctrl and click the first widget
-await page.keyboard.down("Control");
-await page.locator(`[data-widget-uuid="${uuids[0]}"]`).click();
-await page.keyboard.up("Control");
-  }
+//   if (uuids.length > 0) {
+//     // Click the last added widget first
+//     await page.locator(`[data-widget-uuid="${uuids[uuids.length - 1]}"]`).click();
+
+//     // Press Ctrl and click the first widget
+// await page.keyboard.down("Control");
+// await page.locator(`[data-widget-uuid="${uuids[0]}"]`).click();
+// await page.keyboard.up("Control");
+//   }
+
 }
 export async function getAllWidgetUuids(
   page: Page,
@@ -161,21 +163,32 @@ export async function setupWidgets(
     });
 
 // Scroll down after dropping the first data grid
-if (widgetType === "mi-data-grid" && i === 0) {
-    await page.locator("#settings-panel-pin-btn").click();
+if ( widgetType === "mi-data-grid" &&
+  i === 0 &&
+  dragAndDropFunction !== dragAndDropWidgetWithTouchingEdges) {
+   await page.locator("#settings-panel-pin-btn").click();
   console.log("Property panel pinned.");
 
   await page.mouse.wheel(0, 500);
   await page.waitForTimeout(300);
 
   console.log("Mouse scroll completed.");
+
+
+  
 }
 
     await droppedWidget.click();
     await page.waitForTimeout(300);
-    if (resizeEnabled) {
+    if (resizeEnabled  && !(widgetType === "mi-data-grid" && i === 1)) {
       // Resize widget
-      const resizeHandle = droppedWidget.locator(".ui-resizable-se");
+     // const resizeHandle = droppedWidget.locator(".ui-resizable-se");
+ // Use the east resize handle for Data Grid widgets
+  const resizeHandle = droppedWidget.locator(
+    widgetType === "mi-data-grid"
+      ? ".ui-resizable-handle.ui-resizable-e"
+      : ".ui-resizable-se",
+  );
 
       await resizeHandle.waitFor({
         state: "visible",
