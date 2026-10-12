@@ -244,7 +244,8 @@ export async function dragAndDropWidgetWithTouchingEdges(
         ? 10
         : 50;
   const position = { 
-    x: 300, 
+   // x: 300, 
+       x: widgetType === "mi-data-grid" ? 150 : 300,
     y: 50 + existingWidgets * overlapOffset // Smaller offset than cellHeight causes overlap
   };
   
