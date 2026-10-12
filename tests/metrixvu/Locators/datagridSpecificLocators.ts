@@ -119,13 +119,6 @@ searchPanelVisibleLabel: (page: Page) =>
 searchPanelVisibleInput: (page: Page) =>
   page.getByTestId("prop-input-search-panel-visible"),
 
-searchPanelPlaceholderLabel: (page: Page) =>
-  page.getByTestId("prop-label-search-panel-placeholder"),
-
-searchPanelPlaceholderInput: (page: Page) =>
-  page.getByTestId("prop-input-search-panel-placeholder"),
-
-
 
 /**
  * Column Chooser properties
@@ -137,9 +130,5 @@ columnChooserEnabledLabel: (page: Page) =>
 columnChooserEnabledInput: (page: Page) =>
   page.getByTestId("prop-input-column-chooser-enabled"),
 
-columnChooserModeLabel: (page: Page) =>
-  page.getByTestId("prop-label-column-chooser-mode"),
 
-columnChooserModeInput: (page: Page) =>
-  page.getByTestId("prop-input-column-chooser-mode"),
 };
