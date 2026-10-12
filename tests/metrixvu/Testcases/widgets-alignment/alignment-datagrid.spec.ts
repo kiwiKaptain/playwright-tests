@@ -21,6 +21,7 @@ import {
   dragAndDropWidgetInDifferentPositions,
   dragAndDropWidgetWithTouchingEdges,
 } from "../../CommonHelperFunctions/commonDragDropHelpers";
+import { TIMEOUT } from "dns";
 
 const WIDGETS = { DATAGRID: "mi-data-grid" } as const;
 const widgetCssSelector = '.grid-stack-item[data-widget-type="mi-data-grid"]';
@@ -83,7 +84,8 @@ test.describe("TOOLBAR - ALIGNMENT - DATAGRID Widget", () => {
       dragAndDropWidgetWithTouchingEdges,
     );
 
-    await selectWidgetsOnCanvas(page, uuids);
+   await selectWidgetsOnCanvas(page, uuids);
+
     // await AlignmentLocators.alignLeft(page).click();
     const alignLeft = AlignmentLocators.alignLeft(page);
 
@@ -540,8 +542,16 @@ test.describe("TOOLBAR - RESIZE- DATAGRID Widget", () => {
       2,
       dragAndDropWidgetInDifferentPositions,
     );
-    await selectWidgetsOnCanvas(page, uuids);
+ //   await selectWidgetsOnCanvas(page, uuids);
+  if (uuids.length > 0) {
+    // Click the last added widget first
+    await page.locator(`[data-widget-uuid="${uuids[uuids.length - 1]}"]`).click();
 
+    // Press Ctrl and click the first widget
+await page.keyboard.down("Control");
+await page.locator(`[data-widget-uuid="${uuids[0]}"]`).click();
+await page.keyboard.up("Control");
+  }
     //await AlignmentLocators.resizeAll(page).click();
     const resizeAll = AlignmentLocators.resizeAll(page);
 
@@ -574,6 +584,7 @@ test.describe("TOOLBAR - RESIZE- DATAGRID Widget", () => {
     );
 
     await selectWidgetsOnCanvas(page, uuids);
+ 
     //await AlignmentLocators.resizeAll(page).click();
     const resizeAll = AlignmentLocators.resizeAll(page);
 
@@ -600,36 +611,97 @@ test.describe("TOOLBAR - RESIZE- DATAGRID Widget", () => {
 
     //await expectWidgetsNotOverlapping(selectedWidgets);
   });
-  test("3. User can apply SAME WIDTH  for Data Grid widgets .Expected: all selected widgets should have the same width alignment", async ({
+  // test("3. User can apply SAME WIDTH  for Data Grid widgets .Expected: all selected widgets should have the same width alignment", async ({
+  //   page,
+  // }) => {
+  //   const { uuids } = await setupWidgets(
+  //     page,
+  //     WIDGETS.DATAGRID,
+  //     2,
+  //     dragAndDropWidgetInDifferentPositions,
+  //   );
+  //   await selectWidgetsOnCanvas(page, uuids);
+  //   //await AlignmentLocators.resizeWidth(page).click();
+  //   const resizeWidth = AlignmentLocators.resizeWidth(page);
+
+  //   if ((await resizeWidth.count()) === 0) {
+  //     throw new Error(
+  //       "Test ID 'prop-control-resize-width' not found. " +
+  //         "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
+  //     );
+  //   }
+
+  //   await resizeWidth.click();
+
+  //   await page.locator("label").filter({ hasText: "Viewer" }).click();
+  //   await page.getByRole("button", { name: "Save", exact: true }).click();
+
+  //   const selectedWidgets = page.locator(widgetCssSelector);
+  //   const widths = await getWidgetAttributeValues(selectedWidgets, "gs-w");
+  //   expectAllValuesEqual(widths, "width (gs-w)");
+  // });
+test("3. User can apply SAME WIDTH for Data Grid widgets. Expected: all selected widgets should have the same width", async ({
+  page,
+}) => {
+  const { uuids } = await setupWidgets(
     page,
-  }) => {
-    const { uuids } = await setupWidgets(
-      page,
-      WIDGETS.DATAGRID,
-      2,
-      dragAndDropWidgetInDifferentPositions,
+    WIDGETS.DATAGRID,
+    2,
+    dragAndDropWidgetInDifferentPositions,
+  );
+
+  console.log("Widget UUIDs:", uuids);
+
+  //await selectWidgetsOnCanvas(page, uuids);
+  if (uuids.length > 0) {
+    // Click the last added widget first
+    await page.locator(`[data-widget-uuid="${uuids[uuids.length - 1]}"]`).click();
+
+    // Press Ctrl and click the first widget
+await page.keyboard.down("Control");
+await page.locator(`[data-widget-uuid="${uuids[0]}"]`).click();
+await page.keyboard.up("Control");
+  }
+  const resizeWidth = AlignmentLocators.resizeWidth(page);
+
+  if ((await resizeWidth.count()) === 0) {
+    throw new Error(
+      "Test ID 'prop-control-resize-width' not found. " +
+        "Playwright might be stuck; the test may not have loaded correctly. " +
+        "Please try rerunning the test case.",
     );
-    await selectWidgetsOnCanvas(page, uuids);
-    //await AlignmentLocators.resizeWidth(page).click();
-    const resizeWidth = AlignmentLocators.resizeWidth(page);
+  }
 
-    if ((await resizeWidth.count()) === 0) {
-      throw new Error(
-        "Test ID 'prop-control-resize-width' not found. " +
-          "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
-      );
+  console.log("Clicking Same Width alignment control...");
+  await resizeWidth.click();
+
+  await page.locator("label").filter({ hasText: "Viewer" }).click();
+  await page.getByRole("button", { name: "Save", exact: true }).click();
+
+  const selectedWidgets = page.locator(widgetCssSelector);
+
+  // Log each widget's width before asserting
+  const widths: number[] = [];
+
+  for (const uuid of uuids) {
+    const widget = page.locator(
+      `.grid-stack [data-widget-uuid="${uuid}"]`,
+    );
+
+    const width = await widget.getAttribute("gs-w");
+
+    console.log(`Widget UUID: ${uuid}, gs-w: ${width}`);
+
+    if (width !== null) {
+      widths.push(Number(width));
     }
+  }
 
-    await resizeWidth.click();
+  console.log("All widget widths:", widths);
 
-    await page.locator("label").filter({ hasText: "Viewer" }).click();
-    await page.getByRole("button", { name: "Save", exact: true }).click();
-
-    const selectedWidgets = page.locator(widgetCssSelector);
-    const widths = await getWidgetAttributeValues(selectedWidgets, "gs-w");
-    expectAllValuesEqual(widths, "width (gs-w)");
-  });
-
+  expect(widths).toHaveLength(uuids.length);
+  expectAllValuesEqual(widths, "width (gs-w)");
+});
   test("4. User can apply SAME WIDTH for Data Grid widgets arranged with touching edges .Expected: widgets should not overlap each other.", async ({
     page,
   }) => {
@@ -641,6 +713,7 @@ test.describe("TOOLBAR - RESIZE- DATAGRID Widget", () => {
     );
 
     await selectWidgetsOnCanvas(page, uuids);
+
     //await AlignmentLocators.resizeWidth(page).click();
     const resizeWidth = AlignmentLocators.resizeWidth(page);
 
@@ -652,7 +725,9 @@ test.describe("TOOLBAR - RESIZE- DATAGRID Widget", () => {
     }
 
     await resizeWidth.click();
-
+  console.log("Waiting 5 seconds after resizing...");
+await page.waitForTimeout(5000);
+console.log("5-second wait completed.");
     await page.locator("label").filter({ hasText: "Viewer" }).click();
     await page.getByRole("button", { name: "Save", exact: true }).click();
 
@@ -673,8 +748,16 @@ test.describe("TOOLBAR - RESIZE- DATAGRID Widget", () => {
       2,
       dragAndDropWidgetInDifferentPositions,
     );
-    await selectWidgetsOnCanvas(page, uuids);
+   // await selectWidgetsOnCanvas(page, uuids);
+  if (uuids.length > 0) {
+    // Click the last added widget first
+    await page.locator(`[data-widget-uuid="${uuids[uuids.length - 1]}"]`).click();
 
+    // Press Ctrl and click the first widget
+await page.keyboard.down("Control");
+await page.locator(`[data-widget-uuid="${uuids[0]}"]`).click();
+await page.keyboard.up("Control");
+  }
     // await AlignmentLocators.resizeHeight(page).click();
     const resizeHeight = AlignmentLocators.resizeHeight(page);
 
