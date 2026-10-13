@@ -777,7 +777,7 @@ await page.keyboard.up("Control");
     expectAllValuesEqual(heights, "height (gs-h)");
   });
 
-  test("6. User can apply SAME HEIGHT for Data Grid widgets arranged with touching edges  .Expected: widgets should not overlap each other.", async ({
+  test("6. User can apply SAME HEIGHT for Data Grid widgets that overlap each other  . Expected: selected widgets must be aligned correctly.", async ({
     page,
   }) => {
     const { uuids } = await setupWidgets(
