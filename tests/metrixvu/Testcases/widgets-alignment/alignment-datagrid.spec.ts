@@ -251,7 +251,7 @@ test.describe("TOOLBAR - ALIGNMENT - DATAGRID Widget", () => {
     console.log("Widget right edge positions:", rightPositions);
     expectAllValuesEqual(rightPositions, "right edge (gs-x + gs-w)");
   });
-  test("5. User can change RIGHT alignment for Data Grid widgets arranged with touching edges  .Expected: widgets should not overlap each other.", async ({
+  test("5. User can change RIGHT alignment for Data Grid widgets that overlap each other  . Expected: selected widgets must be aligned correctly.", async ({
     page,
   }) => {
     const { uuids } = await setupWidgets(
@@ -483,7 +483,7 @@ test.describe("TOOLBAR - ALIGNMENT - DATAGRID Widget", () => {
     expectAllValuesEqual(bottomPositions, "bottom edge (gs-y + gs-h)");
   });
 
-  test("10. User can change BOTTOM alignment for Data Grid widgets arranged with touching edges  .Expected: widgets should not overlap each other.", async ({
+  test("10. User can change BOTTOM alignment for Data Grid widgets that overlap each other  . Expected: selected widgets must be aligned correctly.", async ({
     page,
   }) => {
     const { uuids } = await setupWidgets(
