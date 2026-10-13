@@ -28,6 +28,13 @@ test.describe("PROPERTIES - DATA GRID Widget", () => {
     await openEditorAndClearCanvas(page, dashboardCard);
     // Create ONLY 1 DATAGRID
     await setupWidgets(page, WIDGETS.DATAGRID, 1);
+       // Click the Data Grid widget
+  const dataGridWidget = await getDroppedWidgetByUuid(
+    page,
+    WIDGETS.DATAGRID,
+  );
+
+  await dataGridWidget.click();
   });
 
   test.afterEach(async ({ page }) => {
