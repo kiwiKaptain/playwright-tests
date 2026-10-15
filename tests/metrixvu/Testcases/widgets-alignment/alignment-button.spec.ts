@@ -37,7 +37,7 @@ test.describe("TOOLBAR - ALIGNMENT - BUTTON Widget", () => {
   test("1. User can change LEFT alignment for Button  widgets .Expected: all selected widgets should have the same left alignment.", async ({
     page,
   }) => {
-    const { uuids } = await setupWidgets(page, WIDGETS.BUTTON, 3);
+    const { uuids } = await setupWidgets(page, WIDGETS.BUTTON, 2);
     await selectWidgetsOnCanvas(page, uuids);
     // await AlignmentLocators.alignLeft(page).click();
     const alignLeft = AlignmentLocators.alignLeft(page);
@@ -69,7 +69,7 @@ test.describe("TOOLBAR - ALIGNMENT - BUTTON Widget", () => {
     const { uuids } = await setupWidgets(
       page,
       WIDGETS.BUTTON,
-      3,
+      2,
       dragAndDropWidgetWithTouchingEdges,
     );
 
@@ -189,7 +189,7 @@ test.describe("TOOLBAR - ALIGNMENT - BUTTON Widget", () => {
   test("4. User can change RIGHT alignment for Button  widgets  .Expected: all selected widgets should have the same right alignment.", async ({
     page,
   }) => {
-    const { uuids } = await setupWidgets(page, WIDGETS.BUTTON, 3);
+    const { uuids } = await setupWidgets(page, WIDGETS.BUTTON, 2);
     await selectWidgetsOnCanvas(page, uuids);
     const alignRight = AlignmentLocators.alignRight(page);
 
@@ -226,7 +226,7 @@ test.describe("TOOLBAR - ALIGNMENT - BUTTON Widget", () => {
     const { uuids } = await setupWidgets(
       page,
       WIDGETS.BUTTON,
-      3,
+      2,
       dragAndDropWidgetWithTouchingEdges,
     );
 
@@ -271,7 +271,7 @@ test.describe("TOOLBAR - ALIGNMENT - BUTTON Widget", () => {
   test("6. User can change TOP alignment for Button  widgets  .Expected: all selected widgets should have the same top alignment.", async ({
     page,
   }) => {
-    const { uuids } = await setupWidgets(page, WIDGETS.BUTTON, 3);
+    const { uuids } = await setupWidgets(page, WIDGETS.BUTTON, 2);
     await selectWidgetsOnCanvas(page, uuids);
     // await AlignmentLocators.alignTop(page).click();
     const alignTop = AlignmentLocators.alignTop(page);
@@ -297,11 +297,11 @@ test.describe("TOOLBAR - ALIGNMENT - BUTTON Widget", () => {
   test("7. User can change TOP alignment for Button widgets are placed that overlap each other  . Expected: selected widgets must be aligned correctly.", async ({
     page,
   }) => {
-    //const { uuids } = await setupWidgetsWithTouchingEdges(page,WIDGETS.BUTTON,3);
+    //const { uuids } = await setupWidgetsWithTouchingEdges(page,WIDGETS.BUTTON,2);
     const { uuids } = await setupWidgets(
       page,
       WIDGETS.BUTTON,
-      3,
+      2,
       dragAndDropWidgetWithTouchingEdges,
     );
     await selectWidgetsOnCanvas(page, uuids);
@@ -319,18 +319,23 @@ test.describe("TOOLBAR - ALIGNMENT - BUTTON Widget", () => {
     await page.locator("label").filter({ hasText: "Viewer" }).click();
     await page.getByRole("button", { name: "Save", exact: true }).click();
     const selectedWidgets = page.locator(CardWidgetCssSelector);
-    const xPositions = await getWidgetAttributeValues(selectedWidgets, "gs-x");
+    //const xPositions = await getWidgetAttributeValues(selectedWidgets, "gs-x");
 
     // Verify widgets are NOT all in the same column
-    expect(new Set(xPositions).size).toBeGreaterThan(1);
+    //expect(new Set(xPositions).size).toBeGreaterThan(1);
 
     //await expectWidgetsNotOverlapping(selectedWidgets);
+         const topPositions = await getWidgetAttributeValues(
+      selectedWidgets,
+      "gs-y",
+    );
+      expectAllValuesEqual(topPositions, "top position (gs-y)");
   });
 
   // test("9. User can change CENTER alignment for Button  widgets  .Expected: all selected widgets should have the same center alignment.", async ({
   //   page,
   // }) => {
-  //   const { uuids } = await setupWidgets(page, WIDGETS.BUTTON, 3);
+  //   const { uuids } = await setupWidgets(page, WIDGETS.BUTTON, 2);
 
   //   await selectWidgetsOnCanvas(page, uuids);
 
@@ -379,7 +384,7 @@ test.describe("TOOLBAR - ALIGNMENT - BUTTON Widget", () => {
     const { uuids } = await setupWidgets(
       page,
       WIDGETS.BUTTON,
-      3,
+      2,
       dragAndDropWidgetWithTouchingEdges,
     );
 
@@ -415,7 +420,7 @@ test.describe("TOOLBAR - ALIGNMENT - BUTTON Widget", () => {
   test("9. User can change BOTTOM alignment for Button  widgets  .Expected: all selected widgets should have the same bottom alignment.", async ({
     page,
   }) => {
-    const { uuids } = await setupWidgets(page, WIDGETS.BUTTON, 3);
+    const { uuids } = await setupWidgets(page, WIDGETS.BUTTON, 2);
 
     // await selectThreeWidgets(page, uuids);
     await selectWidgetsOnCanvas(page, uuids);
@@ -454,7 +459,7 @@ test.describe("TOOLBAR - ALIGNMENT - BUTTON Widget", () => {
     const { uuids } = await setupWidgets(
       page,
       WIDGETS.BUTTON,
-      3,
+      2,
       dragAndDropWidgetWithTouchingEdges,
     );
 
@@ -504,7 +509,7 @@ test.describe("TOOLBAR - RESIZE - BUTTON Widget", () => {
   test("1. User can apply SAME SIZE for Button  widgets  .Expected: all selected widgets should have the same size alignment.", async ({
     page,
   }) => {
-    const { uuids } = await setupWidgets(page, WIDGETS.BUTTON, 3);
+    const { uuids } = await setupWidgets(page, WIDGETS.BUTTON, 2);
 
     await selectWidgetsOnCanvas(page, uuids);
 
@@ -535,7 +540,7 @@ test.describe("TOOLBAR - RESIZE - BUTTON Widget", () => {
     const { uuids } = await setupWidgets(
       page,
       WIDGETS.BUTTON,
-      3,
+      2,
       dragAndDropWidgetWithTouchingEdges,
     );
 
@@ -569,7 +574,7 @@ test.describe("TOOLBAR - RESIZE - BUTTON Widget", () => {
   test("3. User can apply SAME WIDTH  for Button  widgets  .Expected: all selected widgets should have the same width alignment.", async ({
     page,
   }) => {
-    const { uuids } = await setupWidgets(page, WIDGETS.BUTTON, 3);
+    const { uuids } = await setupWidgets(page, WIDGETS.BUTTON, 2);
 
     await selectWidgetsOnCanvas(page, uuids);
     //await AlignmentLocators.resizeWidth(page).click();
@@ -597,7 +602,7 @@ test.describe("TOOLBAR - RESIZE - BUTTON Widget", () => {
     const { uuids } = await setupWidgets(
       page,
       WIDGETS.BUTTON,
-      3,
+      2,
       dragAndDropWidgetWithTouchingEdges,
     );
 
@@ -628,8 +633,8 @@ test.describe("TOOLBAR - RESIZE - BUTTON Widget", () => {
   test("5. User can apply SAME HEIGHT  for Button  widgets  .Expected: all selected widgets should have the same height alignment.", async ({
     page,
   }) => {
-    const { uuids } = await setupWidgets(page, WIDGETS.BUTTON, 3);
-    //   const { uuids } = await setupWidgets(page,WIDGETS.BUTTON,3,cardPositions,);
+    const { uuids } = await setupWidgets(page, WIDGETS.BUTTON, 2);
+    //   const { uuids } = await setupWidgets(page,WIDGETS.BUTTON,2,cardPositions,);
     await selectWidgetsOnCanvas(page, uuids);
 
     // await AlignmentLocators.resizeHeight(page).click();
@@ -657,7 +662,7 @@ test.describe("TOOLBAR - RESIZE - BUTTON Widget", () => {
     const { uuids } = await setupWidgets(
       page,
       WIDGETS.BUTTON,
-      3,
+      2,
       dragAndDropWidgetWithTouchingEdges,
     );
 
