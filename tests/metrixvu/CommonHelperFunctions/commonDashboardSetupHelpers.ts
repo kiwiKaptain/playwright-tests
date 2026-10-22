@@ -97,18 +97,11 @@ export async function openEditorAndClearCanvas(
     .waitFor({ state: "visible", timeout: 15000 });
 
   // 2. Handle the favorite popup quickly if it shows up
-//  const closePopup = page
- //   .locator("mi-favourite-data-points-modal")
-//    .getByRole("button")
-//    .filter({ hasText: /^\$/ });
-//  if (await closePopup.isVisible({ timeout: 2000 }).catch(() => false)) {
-//    await closePopup.click();
-//  }
 const favouriteDataPointsHeading = page.locator('mi-favourite-data-points-modal').getByRole('button').filter({ hasText: /^$/ });
 
 try {
-  if (await favouriteDataPointsHeading.isVisible().catch(() => false)) {
-    console.log("Favourite Data Points12 heading is visible.");
+  if (await favouriteDataPointsHeading.isVisible({ timeout: 5000 }).catch(() => false)) {
+    console.log("Favourite Data Points heading is visible.");
 
     try {
       await page.getByRole("button", { name: "Cancel" }).click();
@@ -117,11 +110,10 @@ try {
         `Failed to click the Cancel button in Favourite Data Points dialog. ${error}`
       );
     }
-  } else {
-    console.log("Favourite Data Points12 heading is not visible.");
-  }
+  } 
 } catch (error) {
   throw new Error(
+   
     `Failed to check the Favourite Data Points heading visibility. ${error}`
   );
 }
