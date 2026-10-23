@@ -97,26 +97,63 @@ export async function openEditorAndClearCanvas(
     .waitFor({ state: "visible", timeout: 15000 });
 
   // 2. Handle the favorite popup quickly if it shows up
-const favouriteDataPointsHeading = page.locator('mi-favourite-data-points-modal').getByRole('button').filter({ hasText: /^$/ });
+const favouriteDataPointsModal = page
+    .locator("mi-favourite-data-points-modal")
+    .filter({
+      has: page.getByRole("heading", {
+        name: "Favourite Data Points",
+        exact: true,
+      }),
+    });
 
-try {
-  if (await favouriteDataPointsHeading.isVisible({ timeout: 5000 }).catch(() => false)) {
-    console.log("Favourite Data Points heading is visible.");
+  const favouriteDataPointsHeading = favouriteDataPointsModal.getByRole(
+    "heading",
+    {
+      name: "Favourite Data Points",
+      exact: true,
+    }
+  );
+
+  try {
+    await favouriteDataPointsHeading.waitFor({
+      state: "visible",
+      timeout: 5000,
+    });
+
+    console.log("Favourite Data Points popup is visible.");
+
+    const cancelButton = favouriteDataPointsModal.getByRole("button", {
+      name: "Cancel",
+      exact: true,
+    });
 
     try {
-      await page.getByRole("button", { name: "Cancel" }).click();
+      await cancelButton.click({ timeout: 5000 });
+      await favouriteDataPointsHeading.waitFor({
+        state: "hidden",
+        timeout: 5000,
+      });
+
+      console.log("Favourite Data Points popup closed successfully.");
     } catch (error) {
       throw new Error(
-        `Failed to click the Cancel button in Favourite Data Points dialog. ${error}`
+        `Failed to click Cancel or close the Favourite Data Points popup. ${error}`
       );
     }
-  } 
-} catch (error) {
-  throw new Error(
-   
-    `Failed to check the Favourite Data Points heading visibility. ${error}`
-  );
-}
+  } catch (error) {
+    if (
+      error instanceof Error &&
+      error.message.includes(
+        "Failed to click Cancel or close the Favourite Data Points popup."
+      )
+    ) {
+      throw error;
+    }
+
+    console.log(
+      "Favourite Data Points popup did not become visible within 5 seconds. Continuing..."
+    );
+  }
   //Wait for network activity to stop,
   await page.waitForLoadState("networkidle").catch(() => {});
   await page.waitForTimeout(1000);
