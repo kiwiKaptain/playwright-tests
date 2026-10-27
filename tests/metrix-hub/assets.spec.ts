@@ -84,7 +84,7 @@ test.describe("Variable CRUD", () => {
 
     // Explicit file path parsing sequence
     await fileInput.setInputFiles(
-      "../assets/variable-template.xlsx",
+      "./assets/variable-template.xlsx",
     );
     await page.getByRole("button", { name: "Upload" }).click();
     await page.getByRole("button", { name: "Done" }).click();
