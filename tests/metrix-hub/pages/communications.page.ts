@@ -23,11 +23,11 @@ export class CommsPage {
         isDuplicate = false,
     ) {
         await commLocators.getDriverInstance(this.page, driverName).click();
+        await this.page.waitForTimeout(500);
         await commLocators.addInstanceButton(this.page).click();
-        // await commLocators.instanceName(this.page).fill('ModbusTestInstance');
+        await this.page.waitForTimeout(500);
         await commLocators.instanceName(this.page).fill(instanceName);
         await commLocators.saveInstanceButton(this.page).click();
-        // await commLocators.instanceConnectionName(this.page).fill('TestConnectionModbus');
 
         if (!isDuplicate) {
             await commLocators
