@@ -1145,8 +1145,22 @@ export async function setActionsProperties(page: Page, dashboardName: string) {
   await ActionLocators.clickSettingTypeInput(page).press("Enter");
 
   // Open dashboard selection
-  await page.getByRole("button", { name: "preferences" }).click();
+ // await page.getByRole("button", { name: "preferences" }).click();
+  // Open dashboard selection
+  try {
+    const preferencesButton = page.getByRole("button", {
+      name: "preferences",
+    });
 
+    await expect(preferencesButton).toBeVisible({ timeout: 5000 });
+    await preferencesButton.click();
+  } catch (error) {
+    throw new Error(
+      "Settings button not found or could not be clicked while selecting the dashboard. " +
+      "Playwright might be stuck or the Action settings dialog might not have loaded correctly. " +
+      "Please verify the UI and try rerunning the test case."
+    );
+  }
   // Select dashboard
   await page.getByText(dashboardName, { exact: true }).click();
 
