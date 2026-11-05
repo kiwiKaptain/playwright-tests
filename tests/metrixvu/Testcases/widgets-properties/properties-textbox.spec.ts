@@ -1125,7 +1125,7 @@ test("8. User can change input mode password properties for Textbox widget", asy
   }
   
 });
-test("8 .User can change Link Dashboard via ACTIONS properties for  Numberbox widget", async ({
+test("9.User can change Link Dashboard via ACTIONS properties for Textbox widget", async ({
     page,
   }) => {
     // Update ACTIONS
@@ -1173,7 +1173,7 @@ try {
   );
 }
   });
-  test("8. User can set the action type to NONE for  Numberbox widget", async ({
+  test("10. User can set the action type to NONE for textbox widget", async ({
         page,
       }) => {
         // Update ACTIONS to None
