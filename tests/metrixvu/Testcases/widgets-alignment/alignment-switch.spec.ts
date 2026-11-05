@@ -295,7 +295,7 @@ test.describe("TOOLBAR - ALIGNMENT - SWITCH Widget", () => {
     expectAllValuesEqual(topPositions, "top position (gs-y)");
   });
 
-  test("7. User can change TOP alignment for Button widgets are placed that overlap each other  . Expected: selected widgets must be aligned correctly.", async ({
+  test("7. User can change TOP alignment for Switch widgets are placed that overlap each other  . Expected: selected widgets must be aligned correctly.", async ({
     page,
   }) => {
     //const { uuids } = await setupWidgetsWithTouchingEdges(page,WIDGETS.SWITCH,3);
