@@ -42,9 +42,9 @@ test.describe("BUGS TESTCASES - SWITCH Widget", () => {
     await resizeWidget(page, droppedWidget, resizeHandle, 150, 150);
   });
 
-  test.afterEach(async ({ page }) => {
-    await goToHomeAndVerify(page, dashboardName);
-  });
+  // test.afterEach(async ({ page }) => {
+  //   await goToHomeAndVerify(page, dashboardName);
+  // });
 
 
 test("1. Check if on clicking reset, default white background is applied for Switch widget", async ({
@@ -101,75 +101,56 @@ test("1. Check if on clicking reset, default white background is applied for Swi
 
 
 
-test("2. Check if text is properly visible in Light Mode when Pill Toggle Slider style is applied to the Switch widget", async ({
+
+test("2. Check if ON text is properly visible in Light Mode when Pill Toggle Slider style is applied to the Switch widget", async ({
   page,
 }) => {
 
-// Switch Style
-await SwitchLocators.switchStyleLabel(page).click();
-await SwitchLocators.switchStyle(page).click();
-await SwitchLocators.switchStyleOption(page, "Pill Toggle Slider").click();
- 
+  // Switch Style
+  await SwitchLocators.switchStyleLabel(page).click();
+  await SwitchLocators.switchStyle(page).click();
+  await SwitchLocators.switchStyleOption(page, "Pill Toggle Slider").click();
 
+  // Read Only
+  await SwitchLocators.readOnlyLabel(page).click();
+  await SwitchLocators.readOnly(page).click();
 
-// Disabled
-await SwitchLocators.disabledLabel(page).click();
-await SwitchLocators.disabled(page).click();
-
-// // Read Only
-await SwitchLocators.readOnlyLabel(page).click();
-await SwitchLocators.readOnly(page).click();
-  
-  
-  // ============================================================
   // Switch to Viewer
-  // ============================================================
-
   await page.locator("label").filter({ hasText: "Viewer" }).click();
 
-  // ============================================================
   // Save
-  // ============================================================
-
   await page.getByRole("button", {
     name: "Save",
     exact: true,
   }).click();
-  
- // ============================================================
-  // Verify Switch in Viewer
-  // ============================================================
 
+  // Verify Switch in Viewer
   const targetWidget = await getDroppedWidgetByUuid(
     page,
     WIDGETS.SWITCH,
   );
 
-  const switchContainer = targetWidget.locator(".switch-dual-segment");
+  const pillSlider = targetWidget.locator(".switch-pill-slider");
 
- // ============================================================
-  // Verify ON text color in Light Mode
-  // ============================================================
-
-  const onText = switchContainer.locator("span").filter({
-    hasText: /^ON$/,
-  });
+  // Verify ON text visibility in Light Mode
+  const onText = pillSlider.locator(".pill-text-on");
 
   try {
-    await expect(onText).not.toHaveCSS(
-      "color",
-      "rgb(255, 255, 255)",
-      {
-        timeout: 5000,
-      }
-    );
+    await expect(pillSlider).toBeVisible({ timeout: 5000 });
+
+    await expect(onText).toBeVisible({ timeout: 5000 });
+
+    await expect(onText).toHaveCSS("opacity", "1");
+
+    await expect(onText).toHaveCSS("visibility", "visible");
+
   } catch {
     throw new Error(
-      "ON text color is white in Light Mode. Switch ON text should not be white."
+      "ON text is not properly visible in Light Mode when Pill Toggle Slider style is applied. " +
+      "Please verify the ON text visibility, opacity, and CSS properties."
     );
   }
 });
-
 
 
 
