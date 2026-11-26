@@ -271,6 +271,104 @@ export const RunTimeFilterLocators = {
   //  runTimeFilter: (page: Page) =>
   //     page.getByTestId("prop-input-mi-widget-settings-runtime-filter-required"),
 };
+export const MultipleBatchSelectionLocators = {
+  multipleBatchSelectionLabel: (page: Page) =>
+    page.getByTestId("prop-label-common-multiple-batch-selection"),
+
+  multipleBatchSelection: (page: Page) =>
+    page.getByTestId("prop-input-common-multiple-batch-selection"),
+};
+
+export const SingleCursorEnabledLocators = {
+  singleCursorEnabledLabel: (page: Page) =>
+    page.getByTestId("prop-label-cursor-enabled"),
+
+  singleCursorEnabled: (page: Page) =>
+    page.getByTestId("prop-input-cursor-enabled"),
+};
+
+export const DoubleCursorEnabledLocators = {
+  doubleCursorEnabledLabel: (page: Page) =>
+    page.getByTestId("prop-label-double-cursor-enabled"),
+
+  doubleCursorEnabled: (page: Page) =>
+    page.getByTestId("prop-input-double-cursor-enabled"),
+};
+
+
+
+
+
+export const MultipleYAxesLocators = {
+  multipleYAxesLabel: (page: Page) =>
+    page.getByTestId("prop-label-multiple-y-axes"),
+
+  multipleYAxes: (page: Page) =>
+    page.getByTestId("prop-input-multiple-y-axes"),
+};
+
+export const MultipleAxesSpacingLocators = {
+  multipleAxesSpacingLabel: (page: Page) =>
+    page.getByTestId("prop-label-multiple-axes-spacing"),
+
+  multipleAxesSpacing: (page: Page) =>
+    page.getByTestId("prop-input-multiple-axes-spacing"),
+};
+
+export const StackedPanesLocators = {
+  stackedPanesLabel: (page: Page) =>
+    page.getByTestId("prop-label-stacked-panes"),
+
+  stackedPanes: (page: Page) =>
+    page.getByTestId("prop-input-stacked-panes"),
+};
+
+export const RelativeTimeLocators = {
+  relativeTimeLabel: (page: Page) =>
+    page.getByTestId("prop-label-relative-time"),
+
+  relativeTime: (page: Page) =>
+    page.getByTestId("prop-input-relative-time"),
+};
+
+export const RelativeTimeModeLocators = {
+  relativeTimeModeLabel: (page: Page) =>
+    page.getByTestId("prop-label-relative-time-mode"),
+
+  relativeTimeMode: (page: Page) =>
+    page.getByTestId("prop-input-relative-time-mode"),
+
+  continuousOffsetOption: (page: Page) =>
+    page.getByText("Continuous (Offset from first"),
+};
+
+export const YAxisParametersLocators = {
+  // Min and Max
+  minInput: (page: Page) =>
+    page.getByTestId("prop-input-param-min-0-0"),
+
+  maxInput: (page: Page) =>
+    page.getByTestId("prop-input-param-max-0-0"),
+
+  // Offset
+  offsetInput: (page: Page) =>
+    page.getByTestId("prop-input-param-offset-0-0"),
+
+  // Position
+  batchLabel: (page: Page) =>
+    page.getByTestId("prop-label-param-batch-0-0"),
+
+  positionLabel: (page: Page) =>
+    page.getByTestId("prop-label-param-position-0-0"),
+
+  positionInput: (page: Page) =>
+    page.getByTestId("prop-input-param-position-0-0"),
+
+  rightY2Option: (page: Page) =>
+    page.getByText("Right (Y2)", { exact: true }),
+};
+
+
 
 export const GeneralSettingsLocators = {
   seriesTypeLabel: (page: Page) =>
