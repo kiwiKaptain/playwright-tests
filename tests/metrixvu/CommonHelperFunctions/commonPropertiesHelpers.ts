@@ -1,10 +1,19 @@
-import { expect, Page } from "@playwright/test";
+import { expect, Page, type Locator } from "@playwright/test";
 import {
   ActionLocators,
   ColorThemeLocators,
+  DoubleCursorEnabledLocators,
   GeneralSettingsLocators,
+  MultipleAxesSpacingLocators,
+  MultipleBatchSelectionLocators,
+  MultipleYAxesLocators,
   playwrightLocators,
+  RelativeTimeLocators,
+  RelativeTimeModeLocators,
   RunTimeFilterLocators,
+  SingleCursorEnabledLocators,
+  StackedPanesLocators,
+  YAxisParametersLocators,
   
 } from "../Locators/commonLocators";
 
@@ -1145,7 +1154,7 @@ export async function setActionsProperties(page: Page, dashboardName: string) {
   await ActionLocators.clickSettingTypeInput(page).press("Enter");
 
   // Open dashboard selection
- // await page.getByRole("button", { name: "preferences" }).click();
+  //await page.getByRole("button", { name: "preferences" }).click();
   // Open dashboard selection
   try {
     const preferencesButton = page.getByRole("button", {
@@ -1237,6 +1246,356 @@ export async function setRunTimeFilter(page: Page) {
   if (!isChecked) {
     await runTimeFilter.click();
   }
+}
+export async function setMultipleBatchSelection(page: Page) {
+  const multipleBatchSelection =
+    MultipleBatchSelectionLocators.multipleBatchSelection(page);
+
+  if ((await multipleBatchSelection.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-common-multiple-batch-selection not found. " +
+        "Playwright might be stuck hence may not have load test correctly. Please try rerunning the test case.",
+    );
+  }
+
+  const isChecked =
+    (await multipleBatchSelection.getAttribute("aria-checked")) === "true";
+
+  if (!isChecked) {
+    await multipleBatchSelection.click();
+  }
+}
+
+export async function setSingleCursor(page: Page) {
+  const cursorEnabled =
+    SingleCursorEnabledLocators.singleCursorEnabled(page);
+
+  if ((await cursorEnabled.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-cursor-enabled not found. " +
+        "Playwright might be stuck hence may not have loaded the test correctly. Please try rerunning the test case.",
+    );
+  }
+
+  const isChecked =
+    (await cursorEnabled.getAttribute("aria-checked")) === "true";
+
+  if (!isChecked) {
+    await cursorEnabled.click();
+  }
+}
+
+export async function setMultipleCursor(page: Page) {
+  const doubleCursorEnabled =
+    DoubleCursorEnabledLocators.doubleCursorEnabled(page);
+
+  if ((await doubleCursorEnabled.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-double-cursor-enabled not found. " +
+        "Playwright might be stuck hence may not have loaded the test correctly. Please try rerunning the test case.",
+    );
+  }
+
+  const isChecked =
+    (await doubleCursorEnabled.getAttribute("aria-checked")) === "true";
+
+  if (!isChecked) {
+    await doubleCursorEnabled.click();
+  }
+}
+
+export async function setMultipleYAxes(page: Page) {
+  const multipleYAxes = MultipleYAxesLocators.multipleYAxes(page);
+
+  if ((await multipleYAxes.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-multiple-y-axes not found. " +
+        "Playwright might be stuck hence may not have loaded the test correctly. Please try rerunning the test case.",
+    );
+  }
+
+  const isChecked =
+    (await multipleYAxes.getAttribute("aria-checked")) === "true";
+
+  if (!isChecked) {
+    await multipleYAxes.click();
+  }
+}
+
+export async function setMultipleAxesSpacing(
+  page: Page,
+  spacing: string
+) {
+  const spacingInput =
+    MultipleAxesSpacingLocators.multipleAxesSpacing(page);
+
+  if ((await spacingInput.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-multiple-axes-spacing not found. " +
+        "Playwright might be stuck hence may not have loaded the test correctly. Please try rerunning the test case.",
+    );
+  }
+
+  await spacingInput.click();
+  await spacingInput.press("ControlOrMeta+a");
+  await spacingInput.fill(spacing);
+  await spacingInput.press("Enter");
+}
+
+export async function setStackedPanes(page: Page) {
+  const stackedPanes = StackedPanesLocators.stackedPanes(page);
+
+  if ((await stackedPanes.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-stacked-panes not found. " +
+        "Playwright might be stuck hence may not have loaded the test correctly. Please try rerunning the test case.",
+    );
+  }
+
+  const isChecked =
+    (await stackedPanes.getAttribute("aria-checked")) === "true";
+
+  if (!isChecked) {
+    await stackedPanes.click();
+  }
+}
+export async function uncheckStackedPanes(page: Page) {
+  const stackedPanes = StackedPanesLocators.stackedPanes(page);
+
+  if ((await stackedPanes.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-stacked-panes not found. " +
+        "Playwright might be stuck hence may not have loaded the test correctly. Please try rerunning the test case.",
+    );
+  }
+
+  const isChecked =
+    (await stackedPanes.getAttribute("aria-checked")) === "true";
+
+  if (isChecked) {
+    await stackedPanes.click();
+  }
+}
+export async function setRelativeTime(page: Page) {
+  const relativeTime = RelativeTimeLocators.relativeTime(page);
+
+  if ((await relativeTime.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-relative-time not found. " +
+        "Playwright might be stuck hence may not have loaded the test correctly. Please try rerunning the test case.",
+    );
+  }
+
+  const isChecked =
+    (await relativeTime.getAttribute("aria-checked")) === "true";
+
+  if (!isChecked) {
+    await relativeTime.click();
+  }
+}
+export async function uncheckRelativeTime(page: Page) {
+  const relativeTime = RelativeTimeLocators.relativeTime(page);
+
+  if ((await relativeTime.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-relative-time not found. " +
+        "Playwright might be stuck hence may not have loaded the test correctly. Please try rerunning the test case.",
+    );
+  }
+
+  const isChecked =
+    (await relativeTime.getAttribute("aria-checked")) === "true";
+
+  if (isChecked) {
+    await relativeTime.click();
+  }
+}
+export async function setRelativeTimeMode(page: Page) {
+  const relativeTimeMode =
+    RelativeTimeModeLocators.relativeTimeMode(page);
+
+  if ((await relativeTimeMode.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-relative-time-mode not found. " +
+        "Playwright might be stuck hence may not have loaded the test correctly. Please try rerunning the test case.",
+    );
+  }
+
+  await relativeTimeMode.click();
+
+  const continuousOffsetOption =
+    RelativeTimeModeLocators.continuousOffsetOption(page);
+
+  if ((await continuousOffsetOption.count()) === 0) {
+    throw new Error(
+      "Continuous (Offset from first) option not found. " +
+        "Playwright might be stuck hence may not have loaded the test correctly. Please try rerunning the test case.",
+    );
+  }
+
+  await continuousOffsetOption.click();
+}
+export async function setYAxisMinMax(page: Page) {
+  const minInput = YAxisParametersLocators.minInput(page);
+
+  if ((await minInput.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-param-min-0-0 not found. " +
+      "Playwright might be stuck hence may not have loaded the test correctly. Please try rerunning the test case."
+    );
+  }
+
+  await minInput.fill("1");
+  await minInput.press("Enter");
+
+  const maxInput = YAxisParametersLocators.maxInput(page);
+
+  if ((await maxInput.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-param-max-0-0 not found. " +
+      "Playwright might be stuck hence may not have loaded the test correctly. Please try rerunning the test case."
+    );
+  }
+
+  await maxInput.fill("3");
+  await maxInput.press("Enter");
+}
+export async function setYAxisOffset(page: Page) {
+  const offsetInput = YAxisParametersLocators.offsetInput(page);
+
+  if ((await offsetInput.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-param-offset-0-0 not found. " +
+      "Playwright might be stuck hence may not have loaded the test correctly. Please try rerunning the test case."
+    );
+  }
+
+  await offsetInput.fill("100");
+  await offsetInput.press("Enter");
+}
+export async function setYAxisPosition(page: Page) {
+  const batchLabel = YAxisParametersLocators.batchLabel(page);
+
+  if ((await batchLabel.count()) === 0) {
+    throw new Error(
+      "Test ID prop-label-param-batch-0-0 not found. " +
+      "Playwright might be stuck hence may not have loaded the test correctly. Please try rerunning the test case."
+    );
+  }
+
+  await batchLabel.click();
+
+  const positionLabel = YAxisParametersLocators.positionLabel(page);
+
+  if ((await positionLabel.count()) === 0) {
+    throw new Error(
+      "Test ID prop-label-param-position-0-0 not found. " +
+      "Playwright might be stuck hence may not have loaded the test correctly. Please try rerunning the test case."
+    );
+  }
+
+  await positionLabel.click();
+
+  const positionInput = YAxisParametersLocators.positionInput(page);
+
+  if ((await positionInput.count()) === 0) {
+    throw new Error(
+      "Test ID prop-input-param-position-0-0 not found. " +
+      "Playwright might be stuck hence may not have loaded the test correctly. Please try rerunning the test case."
+    );
+  }
+
+  await positionInput.click();
+
+  const rightY2Option = YAxisParametersLocators.rightY2Option(page);
+
+  if ((await rightY2Option.count()) === 0) {
+    throw new Error(
+      "Right (Y2) position option not found. " +
+      "Playwright might be stuck hence may not have loaded the test correctly. Please try rerunning the test case."
+    );
+  }
+
+  await rightY2Option.click();
+}
+export async function selectBatchForDataPoint(
+  page: Page,
+  dataPointName: string,
+  batchName: string
+) {
+  // Locate the data point card
+  const dataPointCard = page
+    .locator(".bg-gray-50\\/90")
+    .filter({
+      has: page.getByTitle(dataPointName, { exact: true }),
+    });
+
+  if ((await dataPointCard.count()) === 0) {
+    throw new Error(
+      `${dataPointName} data point card not found. ` +
+        "Playwright might be stuck or the filter popup may not have loaded."
+    );
+  }
+
+  // Open batch dropdown
+  await dataPointCard
+    .locator(".dx-texteditor-input-container")
+    .click();
+
+  // Locate the batch in the currently visible dropdown
+  const batchOption = page
+    .locator('.dx-list-items[role="listbox"]:visible')
+    .locator('.dx-list-item[role="option"]')
+    .filter({
+      has: page.locator(".dx-item-content").getByText(batchName, {
+        exact: true,
+      }),
+    });
+
+  await expect(batchOption).toHaveCount(1);
+
+  // Select batch
+  await batchOption
+    .locator(":scope > .dx-list-item-before-bag .dx-checkbox-container")
+    .click();
+
+  // Close dropdown
+  //await page.getByTitle(dataPointName, { exact: true }).click();
+   // Close dropdown without clicking the data-point title
+  await page.keyboard.press("Escape");
+}
+
+export async function applyRuntimeFilter(
+  page: Page,
+  targetWidget: Locator
+) {
+  // Open runtime filter
+  const runtimeFilter = targetWidget.locator(
+    '.widget-action-icons [title="Filter"]'
+  );
+
+  if ((await runtimeFilter.count()) === 0) {
+    throw new Error(
+      "Runtime Filter button not found. " +
+        "Playwright might be stuck or the widget may not have loaded correctly."
+    );
+  }
+
+  await runtimeFilter.click();
+
+  // Select Pressure batches
+  await selectBatchForDataPoint(page, "Pressure", "BATCH_A000");
+  await selectBatchForDataPoint(page, "Pressure", "BATCH_A001");
+
+  // Select Temperature batches
+  await selectBatchForDataPoint(page, "Temperature", "BATCH_A002");
+  await selectBatchForDataPoint(page, "Temperature", "BATCH_A003");
+
+  // Enable Batch per data point
+  await page.getByText("Batch per data point").click();
+
+  // Save batch selections
+  await page.getByRole("button", { name: "OK" }).click();
 }
 
 export async function setSeriesType(page: Page, seriesType: string) {
