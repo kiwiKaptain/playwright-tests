@@ -8,7 +8,7 @@ import { RelativeTimeLocators } from "../../Locators/commonLocators";
 
 const dashboardName = TEST_DATA.dashboards.dashboardNameForWidgetPropertiesTesting;
 const WIDGETS = { LINECHART: "mi-line-chart" } as const;
-test.describe("BUGS TESTCASES- LINE-CHART Widget", () => {
+test.describe("BUGS TESTCASES-LINE-CHART Widget", () => {
   
 test.beforeEach(async ({ page }) => {
    test.setTimeout(120000);
