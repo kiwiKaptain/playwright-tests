@@ -12,6 +12,7 @@ export async function login(
   password: string = process.env.TEST_PASSWORD!,
 ): Promise<void> {
   try {
+    
     await page.goto(process.env.BASE_URL!, {
       timeout: 60000,
       waitUntil: "domcontentloaded",
@@ -46,6 +47,29 @@ export async function login(
   }
 }
 
+export async function turnDarkMode(page: Page) {
+  await page.getByRole("banner").click();
+
+  // const themeToggle = page
+  //   .getByRole("button")
+  //   .filter({ hasText: "Toggle Light/Dark Mode" });
+
+const themeToggle = page.getByTestId('theme-toggle-btn');
+
+  if ((await themeToggle.count()) === 0) {
+    throw new Error(
+      "Toggle Light/Dark Mode button not found. Playwright might be stuck or the page may not have loaded correctly. Please try rerunning the test case."
+    );
+  }
+
+  await themeToggle.click();
+await page.getByRole('banner').getByRole('button').filter({ hasText: /^$/ }).click();
+
+
+
+
+}
+
 /**
  * Ensures a dashboard with the given name exists, creating it if necessary.
  */
@@ -67,6 +91,13 @@ export async function ensureDashboardExists(
   await page.getByRole("textbox", { name: "Dashboard Name" }).fill(name);
   await page.locator(".dx-texteditor-input-container.dx-tag-container").click();
   await page.getByText("Administrator").click();
+
+  await page.locator('.space-y-4 > div:nth-child(3)').click();
+  await page.getByText('Property Panel in Viewer').click();
+  await page.getByText('Allow property panel to be').click();
+  await page.getByRole('button', { name: 'OFF' }).nth(2).click();
+  await page.getByText('Property Panel in Viewer ENABLED Allow property panel to be visible and').click();
+
   await page.getByRole("button", { name: "Create Dashboard" }).click();
 
   try {
@@ -97,7 +128,17 @@ export async function openEditorAndClearCanvas(
     .waitFor({ state: "visible", timeout: 15000 });
 
   // 2. Handle the favorite popup quickly if it shows up
-const favouriteDataPointsModal = page
+//   const closePopup = page
+//     .locator("mi-favourite-data-points-modal")
+//     .getByRole("button")
+//     .filter({ hasText: /^\$/ });
+
+//   if (await closePopup.isVisible({ timeout: 5000 }).catch(() => false)) {
+//     await closePopup.click();
+//   }
+
+  // Handle the Favourite Data Points popup if it appears
+  const favouriteDataPointsModal = page
     .locator("mi-favourite-data-points-modal")
     .filter({
       has: page.getByRole("heading", {
@@ -154,6 +195,7 @@ const favouriteDataPointsModal = page
       "Favourite Data Points popup did not become visible within 5 seconds. Continuing..."
     );
   }
+
   //Wait for network activity to stop,
   await page.waitForLoadState("networkidle").catch(() => {});
   await page.waitForTimeout(1000);
@@ -169,6 +211,10 @@ const favouriteDataPointsModal = page
     .locator(".widget-loader")
     .waitFor({ state: "hidden", timeout: 5000 })
     .catch(() => {});
+
+
+
+    
 }
 
 // export async function deleteAllWidgets(page: Page): Promise<void> {
@@ -326,6 +372,145 @@ export async function goToHomeAndVerify(
       `Failed to navigate back to Home or dashboard is not visible due to excess loading time.`,
     );
     console.error(error);
+    throw error;
+  }
+}
+
+export async function openDashboardInEditor(
+  page: Page,
+  dashboardName: Locator,
+): Promise<void> {
+  console.log("Waiting for dashboard card to become visible...");
+
+  await dashboardName.waitFor({
+    state: "visible",
+    timeout: 15000,
+  });
+
+  await dashboardName.hover();
+
+  const editorButton = dashboardName.getByRole("button", {
+    name: "Editor",
+  });
+
+  try {
+    await editorButton.waitFor({
+      state: "visible",
+      timeout: 10000,
+    });
+
+    await editorButton.click({
+      timeout: 10000,
+    });
+  } catch (error) {
+    throw new Error(
+      "Failed to click the Editor button. The button may not be visible, enabled, or actionable. Please verify the dashboard card and retry.",
+      { cause: error },
+    );
+  }
+
+  console.log("Editor button clicked. Waiting for canvas...");
+
+  await page.locator("#canvas-area").waitFor({
+    state: "visible",
+    timeout: 15000,
+  });
+
+  const closePopup = page
+    .locator("mi-favourite-data-points-modal")
+    .getByRole("button")
+    .filter({ hasText: /^\$/ });
+
+  if (await closePopup.isVisible().catch(() => false)) {
+    await closePopup.click({ timeout: 3000 }).catch(() => {});
+  }
+
+  await page.waitForLoadState("networkidle", { timeout: 10000 }).catch(() => {});
+
+  await page
+    .locator(".widget-loader-overlay")
+    .waitFor({ state: "hidden", timeout: 10000 })
+    .catch(() => {});
+
+  await page
+    .locator(".widget-loader")
+    .waitFor({ state: "hidden", timeout: 10000 })
+    .catch(() => {});
+
+  console.log("Dashboard opened in Editor mode.");
+}
+
+
+
+export async function copyPasteWidget(page: Page): Promise<void> {
+  try {
+    console.log("Copying the configured Widget...");
+    await page.getByTestId("toolbar-copy-button").click();
+    await page.waitForTimeout(500);
+
+    console.log("Pasting the copied Widget...");
+    await page.getByTestId("toolbar-paste-button").click();
+    await page.waitForTimeout(5000);
+
+    console.log("PASS: Widget copied and pasted successfully.");
+  } catch (error) {
+    console.error(
+      "COPY-PASTE OF Widget FAILED: Unable to copy or paste the configured Bar Chart."
+    );
+    console.error("Issue:", error);
+    throw error;
+  }
+}
+
+
+
+export async function dragPastedWidget(
+  page: Page,
+  originalWidget: Locator,
+  pastedWidget: Locator
+): Promise<void> {
+  try {
+    console.log("Moving pasted widget horizontally to the right...");
+
+    const pastedBox = await pastedWidget.boundingBox();
+
+    if (!pastedBox) {
+      throw new Error(
+        "DRAG FAILED: Unable to determine the position of the pasted widget."
+      );
+    }
+
+    const startX = pastedBox.x + pastedBox.width / 2;
+    const startY = pastedBox.y + pastedBox.height / 2;
+    const targetX = startX + pastedBox.width / 2 + 200;
+
+    await page.mouse.move(startX, startY);
+    await page.mouse.down();
+
+    try {
+      await page.mouse.move(targetX, startY, {
+        steps: 100,
+      });
+    } finally {
+      await page.mouse.up();
+    }
+
+    await page.waitForTimeout(1000);
+
+    await expect(
+      originalWidget,
+      "DRAG FAILED: Original widget is no longer visible."
+    ).toBeVisible();
+
+    await expect(
+      pastedWidget,
+      "DRAG FAILED: Pasted widget is no longer visible after dragging."
+    ).toBeVisible();
+
+    console.log("PASS: Pasted widget drag completed.");
+  } catch (error) {
+    console.error("DRAG FAILED: Unable to move the pasted widget.");
+    console.error("Issue:", error);
     throw error;
   }
 }
